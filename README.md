@@ -16,7 +16,7 @@ To deploy the markdown docs from the typeorm/typeorm repository on GitHub to Ver
 ```sh
 mkdir typeorm
 cd typeorm
-npx degit typeorm/typeorm#0.2.388
+npx degit typeorm/typeorm#0.2.38
 ```
 
 This will create a new directory called typeorm in your current directory. The directory will contain the source code for the TypeORM project, including the `docs` folder.
@@ -32,7 +32,7 @@ pip install mkdocs
 Create a `mkdocs.yml`` with below configuration
 
 ```yml
-site_name: TypeORM 0.2.38
+site_name: TypeORM v0.2.38
 site_url: https://typeorm-legacy.productsway.com/
 theme: readthedocs
 ```
