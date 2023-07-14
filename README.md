@@ -1,13 +1,13 @@
 <h1 align="center">How to Deploy Old Legacy Documentation with MkDocs 👋</h1>
-<p>This guide will show you how to convert markdown files to an HTML page and deploy old legacy documentation with MkDocs.
-
-</p>
+<p>This guide will show you how to convert markdown files to an HTML page and deploy old legacy documentation with MkDocs.</p>
 
 ## Motivation
 
 As the homepage has changed and only the latest version (e.g. TypeORM v0.3) is available on typeorm.com, it can be useful to deploy old legacy documentation for reference.
 
-### Demo
+## Usage
+
+### ✨ [Demo](https://typeorm-02-38.onrender.com/)
 
 To deploy the markdown docs from the typeorm/typeorm repository on GitHub to Vercel, follow these steps:
 
@@ -57,6 +57,13 @@ https://your-project-name.vercel.app/
 ```
 
 Once the docs have been deployed, you can view them at the URL that was provided.
+
+Sure, here is a reference section for the demo "How to Deploy Old Legacy Documentation with MkDocs 👋":
+
+### References
+
+- MkDocs Documentation: https://www.mkdocs.org/
+- How to Install Python: https://www.python.org/downloads/
 
 ## Author
 
