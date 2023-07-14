@@ -1,9 +1,9 @@
-<h1 align="center">How to Deploy Old Legacy Documentation with MkDocs 👋</h1>
-<p>This guide will show you how to convert markdown files to an HTML page and deploy old legacy documentation with MkDocs.</p>
+<h1 align="center">How to Deploy Legacy Documentation with MkDocs 👋</h1>
+<p>This guide will show you how to convert markdown files to an HTML page and deploy old documentation with MkDocs.</p>
 
 ## Motivation
 
-As the homepage has changed and only the latest version (e.g. TypeORM v0.3) is available on typeorm.com, it can be useful to deploy old legacy documentation for reference.
+As the homepage has changed and only the latest version (e.g. TypeORM v0.3) is available on typeorm.com, it can be useful to deploy old documentation for reference.
 
 ## Usage
 
