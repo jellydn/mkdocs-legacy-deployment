@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/decorator-reference/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Decorators reference - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Decorators reference";
+        var mkdocs_page_input_path = "decorator-reference.md";
+        var mkdocs_page_url = "/decorator-reference/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Decorators reference</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#entity-decorators">Entity decorators</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#entity">@Entity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#viewentity">@ViewEntity</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#column-decorators">Column decorators</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#column">@Column</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#primarycolumn">@PrimaryColumn</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#primarygeneratedcolumn">@PrimaryGeneratedColumn</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#objectidcolumn">@ObjectIdColumn</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#createdatecolumn">@CreateDateColumn</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#updatedatecolumn">@UpdateDateColumn</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deletedatecolumn">@DeleteDateColumn</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#versioncolumn">@VersionColumn</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generated">@Generated</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#relation-decorators">Relation decorators</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#onetoone">@OneToOne</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#manytoone">@ManyToOne</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#onetomany">@OneToMany</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#manytomany">@ManyToMany</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#joincolumn">@JoinColumn</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#jointable">@JoinTable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#relationid">@RelationId</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#subscriber-and-listener-decorators">Subscriber and listener decorators</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#afterload">@AfterLoad</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#beforeinsert">@BeforeInsert</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#afterinsert">@AfterInsert</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#beforeupdate">@BeforeUpdate</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#afterupdate">@AfterUpdate</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#beforeremove">@BeforeRemove</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#afterremove">@AfterRemove</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#eventsubscriber">@EventSubscriber</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#other-decorators">Other decorators</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#index">@Index</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unique">@Unique</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#check">@Check</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exclusion">@Exclusion</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#transaction-transactionmanager-and-transactionrepository">@Transaction, @TransactionManager and @TransactionRepository</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#entityrepository">@EntityRepository</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Decorators reference</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="decorators-reference">Decorators reference</h1>
+<ul>
+<li><a href="#entity-decorators">Entity decorators</a><ul>
+<li><a href="#entity"><code>@Entity</code></a></li>
+<li><a href="#viewentity"><code>@ViewEntity</code></a></li>
+</ul>
+</li>
+<li><a href="#column-decorators">Column decorators</a><ul>
+<li><a href="#column"><code>@Column</code></a></li>
+<li><a href="#primarycolumn"><code>@PrimaryColumn</code></a></li>
+<li><a href="#primarygeneratedcolumn"><code>@PrimaryGeneratedColumn</code></a></li>
+<li><a href="#objectidcolumn"><code>@ObjectIdColumn</code></a></li>
+<li><a href="#createdatecolumn"><code>@CreateDateColumn</code></a></li>
+<li><a href="#updatedatecolumn"><code>@UpdateDateColumn</code></a></li>
+<li><a href="#deletedatecolumn"><code>@DeleteDateColumn</code></a></li>
+<li><a href="#versioncolumn"><code>@VersionColumn</code></a></li>
+<li><a href="#generated"><code>@Generated</code></a></li>
+</ul>
+</li>
+<li><a href="#relation-decorators">Relation decorators</a><ul>
+<li><a href="#onetoone"><code>@OneToOne</code></a></li>
+<li><a href="#manytoone"><code>@ManyToOne</code></a></li>
+<li><a href="#onetomany"><code>@OneToMany</code></a></li>
+<li><a href="#manytomany"><code>@ManyToMany</code></a></li>
+<li><a href="#joincolumn"><code>@JoinColumn</code></a></li>
+<li><a href="#jointable"><code>@JoinTable</code></a></li>
+<li><a href="#relationid"><code>@RelationId</code></a></li>
+</ul>
+</li>
+<li><a href="#subscriber-and-listener-decorators">Subscriber and listener decorators</a><ul>
+<li><a href="#afterload"><code>@AfterLoad</code></a></li>
+<li><a href="#beforeinsert"><code>@BeforeInsert</code></a></li>
+<li><a href="#afterinsert"><code>@AfterInsert</code></a></li>
+<li><a href="#beforeupdate"><code>@BeforeUpdate</code></a></li>
+<li><a href="#afterupdate"><code>@AfterUpdate</code></a></li>
+<li><a href="#beforeremove"><code>@BeforeRemove</code></a></li>
+<li><a href="#afterremove"><code>@AfterRemove</code></a></li>
+<li><a href="#eventsubscriber"><code>@EventSubscriber</code></a></li>
+</ul>
+</li>
+<li><a href="#other-decorators">Other decorators</a><ul>
+<li><a href="#index"><code>@Index</code></a></li>
+<li><a href="#unique"><code>@Unique</code></a></li>
+<li><a href="#check"><code>@Check</code></a></li>
+<li><a href="#exclusion"><code>@Exclusion</code></a></li>
+<li><a href="#transaction-transactionmanager-and-transactionrepository"><code>@Transaction</code>, <code>@TransactionManager</code> and <code>@TransactionRepository</code></a></li>
+<li><a href="#entityrepository"><code>@EntityRepository</code></a></li>
+</ul>
+</li>
+</ul>
+<h2 id="entity-decorators">Entity decorators</h2>
+<h4 id="entity"><code>@Entity</code></h4>
+<p>Marks your model as an entity. Entity is a class which is transformed into a database table.
+You can specify the table name in the entity:</p>
+<pre><code class="language-typescript">@Entity(&quot;users&quot;)
+export class User {
+</code></pre>
+<p>This code will create a database table named "users".</p>
+<p>You can also specify some additional entity options:</p>
+<ul>
+<li><code>name</code> - table name. If not specified, then table name is generated from entity class name.</li>
+<li><code>database</code> - database name in selected DB server.</li>
+<li><code>schema</code> - schema name.</li>
+<li><code>engine</code> - database engine to be set during table creation (works only in some databases).</li>
+<li><code>synchronize</code> - entities marked with <code>false</code> are skipped from schema updates.</li>
+<li><code>orderBy</code> - specifies default ordering for entities when using <code>find</code> operations and <code>QueryBuilder</code>.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-typescript">@Entity({
+    name: &quot;users&quot;,
+    engine: &quot;MyISAM&quot;,
+    database: 'example_dev',
+    schema: 'schema_with_best_tables',
+    synchronize: false,
+    orderBy: {
+        name: &quot;ASC&quot;,
+        id: &quot;DESC&quot;
+    }
+})
+export class User {
+</code></pre>
+<p>Learn more about <a href="../entities/">Entities</a>.</p>
+<h4 id="viewentity"><code>@ViewEntity</code></h4>
+<p>View entity is a class that maps to a database view.</p>
+<p><code>@ViewEntity()</code> accepts following options:</p>
+<ul>
+<li><code>name</code> - view name. If not specified, then view name is generated from entity class name.</li>
+<li><code>database</code> - database name in selected DB server.</li>
+<li><code>schema</code> - schema name.</li>
+<li><code>expression</code> - view definition. <strong>Required parameter</strong>.</li>
+</ul>
+<p><code>expression</code> can be string with properly escaped columns and tables, depend on database used (postgres in example):</p>
+<pre><code class="language-typescript">@ViewEntity({
+    expression: `
+        SELECT &quot;post&quot;.&quot;id&quot; &quot;id&quot;, &quot;post&quot;.&quot;name&quot; AS &quot;name&quot;, &quot;category&quot;.&quot;name&quot; AS &quot;categoryName&quot;
+        FROM &quot;post&quot; &quot;post&quot;
+        LEFT JOIN &quot;category&quot; &quot;category&quot; ON &quot;post&quot;.&quot;categoryId&quot; = &quot;category&quot;.&quot;id&quot;
+    `
+})
+export class PostCategory {
+</code></pre>
+<p>or an instance of QueryBuilder</p>
+<pre><code class="language-typescript">@ViewEntity({
+    expression: (connection: Connection) =&gt; connection.createQueryBuilder()
+        .select(&quot;post.id&quot;, &quot;id&quot;)
+        .addSelect(&quot;post.name&quot;, &quot;name&quot;)
+        .addSelect(&quot;category.name&quot;, &quot;categoryName&quot;)
+        .from(Post, &quot;post&quot;)
+        .leftJoin(Category, &quot;category&quot;, &quot;category.id = post.categoryId&quot;)
+})
+export class PostCategory {
+</code></pre>
+<p><strong>Note:</strong> parameter binding is not supported due to drivers limitations. Use the literal parameters instead.</p>
+<pre><code class="language-typescript">@ViewEntity({
+    expression: (connection: Connection) =&gt; connection.createQueryBuilder()
+        .select(&quot;post.id&quot;, &quot;id&quot;)
+        .addSelect(&quot;post.name&quot;, &quot;name&quot;)
+        .addSelect(&quot;category.name&quot;, &quot;categoryName&quot;)
+        .from(Post, &quot;post&quot;)
+        .leftJoin(Category, &quot;category&quot;, &quot;category.id = post.categoryId&quot;)
+        .where(&quot;category.name = :name&quot;, { name: &quot;Cars&quot; })  // &lt;-- this is wrong
+        .where(&quot;category.name = 'Cars'&quot;)                   // &lt;-- and this is right
+})
+export class PostCategory {
+</code></pre>
+<p>Learn more about <a href="../view-entities/">View Entities</a>.</p>
+<h2 id="column-decorators">Column decorators</h2>
+<h4 id="column"><code>@Column</code></h4>
+<p>Marks a property in your entity as a table column.
+Example:</p>
+<pre><code class="language-typescript">@Entity(&quot;users&quot;)
+export class User {
+
+    @Column({ primary: true })
+    id: number;
+
+    @Column({ type: &quot;varchar&quot;, length: 200, unique: true })
+    firstName: string;
+
+    @Column({ nullable: true })
+    lastName: string;
+
+    @Column({ default: false })
+    isActive: boolean;
+}
+</code></pre>
+<p><code>@Column</code> accept several options you can use:</p>
+<ul>
+<li><code>type: ColumnType</code> - Column type. One of the <a href="../entities/#column-types">supported column types</a>.</li>
+<li><code>name: string</code> - Column name in the database table.
+By default the column name is generated from the name of the property.
+You can change it by specifying your own name.</li>
+<li><code>length: string|number</code> - Column type's length. For example, if you want to create <code>varchar(150)</code> type
+you specify column type and length options.</li>
+<li><code>width: number</code> - column type's display width. Used only for <a href="https://dev.mysql.com/doc/refman/5.7/en/integer-types.html">MySQL integer types</a></li>
+<li><code>onUpdate: string</code> - <code>ON UPDATE</code> trigger. Used only in <a href="https://dev.mysql.com/doc/refman/5.7/en/timestamp-initialization.html">MySQL</a>.</li>
+<li><code>nullable: boolean</code> - Makes column <code>NULL</code> or <code>NOT NULL</code> in the database.
+By default column is <code>nullable: false</code>.</li>
+<li><code>update: boolean</code> - Indicates if column value is updated by "save" operation. If false, you'll be able to write this value only when you first time insert the object.
+Default value is <code>true</code>.</li>
+<li><code>insert: boolean</code> - Indicates if column value is set the first time you insert the object.  Default value is <code>true</code>.</li>
+<li><code>select: boolean</code> - Defines whether or not to hide this column by default when making queries. When set to <code>false</code>, the column data will not show with a standard query. By default column is <code>select: true</code></li>
+<li><code>default: string</code> - Adds database-level column's <code>DEFAULT</code> value.</li>
+<li><code>primary: boolean</code> - Marks column as primary. Same as using  <code>@PrimaryColumn</code>.</li>
+<li><code>unique: boolean</code> - Marks column as unique column (creates unique constraint). Default value is false.</li>
+<li><code>comment: string</code> - Database's column comment. Not supported by all database types.</li>
+<li><code>precision: number</code> - The precision for a decimal (exact numeric) column (applies only for decimal column), which is the maximum
+ number of digits that are stored for the values. Used in some column types.</li>
+<li><code>scale: number</code> - The scale for a decimal (exact numeric) column (applies only for decimal column),
+which represents the number of digits to the right of the decimal point and must not be greater than precision.
+Used in some column types.</li>
+<li><code>zerofill: boolean</code> - Puts <code>ZEROFILL</code> attribute on to a numeric column. Used only in MySQL.
+If <code>true</code>, MySQL automatically adds the <code>UNSIGNED</code> attribute to this column.</li>
+<li><code>unsigned: boolean</code> - Puts <code>UNSIGNED</code> attribute on to a numeric column. Used only in MySQL.</li>
+<li><code>charset: string</code> - Defines a column character set. Not supported by all database types.</li>
+<li><code>collation: string</code> - Defines a column collation.</li>
+<li><code>enum: string[]|AnyEnum</code> - Used in <code>enum</code> column type to specify list of allowed enum values.
+You can specify array of values or specify a enum class.</li>
+<li><code>enumName: string</code> - A name for generated enum type. If not specified, TypeORM will generate a enum type from entity and column names - so it's neccessary if you intend to use the same enum type in different tables.</li>
+<li><code>asExpression: string</code> - Generated column expression. Used only in <a href="https://dev.mysql.com/doc/refman/5.7/en/create-table-generated-columns.html">MySQL</a>.</li>
+<li><code>generatedType: "VIRTUAL"|"STORED"</code> - Generated column type. Used only in <a href="https://dev.mysql.com/doc/refman/5.7/en/create-table-generated-columns.html">MySQL</a>.</li>
+<li><code>hstoreType: "object"|"string"</code> - Return type of <code>HSTORE</code> column. Returns value as string or as object. Used only in <a href="https://www.postgresql.org/docs/9.6/static/hstore.html">Postgres</a>.</li>
+<li><code>array: boolean</code> - Used for postgres and cockroachdb column types which can be array (for example int[]).</li>
+<li><code>transformer: ValueTransformer|ValueTransformer[]</code> - Specifies a value transformer (or array of value transformers) that is to be used to (un)marshal this column when reading or writing to the database. In case of an array, the value transformers will be applied in the natural order from entityValue to databaseValue, and in reverse order from databaseValue to entityValue.</li>
+<li><code>spatialFeatureType: string</code> - Optional feature type (<code>Point</code>, <code>Polygon</code>, <code>LineString</code>, <code>Geometry</code>) used as a constraint on a spatial column. If not specified, it will behave as though <code>Geometry</code> was provided. Used only in PostgreSQL.</li>
+<li><code>srid: number</code> - Optional <a href="https://postgis.net/docs/using_postgis_dbmanagement.html#spatial_ref_sys">Spatial Reference ID</a> used as a constraint on a spatial column. If not specified, it will default to <code>0</code>. Standard geographic coordinates (latitude/longitude in the WGS84 datum) correspond to <a href="http://spatialreference.org/ref/epsg/wgs-84/">EPSG 4326</a>. Used only in PostgreSQL.</li>
+</ul>
+<p>Learn more about <a href="../entities/#entity-columns">entity columns</a>.</p>
+<h4 id="primarycolumn"><code>@PrimaryColumn</code></h4>
+<p>Marks a property in your entity as a table primary column.
+Same as <code>@Column</code> decorator but sets its <code>primary</code> option to true.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @PrimaryColumn()
+    id: number;
+
+}
+</code></pre>
+<p>Learn more about <a href="../entities/#entity-columns">entity columns</a>.</p>
+<h4 id="primarygeneratedcolumn"><code>@PrimaryGeneratedColumn</code></h4>
+<p>Marks a property in your entity as a table-generated primary column.
+Column it creates is primary and its value is auto-generated.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+}
+</code></pre>
+<p>There are two generation strategies:</p>
+<ul>
+<li><code>increment</code> - uses AUTO_INCREMENT / SERIAL / SEQUENCE (depend on database type) to generate incremental number.</li>
+<li><code>uuid</code> - generates unique <code>uuid</code> string.</li>
+<li><code>rowid</code> - only for <a href="https://www.cockroachlabs.com/docs/stable/serial.html">CockroachDB</a>. Value is automatically generated using the <code>unique_rowid()</code>
+function. This produces a 64-bit integer from the current timestamp and ID of the node executing the <code>INSERT</code> or <code>UPSERT</code> operation.<blockquote>
+<p>Note: property with a <code>rowid</code> generation strategy must be a <code>string</code> data type</p>
+</blockquote>
+</li>
+</ul>
+<p>Default generation strategy is <code>increment</code>, to change it to another strategy, simply pass it as the first argument to decorator:</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn(&quot;uuid&quot;)
+    id: string;
+
+}
+</code></pre>
+<p>Learn more about <a href="../entities/#entity-columns">entity columns</a>.</p>
+<h4 id="objectidcolumn"><code>@ObjectIdColumn</code></h4>
+<p>Marks a property in your entity as ObjectID.
+This decorator is only used in MongoDB.
+Every entity in MongoDB must have a ObjectID column.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @ObjectIdColumn()
+    id: ObjectID;
+
+}
+</code></pre>
+<p>Learn more about <a href="../mongodb/">MongoDB</a>.</p>
+<h4 id="createdatecolumn"><code>@CreateDateColumn</code></h4>
+<p>Special column that is automatically set to the entity's insertion time.
+You don't need to write a value into this column - it will be automatically set.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @CreateDateColumn()
+    createdDate: Date;
+
+}
+</code></pre>
+<h4 id="updatedatecolumn"><code>@UpdateDateColumn</code></h4>
+<p>Special column that is automatically set to the entity's update time
+each time you call <code>save</code> from entity manager or repository.
+You don't need to write a value into this column - it will be automatically set.</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @UpdateDateColumn()
+    updatedDate: Date;
+
+}
+</code></pre>
+<h4 id="deletedatecolumn"><code>@DeleteDateColumn</code></h4>
+<p>Special column that is automatically set to the entity's delete time each time you call soft-delete of entity manager or repository. You don't need to set this column - it will be automatically set.</p>
+<p>TypeORM's own soft delete functionality utilizes global scopes to only pull "non-deleted" entities from the database.</p>
+<p>If the @DeleteDateColumn is set, the default scope will be "non-deleted".</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @DeleteDateColumn()
+    deletedDate: Date;
+
+}
+</code></pre>
+<h4 id="versioncolumn"><code>@VersionColumn</code></h4>
+<p>Special column that is automatically set to the entity's version (incremental number)
+each time you call <code>save</code> from entity manager or repository.
+You don't need to write a value into this column - it will be automatically set.</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @VersionColumn()
+    version: number;
+
+}
+</code></pre>
+<h4 id="generated"><code>@Generated</code></h4>
+<p>Marks column to be a generated value. For example:</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @Column()
+    @Generated(&quot;uuid&quot;)
+    uuid: string;
+
+}
+</code></pre>
+<p>Value will be generated only once, before inserting the entity into the database.</p>
+<h2 id="relation-decorators">Relation decorators</h2>
+<h4 id="onetoone"><code>@OneToOne</code></h4>
+<p>One-to-one is a relation where A contains only once instance of B, and B contains only one instance of A.
+Let's take for example <code>User</code> and <code>Profile</code> entities.
+User can have only a single profile, and a single profile is owned by only a single user.
+Example:</p>
+<pre><code class="language-typescript">import {Entity, OneToOne, JoinColumn} from &quot;typeorm&quot;;
+import {Profile} from &quot;./Profile&quot;;
+
+@Entity()
+export class User {
+
+    @OneToOne(type =&gt; Profile, profile =&gt; profile.user)
+    @JoinColumn()
+    profile: Profile;
+
+}
+</code></pre>
+<p>Learn more about <a href="../one-to-one-relations/">one-to-one relations</a>.</p>
+<h4 id="manytoone"><code>@ManyToOne</code></h4>
+<p>Many-to-one / one-to-many is a relation where A contains multiple instances of B, but B contains only one instance of A.
+Let's take for example <code>User</code> and <code>Photo</code> entities.
+User can have multiple photos, but each photo is owned by only one single user.
+Example:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from &quot;typeorm&quot;;
+import {User} from &quot;./User&quot;;
+
+@Entity()
+export class Photo {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    url: string;
+
+    @ManyToOne(type =&gt; User, user =&gt; user.photos)
+    user: User;
+
+}
+</code></pre>
+<p>Learn more about <a href="../many-to-one-one-to-many-relations/">many-to-one / one-to-many relations</a>.</p>
+<h4 id="onetomany"><code>@OneToMany</code></h4>
+<p>Many-to-one / one-to-many is a relation where A contains multiple instances of B, but B contains only one instance of A.
+Let's take for example <code>User</code> and <code>Photo</code> entities.
+User can have multiple photos, but each photo is owned by only a single user.
+Example:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from &quot;typeorm&quot;;
+import {Photo} from &quot;./Photo&quot;;
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @OneToMany(type =&gt; Photo, photo =&gt; photo.user)
+    photos: Photo[];
+
+}
+</code></pre>
+<p>Learn more about <a href="../many-to-one-one-to-many-relations/">many-to-one / one-to-many relations</a>.</p>
+<h4 id="manytomany"><code>@ManyToMany</code></h4>
+<p>Many-to-many is a relation where A contains multiple instances of B, and B contain multiple instances of A.
+Let's take for example <code>Question</code> and <code>Category</code> entities.
+Question can have multiple categories, and each category can have multiple questions.
+Example:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from &quot;typeorm&quot;;
+import {Category} from &quot;./Category&quot;;
+
+@Entity()
+export class Question {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    text: string;
+
+    @ManyToMany(type =&gt; Category)
+    @JoinTable()
+    categories: Category[];
+
+}
+</code></pre>
+<p>Learn more about <a href="../many-to-many-relations/">many-to-many relations</a>.</p>
+<h4 id="joincolumn"><code>@JoinColumn</code></h4>
+<p>Defines which side of the relation contains the join column with a foreign key and
+allows you to customize the join column name and referenced column name.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class Post {
+
+    @ManyToOne(type =&gt; Category)
+    @JoinColumn({
+        name: &quot;cat_id&quot;,
+        referencedColumnName: &quot;name&quot;
+    })
+    category: Category;
+
+}
+</code></pre>
+<h4 id="jointable"><code>@JoinTable</code></h4>
+<p>Used for <code>many-to-many</code> relations and describes join columns of the "junction" table.
+Junction table is a special, separate table created automatically by TypeORM with columns referenced to the related entities.
+You can change the column names inside the junction table and their referenced columns with the <code>@JoinColumn</code> decorator. You can also change the name of the generated "junction" table.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class Post {
+
+    @ManyToMany(type =&gt; Category)
+    @JoinTable({
+        name: &quot;question_categories&quot;,
+        joinColumn: {
+            name: &quot;question&quot;,
+            referencedColumnName: &quot;id&quot;
+        },
+        inverseJoinColumn: {
+            name: &quot;category&quot;,
+            referencedColumnName: &quot;id&quot;
+        }
+    })
+    categories: Category[];
+
+}
+</code></pre>
+<p>If the destination table has composite primary keys,
+then an array of properties must be sent to the <code>@JoinTable</code> decorator.</p>
+<h4 id="relationid"><code>@RelationId</code></h4>
+<p>Loads id (or ids) of specific relations into properties.
+For example, if you have a many-to-one <code>category</code> in your <code>Post</code> entity,
+you can have a new category id by marking a new property with <code>@RelationId</code>.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class Post {
+
+    @ManyToOne(type =&gt; Category)
+    category: Category;
+
+    @RelationId((post: Post) =&gt; post.category) // you need to specify target relation
+    categoryId: number;
+
+}
+</code></pre>
+<p>This functionality works for all kind of relations, including <code>many-to-many</code>:</p>
+<pre><code class="language-typescript">@Entity()
+export class Post {
+
+    @ManyToMany(type =&gt; Category)
+    categories: Category[];
+
+    @RelationId((post: Post) =&gt; post.categories)
+    categoryIds: number[];
+
+}
+</code></pre>
+<p>Relation id is used only for representation.
+The underlying relation is not added/removed/changed when chaining the value.</p>
+<h2 id="subscriber-and-listener-decorators">Subscriber and listener decorators</h2>
+<h4 id="afterload"><code>@AfterLoad</code></h4>
+<p>You can define a method with any name in entity and mark it with <code>@AfterLoad</code>
+and TypeORM will call it each time the entity
+is loaded using <code>QueryBuilder</code> or repository/manager find methods.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class Post {
+
+    @AfterLoad()
+    updateCounters() {
+        if (this.likesCount === undefined)
+            this.likesCount = 0;
+    }
+}
+</code></pre>
+<p>Learn more about <a href="../listeners-and-subscribers/">listeners</a>.</p>
+<h4 id="beforeinsert"><code>@BeforeInsert</code></h4>
+<p>You can define a method with any name in entity and mark it with <code>@BeforeInsert</code>
+and TypeORM will call it before the entity is inserted using repository/manager <code>save</code>.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class Post {
+
+    @BeforeInsert()
+    updateDates() {
+        this.createdDate = new Date();
+    }
+}
+</code></pre>
+<p>Learn more about <a href="../listeners-and-subscribers/">listeners</a>.</p>
+<h4 id="afterinsert"><code>@AfterInsert</code></h4>
+<p>You can define a method with any name in entity and mark it with <code>@AfterInsert</code>
+and TypeORM will call it after the entity is inserted using repository/manager <code>save</code>.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class Post {
+
+    @AfterInsert()
+    resetCounters() {
+        this.counters = 0;
+    }
+}
+</code></pre>
+<p>Learn more about <a href="../listeners-and-subscribers/">listeners</a>.</p>
+<h4 id="beforeupdate"><code>@BeforeUpdate</code></h4>
+<p>You can define a method with any name in the entity and mark it with <code>@BeforeUpdate</code>
+and TypeORM will call it before an existing entity is updated using repository/manager <code>save</code>.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class Post {
+
+    @BeforeUpdate()
+    updateDates() {
+        this.updatedDate = new Date();
+    }
+}
+</code></pre>
+<p>Learn more about <a href="../listeners-and-subscribers/">listeners</a>.</p>
+<h4 id="afterupdate"><code>@AfterUpdate</code></h4>
+<p>You can define a method with any name in the entity and mark it with <code>@AfterUpdate</code>
+and TypeORM will call it after an existing entity is updated using repository/manager <code>save</code>.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class Post {
+
+    @AfterUpdate()
+    updateCounters() {
+        this.counter = 0;
+    }
+}
+</code></pre>
+<p>Learn more about <a href="../listeners-and-subscribers/">listeners</a>.</p>
+<h4 id="beforeremove"><code>@BeforeRemove</code></h4>
+<p>You can define a method with any name in the entity and mark it with <code>@BeforeRemove</code>
+and TypeORM will call it before a entity is removed using repository/manager <code>remove</code>.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class Post {
+
+    @BeforeRemove()
+    updateStatus() {
+        this.status = &quot;removed&quot;;
+    }
+}
+</code></pre>
+<p>Learn more about <a href="../listeners-and-subscribers/">listeners</a>.</p>
+<h4 id="afterremove"><code>@AfterRemove</code></h4>
+<p>You can define a method with any name in the entity and mark it with <code>@AfterRemove</code>
+and TypeORM will call it after the entity is removed using repository/manager <code>remove</code>.
+Example:</p>
+<pre><code class="language-typescript">@Entity()
+export class Post {
+
+    @AfterRemove()
+    updateStatus() {
+        this.status = &quot;removed&quot;;
+    }
+}
+</code></pre>
+<p>Learn more about <a href="../listeners-and-subscribers/">listeners</a>.</p>
+<h4 id="eventsubscriber"><code>@EventSubscriber</code></h4>
+<p>Marks a class as an event subscriber which can listen to specific entity events or any entity's events.
+Events are fired using <code>QueryBuilder</code> and repository/manager methods.
+Example:</p>
+<pre><code class="language-typescript">@EventSubscriber()
+export class PostSubscriber implements EntitySubscriberInterface&lt;Post&gt; {
+
+
+    /**
+     * Indicates that this subscriber only listen to Post events.
+     */
+    listenTo() {
+        return Post;
+    }
+
+    /**
+     * Called before post insertion.
+     */
+    beforeInsert(event: InsertEvent&lt;Post&gt;) {
+        console.log(`BEFORE POST INSERTED: `, event.entity);
+    }
+
+}
+</code></pre>
+<p>You can implement any method from <code>EntitySubscriberInterface</code>.
+To listen to any entity, you just omit the <code>listenTo</code> method and use <code>any</code>:</p>
+<pre><code class="language-typescript">@EventSubscriber()
+export class PostSubscriber implements EntitySubscriberInterface {
+
+    /**
+     * Called before entity insertion.
+     */
+    beforeInsert(event: InsertEvent&lt;any&gt;) {
+        console.log(`BEFORE ENTITY INSERTED: `, event.entity);
+    }
+
+}
+</code></pre>
+<p>Learn more about <a href="../listeners-and-subscribers/">subscribers</a>.</p>
+<h2 id="other-decorators">Other decorators</h2>
+<h4 id="index"><code>@Index</code></h4>
+<p>This decorator allows you to create a database index for a specific column or columns.
+It also allows you to mark column or columns to be unique.
+This decorator can be applied to columns or an entity itself.
+Use it on a column when an index on a single column is needed
+and use it on the entity when a single index on multiple columns is required.
+Examples:</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @Index()
+    @Column()
+    firstName: string;
+
+    @Index({ unique: true })
+    @Column()
+    lastName: string;
+}
+</code></pre>
+<pre><code class="language-typescript">@Entity()
+@Index([&quot;firstName&quot;, &quot;lastName&quot;])
+@Index([&quot;lastName&quot;, &quot;middleName&quot;])
+@Index([&quot;firstName&quot;, &quot;lastName&quot;, &quot;middleName&quot;], { unique: true })
+export class User {
+
+    @Column()
+    firstName: string;
+
+    @Column()
+    lastName: string;
+
+    @Column()
+    middleName: string;
+}
+</code></pre>
+<p>Learn more about <a href="../indices/">indices</a>.</p>
+<h4 id="unique"><code>@Unique</code></h4>
+<p>This decorator allows you to create a database unique constraint for a specific column or columns.
+This decorator can be applied only to an entity itself.
+You must specify the entity field names (not database column names) as arguments.</p>
+<p>Examples:</p>
+<pre><code class="language-typescript">@Entity()
+@Unique([&quot;firstName&quot;])
+@Unique([&quot;lastName&quot;, &quot;middleName&quot;])
+@Unique(&quot;UQ_NAMES&quot;, [&quot;firstName&quot;, &quot;lastName&quot;, &quot;middleName&quot;])
+export class User {
+
+    @Column({ name: 'first_name' })
+    firstName: string;
+
+    @Column({ name: 'last_name' })
+    lastName: string;
+
+    @Column({ name: 'middle_name' })
+    middleName: string;
+}
+</code></pre>
+<blockquote>
+<p>Note: MySQL stores unique constraints as unique indices</p>
+</blockquote>
+<h4 id="check"><code>@Check</code></h4>
+<p>This decorator allows you to create a database check constraint for a specific column or columns.
+This decorator can be applied only to an entity itself.</p>
+<p>Examples:</p>
+<pre><code class="language-typescript">@Entity()
+@Check(`&quot;firstName&quot; &lt;&gt; 'John' AND &quot;lastName&quot; &lt;&gt; 'Doe'`)
+@Check(`&quot;age&quot; &gt; 18`)
+export class User {
+
+    @Column()
+    firstName: string;
+
+    @Column()
+    lastName: string;
+
+    @Column()
+    age: number;
+}
+</code></pre>
+<blockquote>
+<p>Note: MySQL does not support check constraints.</p>
+</blockquote>
+<h4 id="exclusion"><code>@Exclusion</code></h4>
+<p>This decorator allows you to create a database exclusion constraint for a specific column or columns.
+This decorator can be applied only to an entity itself.</p>
+<p>Examples:</p>
+<pre><code class="language-typescript">@Entity()
+@Exclusion(`USING gist (&quot;room&quot; WITH =, tsrange(&quot;from&quot;, &quot;to&quot;) WITH &amp;&amp;)`)
+export class RoomBooking {
+
+    @Column()
+    room: string;
+
+    @Column()
+    from: Date;
+
+    @Column()
+    to: Date;
+}
+</code></pre>
+<blockquote>
+<p>Note: Only PostgreSQL supports exclusion constraints.</p>
+</blockquote>
+<h4 id="transaction-transactionmanager-and-transactionrepository"><code>@Transaction</code>, <code>@TransactionManager</code> and <code>@TransactionRepository</code></h4>
+<p><code>@Transaction</code> is used on a method and wraps all its execution into a single database transaction.
+All database queries must be performed using the <code>@TransactionManager</code> provided manager
+or with the transaction repositories injected with <code>@TransactionRepository</code>.
+Examples:</p>
+<pre><code class="language-typescript">
+@Transaction()
+save(@TransactionManager() manager: EntityManager, user: User) {
+    return manager.save(user);
+}
+</code></pre>
+<pre><code class="language-typescript">@Transaction()
+save(user: User, @TransactionRepository(User) userRepository: Repository&lt;User&gt;) {
+    return userRepository.save(user);
+}
+</code></pre>
+<pre><code class="language-typescript">@Transaction()
+save(@QueryParam(&quot;name&quot;) name: string, @TransactionRepository() userRepository: UserRepository) {
+    return userRepository.findByName(name);
+}
+</code></pre>
+<blockquote>
+<p>Note: all operations inside a transaction MUST ONLY use the provided instance of <code>EntityManager</code> or injected repositories.
+Using any other source of queries (global manager, global repositories, etc.) will lead to bugs and errors.</p>
+</blockquote>
+<p>Learn more about <a href="../transactions/">transactions</a>.</p>
+<h4 id="entityrepository"><code>@EntityRepository</code></h4>
+<p>Marks a custom class as an entity repository.
+Example:</p>
+<pre><code class="language-typescript">@EntityRepository()
+export class UserRepository {
+
+    /// ... custom repository methods ...
+
+}
+</code></pre>
+<p>You can obtain any custom created repository using <code>connection.getCustomRepository</code>
+or <code>entityManager.getCustomRepository</code> methods.</p>
+<p>Learn more about <a href="../custom-repository/">custom entity repositories</a>.</p>
+<hr />
+<blockquote>
+<p>Note: some decorators (like <code>@Tree</code>, <code>@ChildEntity</code>, etc.) aren't
+documented in this reference because they are treated as experimental at the moment.
+Expect to see their documentation in the future.</p>
+</blockquote>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../custom-repository/" class="btn btn-neutral float-left" title="Custom repositories"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../delete-query-builder/" class="btn btn-neutral float-right" title="Delete using Query Builder">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../custom-repository/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../delete-query-builder/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

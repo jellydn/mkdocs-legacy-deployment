@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/view-entities/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>View Entities - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "View Entities";
+        var mkdocs_page_input_path = "view-entities.md";
+        var mkdocs_page_url = "/view-entities/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">View Entities</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-view-entity">What is View Entity?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#view-entity-columns">View Entity columns</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#complete-example">Complete example</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>View Entities</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="view-entities">View Entities</h1>
+<ul>
+<li><a href="#what-is-view-entity">What is View Entity?</a></li>
+<li><a href="#view-entity-columns">View Entity columns</a></li>
+<li><a href="#complete-example">Complete example</a></li>
+</ul>
+<h2 id="what-is-view-entity">What is View Entity?</h2>
+<p>View entity is a class that maps to a database view.
+You can create a view entity by defining a new class and mark it with <code>@ViewEntity()</code>:</p>
+<p><code>@ViewEntity()</code> accepts following options:</p>
+<ul>
+<li><code>name</code> - view name. If not specified, then view name is generated from entity class name.</li>
+<li><code>database</code> - database name in selected DB server.</li>
+<li><code>schema</code> - schema name.</li>
+<li><code>expression</code> - view definition. <strong>Required parameter</strong>.</li>
+</ul>
+<p><code>expression</code> can be string with properly escaped columns and tables, depend on database used (postgres in example):</p>
+<pre><code class="language-typescript">@ViewEntity({ 
+    expression: `
+        SELECT &quot;post&quot;.&quot;id&quot; AS &quot;id&quot;, &quot;post&quot;.&quot;name&quot; AS &quot;name&quot;, &quot;category&quot;.&quot;name&quot; AS &quot;categoryName&quot;
+        FROM &quot;post&quot; &quot;post&quot;
+        LEFT JOIN &quot;category&quot; &quot;category&quot; ON &quot;post&quot;.&quot;categoryId&quot; = &quot;category&quot;.&quot;id&quot;
+    `
+})
+</code></pre>
+<p>or an instance of QueryBuilder</p>
+<pre><code class="language-typescript">@ViewEntity({ 
+    expression: (connection: Connection) =&gt; connection.createQueryBuilder()
+        .select(&quot;post.id&quot;, &quot;id&quot;)
+        .addSelect(&quot;post.name&quot;, &quot;name&quot;)
+        .addSelect(&quot;category.name&quot;, &quot;categoryName&quot;)
+        .from(Post, &quot;post&quot;)
+        .leftJoin(Category, &quot;category&quot;, &quot;category.id = post.categoryId&quot;)
+})
+</code></pre>
+<p><strong>Note:</strong> parameter binding is not supported due to drivers limitations. Use the literal parameters instead.</p>
+<pre><code class="language-typescript">@ViewEntity({ 
+    expression: (connection: Connection) =&gt; connection.createQueryBuilder()
+        .select(&quot;post.id&quot;, &quot;id&quot;)
+        .addSelect(&quot;post.name&quot;, &quot;name&quot;)
+        .addSelect(&quot;category.name&quot;, &quot;categoryName&quot;)
+        .from(Post, &quot;post&quot;)
+        .leftJoin(Category, &quot;category&quot;, &quot;category.id = post.categoryId&quot;)
+        .where(&quot;category.name = :name&quot;, { name: &quot;Cars&quot; })  // &lt;-- this is wrong
+        .where(&quot;category.name = 'Cars'&quot;)                   // &lt;-- and this is right
+})
+</code></pre>
+<p>Each view entity must be registered in your connection options:</p>
+<pre><code class="language-typescript">import {createConnection, Connection} from &quot;typeorm&quot;;
+import {UserView} from &quot;./entity/UserView&quot;;
+
+const connection: Connection = await createConnection({
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    port: 3306,
+    username: &quot;test&quot;,
+    password: &quot;test&quot;,
+    database: &quot;test&quot;,
+    entities: [UserView]
+});
+</code></pre>
+<p>Or you can specify the whole directory with all entities inside - and all of them will be loaded:</p>
+<pre><code class="language-typescript">import {createConnection, Connection} from &quot;typeorm&quot;;
+
+const connection: Connection = await createConnection({
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    port: 3306,
+    username: &quot;test&quot;,
+    password: &quot;test&quot;,
+    database: &quot;test&quot;,
+    entities: [&quot;entity/*.js&quot;]
+});
+</code></pre>
+<h2 id="view-entity-columns">View Entity columns</h2>
+<p>To map data from view into the correct entity columns you must mark entity columns with <code>@ViewColumn()</code>
+decorator and specify these columns as select statement aliases. </p>
+<p>example with string expression definition:</p>
+<pre><code class="language-typescript">import {ViewEntity, ViewColumn} from &quot;typeorm&quot;;
+
+@ViewEntity({ 
+    expression: `
+        SELECT &quot;post&quot;.&quot;id&quot; AS &quot;id&quot;, &quot;post&quot;.&quot;name&quot; AS &quot;name&quot;, &quot;category&quot;.&quot;name&quot; AS &quot;categoryName&quot;
+        FROM &quot;post&quot; &quot;post&quot;
+        LEFT JOIN &quot;category&quot; &quot;category&quot; ON &quot;post&quot;.&quot;categoryId&quot; = &quot;category&quot;.&quot;id&quot;
+    `
+})
+export class PostCategory {
+
+    @ViewColumn()
+    id: number;
+
+    @ViewColumn()
+    name: string;
+
+    @ViewColumn()
+    categoryName: string;
+
+}
+</code></pre>
+<p>example using QueryBuilder:</p>
+<pre><code class="language-typescript">import {ViewEntity, ViewColumn} from &quot;typeorm&quot;;
+
+@ViewEntity({ 
+    expression: (connection: Connection) =&gt; connection.createQueryBuilder()
+        .select(&quot;post.id&quot;, &quot;id&quot;)
+        .addSelect(&quot;post.name&quot;, &quot;name&quot;)
+        .addSelect(&quot;category.name&quot;, &quot;categoryName&quot;)
+        .from(Post, &quot;post&quot;)
+        .leftJoin(Category, &quot;category&quot;, &quot;category.id = post.categoryId&quot;)
+})
+export class PostCategory {
+
+    @ViewColumn()
+    id: number;
+
+    @ViewColumn()
+    name: string;
+
+    @ViewColumn()
+    categoryName: string;
+
+}
+</code></pre>
+<h2 id="complete-example">Complete example</h2>
+<p>Let create two entities and a view containing aggregated data from these entities:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column} from &quot;typeorm&quot;;
+
+@Entity()
+export class Category {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+}
+</code></pre>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn} from &quot;typeorm&quot;;
+import {Category} from &quot;./Category&quot;;
+
+@Entity()
+export class Post {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @Column()
+    categoryId: number;
+
+    @ManyToOne(() =&gt; Category)
+    @JoinColumn({ name: &quot;categoryId&quot; })
+    category: Category;
+
+}
+</code></pre>
+<pre><code class="language-typescript">import {ViewEntity, ViewColumn, Connection} from &quot;typeorm&quot;;
+
+@ViewEntity({ 
+    expression: (connection: Connection) =&gt; connection.createQueryBuilder()
+        .select(&quot;post.id&quot;, &quot;id&quot;)
+        .addSelect(&quot;post.name&quot;, &quot;name&quot;)
+        .addSelect(&quot;category.name&quot;, &quot;categoryName&quot;)
+        .from(Post, &quot;post&quot;)
+        .leftJoin(Category, &quot;category&quot;, &quot;category.id = post.categoryId&quot;)
+})
+export class PostCategory {
+
+    @ViewColumn()
+    id: number;
+
+    @ViewColumn()
+    name: string;
+
+    @ViewColumn()
+    categoryName: string;
+
+}
+</code></pre>
+<p>then fill these tables with data and request all data from PostCategory view:</p>
+<pre><code class="language-typescript">import {getManager} from &quot;typeorm&quot;;
+import {Category} from &quot;./entity/Category&quot;;
+import {Post} from &quot;./entity/Post&quot;;
+import {PostCategory} from &quot;./entity/PostCategory&quot;;
+
+const entityManager = getManager();
+
+const category1 = new Category();
+category1.name = &quot;Cars&quot;;
+await entityManager.save(category1);
+
+const category2 = new Category();
+category2.name = &quot;Airplanes&quot;;
+await entityManager.save(category2);
+
+const post1 = new Post();
+post1.name = &quot;About BMW&quot;;
+post1.categoryId = category1.id;
+await entityManager.save(post1);
+
+const post2 = new Post();
+post2.name = &quot;About Boeing&quot;;
+post2.categoryId = category2.id;
+await entityManager.save(post2);
+
+const postCategories = await entityManager.find(PostCategory);
+const postCategory = await entityManager.findOne(PostCategory, { id: 1 });
+</code></pre>
+<p>the result in <code>postCategories</code> will be:</p>
+<pre><code>[ PostCategory { id: 1, name: 'About BMW', categoryName: 'Cars' },
+  PostCategory { id: 2, name: 'About Boeing', categoryName: 'Airplanes' } ]
+</code></pre>
+<p>and in <code>postCategory</code>:</p>
+<pre><code>PostCategory { id: 1, name: 'About BMW', categoryName: 'Cars' }
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../validation/" class="btn btn-neutral float-left" title="Using Validation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../working-with-entity-manager/" class="btn btn-neutral float-right" title="What is EntityManager">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../validation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../working-with-entity-manager/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

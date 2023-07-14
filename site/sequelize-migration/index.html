@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/sequelize-migration/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Migration from Sequelize to TypeORM - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Migration from Sequelize to TypeORM";
+        var mkdocs_page_input_path = "sequelize-migration.md";
+        var mkdocs_page_url = "/sequelize-migration/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Migration from Sequelize to TypeORM</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#setting-up-a-connection">Setting up a connection</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#schema-synchronization">Schema synchronization</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creating-a-models">Creating a models</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#other-model-settings">Other model settings</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#working-with-models">Working with models</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Migration from Sequelize to TypeORM</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="migration-from-sequelize-to-typeorm">Migration from Sequelize to TypeORM</h1>
+<ul>
+<li><a href="#setting-up-a-connection">Setting up a connection</a></li>
+<li><a href="#schema-synchronization">Schema synchronization</a></li>
+<li><a href="#creating-a-models">Creating a models</a></li>
+<li><a href="#other-model-settings">Other model settings</a></li>
+<li><a href="#working-with-models">Working with models</a></li>
+</ul>
+<h2 id="setting-up-a-connection">Setting up a connection</h2>
+<p>In sequelize you create a connection this way:</p>
+<pre><code class="language-javascript">const sequelize = new Sequelize(&quot;database&quot;, &quot;username&quot;, &quot;password&quot;, {
+  host: &quot;localhost&quot;,
+  dialect: &quot;mysql&quot;
+});
+
+sequelize
+  .authenticate()
+  .then(() =&gt; {
+    console.log(&quot;Connection has been established successfully.&quot;);
+  })
+  .catch(err =&gt; {
+    console.error(&quot;Unable to connect to the database:&quot;, err);
+  });
+</code></pre>
+<p>In TypeORM you create a connection like this:</p>
+<pre><code class="language-typescript">import {createConnection} from &quot;typeorm&quot;;
+
+createConnection({
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    username: &quot;username&quot;,
+    password: &quot;password&quot;
+}).then(connection =&gt; {
+    console.log(&quot;Connection has been established successfully.&quot;);
+})
+.catch(err =&gt; {
+    console.error(&quot;Unable to connect to the database:&quot;, err);
+});
+</code></pre>
+<p>Then you can get your connection instance from anywhere in your app using <code>getConnection</code>.</p>
+<p>Learn more about <a href="../connection/">Connections</a></p>
+<h2 id="schema-synchronization">Schema synchronization</h2>
+<p>In sequelize you do schema synchronization this way:</p>
+<pre><code class="language-javascript">Project.sync({force: true});
+Task.sync({force: true});
+</code></pre>
+<p>In TypeORM you just add <code>synchronize: true</code> in the connection options:</p>
+<pre><code class="language-typescript">createConnection({
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    username: &quot;username&quot;,
+    password: &quot;password&quot;,
+    synchronize: true
+});
+</code></pre>
+<h2 id="creating-a-models">Creating a models</h2>
+<p>This is how models are defined in sequelize:</p>
+<pre><code class="language-javascript">module.exports = function(sequelize, DataTypes) {
+
+    const Project = sequelize.define(&quot;project&quot;, {
+      title: DataTypes.STRING,
+      description: DataTypes.TEXT
+    });
+
+    return Project;
+
+};
+</code></pre>
+<pre><code class="language-javascript">module.exports = function(sequelize, DataTypes) {
+
+    const Task = sequelize.define(&quot;task&quot;, {
+      title: DataTypes.STRING,
+      description: DataTypes.TEXT,
+      deadline: DataTypes.DATE
+    });
+
+    return Task;
+};
+</code></pre>
+<p>In TypeORM these models are called entities and you can define them like this:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column} from &quot;typeorm&quot;;
+
+@Entity()
+export class Project {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    description: string;
+
+}
+</code></pre>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column} from &quot;typeorm&quot;;
+
+@Entity()
+export class Task {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column(&quot;text&quot;)
+    description: string;
+
+    @Column()
+    deadline: Date;
+
+}
+</code></pre>
+<p>It's highly recommended to define one entity class per file.
+TypeORM allows you to use your classes as database models
+and provides a declarative way to define what part of your model 
+will become part of your database table.
+The power of TypeScript gives you type hinting and other useful features that you can use in classes.</p>
+<p>Learn more about <a href="../entities/">Entities and columns</a></p>
+<h2 id="other-model-settings">Other model settings</h2>
+<p>The following in sequelize:</p>
+<pre><code class="language-javascript">flag: { type: Sequelize.BOOLEAN, allowNull: true, defaultValue: true },
+</code></pre>
+<p>Can be achieved in TypeORM like this:</p>
+<pre><code class="language-typescript">@Column({ nullable: true, default: true })
+flag: boolean;
+</code></pre>
+<p>Following in sequelize:</p>
+<pre><code class="language-javascript">flag: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }
+</code></pre>
+<p>Is written like this in TypeORM:</p>
+<pre><code class="language-typescript">@Column({ default: () =&gt; &quot;NOW()&quot; })
+myDate: Date;
+</code></pre>
+<p>Following in sequelize:</p>
+<pre><code class="language-javascript">someUnique: { type: Sequelize.STRING, unique: true },
+</code></pre>
+<p>Can be achieved this way in TypeORM:</p>
+<pre><code class="language-typescript">@Column({ unique: true })
+someUnique: string;
+</code></pre>
+<p>Following in sequelize:</p>
+<pre><code class="language-javascript">fieldWithUnderscores: { type: Sequelize.STRING, field: &quot;field_with_underscores&quot; },
+</code></pre>
+<p>Translates to this in TypeORM:</p>
+<pre><code class="language-typescript">@Column({ name: &quot;field_with_underscores&quot; })
+fieldWithUnderscores: string;
+</code></pre>
+<p>Following in sequelize:</p>
+<pre><code class="language-javascript">incrementMe: { type: Sequelize.INTEGER, autoIncrement: true },
+</code></pre>
+<p>Can be achieved this way in TypeORM:</p>
+<pre><code class="language-typescript">@Column()
+@Generated()
+incrementMe: number;
+</code></pre>
+<p>Following in sequelize:</p>
+<pre><code class="language-javascript">identifier: { type: Sequelize.STRING, primaryKey: true },
+</code></pre>
+<p>Can be achieved this way in TypeORM:</p>
+<pre><code class="language-typescript">@Column({ primary: true })
+identifier: string;
+</code></pre>
+<p>To create <code>createDate</code> and <code>updateDate</code>-like columns you need to defined two columns (name it what you want) in your entity:</p>
+<pre><code class="language-typescript">@CreateDateColumn();
+createDate: Date;
+
+@UpdateDateColumn();
+updateDate: Date;
+</code></pre>
+<h3 id="working-with-models">Working with models</h3>
+<p>To create and save a new model in sequelize you write:</p>
+<pre><code class="language-javascript">const employee = await Employee.create({ name: &quot;John Doe&quot;, title: &quot;senior engineer&quot; });
+</code></pre>
+<p>In TypeORM there are several ways to create and save a new model:</p>
+<pre><code class="language-typescript">const employee = new Employee(); // you can use constructor parameters as well
+employee.name = &quot;John Doe&quot;;
+employee.title = &quot;senior engineer&quot;;
+await getRepository(Employee).save(employee)
+</code></pre>
+<p>or active record pattern</p>
+<pre><code class="language-typescript">const employee = Employee.create({ name: &quot;John Doe&quot;, title: &quot;senior engineer&quot; });
+await employee.save();
+</code></pre>
+<p>if you want to load an existing entity from the database and replace some of its properties you can use the following method:</p>
+<pre><code class="language-typescript">const employee = await Employee.preload({ id: 1, name: &quot;John Doe&quot; });
+</code></pre>
+<p>Learn more about <a href="../active-record-data-mapper/">Active Record vs Data Mapper</a> and <a href="../repository-api/">Repository API</a>.</p>
+<p>To access properties in sequelize you do the following:</p>
+<pre><code class="language-typescript">console.log(employee.get(&quot;name&quot;));
+</code></pre>
+<p>In TypeORM you simply do:</p>
+<pre><code class="language-typescript">console.log(employee.name);
+</code></pre>
+<p>To create an index in sequelize you do:</p>
+<pre><code class="language-typescript">sequelize.define(&quot;user&quot;, {}, {
+  indexes: [
+    {
+      unique: true,
+      fields: [&quot;firstName&quot;, &quot;lastName&quot;]
+    }
+  ]
+});
+</code></pre>
+<p>In TypeORM you do:</p>
+<pre><code class="language-typescript">@Entity()
+@Index([&quot;firstName&quot;, &quot;lastName&quot;], { unique: true })
+export class User {
+}
+</code></pre>
+<p>Learn more about <a href="../indices/">Indices</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../separating-entity-definition/" class="btn btn-neutral float-left" title="Separating Entity Definition"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../support/" class="btn btn-neutral float-right" title="Support">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../separating-entity-definition/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../support/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

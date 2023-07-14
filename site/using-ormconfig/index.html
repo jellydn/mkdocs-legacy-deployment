@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/using-ormconfig/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Using Configuration Sources - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Using Configuration Sources";
+        var mkdocs_page_input_path = "using-ormconfig.md";
+        var mkdocs_page_url = "/using-ormconfig/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Using Configuration Sources</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#creating-a-new-connection-from-the-configuration-file">Creating a new connection from the configuration file</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-ormconfigjson">Using ormconfig.json</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-ormconfigjs">Using ormconfig.js</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-environment-variables">Using environment variables</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-ormconfigyml">Using ormconfig.yml</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-ormconfigxml">Using ormconfig.xml</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#which-configuration-file-is-used-by-typeorm">Which configuration file is used by Typeorm</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#overriding-options-defined-in-ormconfig">Overriding options defined in ormconfig</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Using Configuration Sources</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="using-configuration-sources">Using Configuration Sources</h1>
+<ul>
+<li><a href="#creating-a-new-connection-from-the-configuration-file">Creating a new connection from the configuration file</a></li>
+<li><a href="#using-ormconfigjson">Using <code>ormconfig.json</code></a></li>
+<li><a href="#using-ormconfigjs">Using <code>ormconfig.js</code></a></li>
+<li><a href="#using-environment-variables">Using environment variables</a></li>
+<li><a href="#using-ormconfigyml">Using <code>ormconfig.yml</code></a></li>
+<li><a href="#using-ormconfigxml">Using <code>ormconfig.xml</code></a></li>
+<li><a href="#overriding-options-defined-in-ormconfig">Overriding options defined in ormconfig</a></li>
+</ul>
+<h2 id="creating-a-new-connection-from-the-configuration-file">Creating a new connection from the configuration file</h2>
+<p>Most of the times you want to store your connection options in a separate configuration file.
+It makes it convenient and easy to manage.
+TypeORM supports multiple configuration sources.
+You only need to create a <code>ormconfig.[format]</code> file in the root directory of your application (near <code>package.json</code>),
+put your configuration there and in your app call <code>createConnection()</code> without any configuration passed:</p>
+<pre><code class="language-typescript">import {createConnection} from &quot;typeorm&quot;;
+
+// createConnection method will automatically read connection options
+// from your ormconfig file or environment variables
+const connection = await createConnection();
+</code></pre>
+<p>Supported ormconfig file formats are: <code>.json</code>, <code>.js</code>, <code>.ts</code>, <code>.env</code>, <code>.yml</code> and <code>.xml</code>.</p>
+<h2 id="using-ormconfigjson">Using <code>ormconfig.json</code></h2>
+<p>Create <code>ormconfig.json</code> in the project root (near <code>package.json</code>). It should have the following content:</p>
+<pre><code class="language-json">{
+   &quot;type&quot;: &quot;mysql&quot;,
+   &quot;host&quot;: &quot;localhost&quot;,
+   &quot;port&quot;: 3306,
+   &quot;username&quot;: &quot;test&quot;,
+   &quot;password&quot;: &quot;test&quot;,
+   &quot;database&quot;: &quot;test&quot;
+}
+</code></pre>
+<p>You can specify any other options from <a href="../connection-options/">ConnectionOptions</a>.</p>
+<p>If you want to create multiple connections then simply create multiple connections in a single array:</p>
+<pre><code class="language-json">[{
+   &quot;name&quot;: &quot;default&quot;,
+   &quot;type&quot;: &quot;mysql&quot;,
+   &quot;host&quot;: &quot;localhost&quot;,
+   &quot;port&quot;: 3306,
+   &quot;username&quot;: &quot;test&quot;,
+   &quot;password&quot;: &quot;test&quot;,
+   &quot;database&quot;: &quot;test&quot;
+}, {
+   &quot;name&quot;: &quot;second-connection&quot;,
+   &quot;type&quot;: &quot;mysql&quot;,
+   &quot;host&quot;: &quot;localhost&quot;,
+   &quot;port&quot;: 3306,
+   &quot;username&quot;: &quot;test&quot;,
+   &quot;password&quot;: &quot;test&quot;,
+   &quot;database&quot;: &quot;test&quot;
+}]
+</code></pre>
+<h2 id="using-ormconfigjs">Using <code>ormconfig.js</code></h2>
+<p>Create <code>ormconfig.js</code> in the project root (near <code>package.json</code>). It should have following content:</p>
+<pre><code class="language-javascript">module.exports = {
+   &quot;type&quot;: &quot;mysql&quot;,
+   &quot;host&quot;: &quot;localhost&quot;,
+   &quot;port&quot;: 3306,
+   &quot;username&quot;: &quot;test&quot;,
+   &quot;password&quot;: &quot;test&quot;,
+   &quot;database&quot;: &quot;test&quot;
+}
+</code></pre>
+<p>Alternatively, you may use the ECMAScript module format if your environment supports it:</p>
+<pre><code class="language-javascript">export default {
+   &quot;type&quot;: &quot;mysql&quot;,
+   &quot;host&quot;: &quot;localhost&quot;,
+   &quot;port&quot;: 3306,
+   &quot;username&quot;: &quot;test&quot;,
+   &quot;password&quot;: &quot;test&quot;,
+   &quot;database&quot;: &quot;test&quot;
+}
+</code></pre>
+<p>You can specify any other options from <a href="../connection-options/">ConnectionOptions</a>.
+If you want to create multiple connections then simply create multiple connections in a single array and return it.</p>
+<h2 id="using-environment-variables">Using environment variables</h2>
+<p>Create <code>.env</code> or <code>ormconfig.env</code> in the project root (near <code>package.json</code>). It should have the following content:</p>
+<pre><code class="language-ini">TYPEORM_CONNECTION = mysql
+TYPEORM_HOST = localhost
+TYPEORM_USERNAME = root
+TYPEORM_PASSWORD = admin
+TYPEORM_DATABASE = test
+TYPEORM_PORT = 3000
+TYPEORM_SYNCHRONIZE = true
+TYPEORM_LOGGING = true
+TYPEORM_ENTITIES = entity/*.js,modules/**/entity/*.js
+</code></pre>
+<p>List of available env variables you can set:</p>
+<ul>
+<li>TYPEORM_CACHE</li>
+<li>TYPEORM_CACHE_ALWAYS_ENABLED</li>
+<li>TYPEORM_CACHE_DURATION</li>
+<li>TYPEORM_CACHE_OPTIONS</li>
+<li>TYPEORM_CONNECTION</li>
+<li>TYPEORM_DATABASE</li>
+<li>TYPEORM_DEBUG</li>
+<li>TYPEORM_DRIVER_EXTRA</li>
+<li>TYPEORM_DROP_SCHEMA</li>
+<li>TYPEORM_ENTITIES</li>
+<li>TYPEORM_ENTITIES_DIR</li>
+<li>TYPEORM_ENTITY_PREFIX</li>
+<li>TYPEORM_HOST</li>
+<li>TYPEORM_LOGGER</li>
+<li>TYPEORM_LOGGING</li>
+<li>TYPEORM_MAX_QUERY_EXECUTION_TIME</li>
+<li>TYPEORM_MIGRATIONS</li>
+<li>TYPEORM_MIGRATIONS_DIR</li>
+<li>TYPEORM_MIGRATIONS_RUN</li>
+<li>TYPEORM_MIGRATIONS_TABLE_NAME</li>
+<li>TYPEORM_PASSWORD</li>
+<li>TYPEORM_PORT</li>
+<li>TYPEORM_SCHEMA</li>
+<li>TYPEORM_SID</li>
+<li>TYPEORM_SUBSCRIBERS</li>
+<li>TYPEORM_SUBSCRIBERS_DIR</li>
+<li>TYPEORM_SYNCHRONIZE</li>
+<li>TYPEORM_URL</li>
+<li>TYPEORM_USERNAME</li>
+<li>TYPEORM_UUID_EXTENSION</li>
+</ul>
+<p><code>TYPEORM_CACHE</code> should be boolean or string of cache type</p>
+<p><code>ormconfig.env</code> should be used only during development.
+On production you can set all these values in real ENVIRONMENT VARIABLES.</p>
+<p>You cannot define multiple connections using an <code>env</code> file or environment variables.
+If your app has multiple connections then use alternative configuration storage format.</p>
+<p>If you need to pass a driver-specific option, e.g. <code>charset</code> for MySQL, you could use the <code>TYPEORM_DRIVER_EXTRA</code> variable in JSON format, e.g.</p>
+<pre><code>TYPEORM_DRIVER_EXTRA='{&quot;charset&quot;: &quot;utf8mb4&quot;}'
+</code></pre>
+<h2 id="using-ormconfigyml">Using <code>ormconfig.yml</code></h2>
+<p>Create <code>ormconfig.yml</code> in the project root (near <code>package.json</code>). It should have the following content:</p>
+<pre><code class="language-yaml">default: # default connection
+    host: &quot;localhost&quot;
+    port: 3306
+    username: &quot;test&quot;
+    password: &quot;test&quot;
+    database: &quot;test&quot;
+
+second-connection: # other connection
+    host: &quot;localhost&quot;
+    port: 3306
+    username: &quot;test&quot;
+    password: &quot;test&quot;
+    database: &quot;test2&quot;
+</code></pre>
+<p>You can use any connection options available.</p>
+<h2 id="using-ormconfigxml">Using <code>ormconfig.xml</code></h2>
+<p>Create <code>ormconfig.xml</code> in the project root (near <code>package.json</code>). It should have the following content:</p>
+<pre><code class="language-xml">&lt;connections&gt;
+    &lt;connection type=&quot;mysql&quot; name=&quot;default&quot;&gt;
+        &lt;host&gt;localhost&lt;/host&gt;
+        &lt;username&gt;root&lt;/username&gt;
+        &lt;password&gt;admin&lt;/password&gt;
+        &lt;database&gt;test&lt;/database&gt;
+        &lt;port&gt;3000&lt;/port&gt;
+        &lt;logging&gt;true&lt;/logging&gt;
+    &lt;/connection&gt;
+    &lt;connection type=&quot;mysql&quot; name=&quot;second-connection&quot;&gt;
+        &lt;host&gt;localhost&lt;/host&gt;
+        &lt;username&gt;root&lt;/username&gt;
+        &lt;password&gt;admin&lt;/password&gt;
+        &lt;database&gt;test2&lt;/database&gt;
+        &lt;port&gt;3000&lt;/port&gt;
+        &lt;logging&gt;true&lt;/logging&gt;
+    &lt;/connection&gt;
+&lt;/connections&gt;
+</code></pre>
+<p>You can use any connection options available.</p>
+<h2 id="which-configuration-file-is-used-by-typeorm">Which configuration file is used by Typeorm</h2>
+<p>Sometimes, you may want to use multiple configurations using different formats. When calling <code>getConnectionOptions()</code>
+or attempting to use <code>createConnection()</code> without the connection options, Typeorm will attempt to load the configurations,
+in this order:</p>
+<ol>
+<li>From the environment variables. Typeorm will attempt to load the <code>.env</code> file using dotEnv if it exists. If the environment
+variables <code>TYPEORM_CONNECTION</code> or <code>TYPEORM_URL</code> are set, Typeorm will use this method.</li>
+<li>From the <code>ormconfig.env</code>.</li>
+<li>From the other <code>ormconfig.[format]</code> files, in this order: <code>[js, ts, json, yml, yaml, xml]</code>.</li>
+</ol>
+<p>Note that Typeorm will use the first valid method found and will not load the others. For example, Typeorm will not load the
+<code>ormconfig.[format]</code> files if the configuration was found in the environment.</p>
+<h2 id="overriding-options-defined-in-ormconfig">Overriding options defined in ormconfig</h2>
+<p>Sometimes you want to override values defined in your ormconfig file,
+or you might want to append some TypeScript / JavaScript logic to your configuration.</p>
+<p>In such cases you can load options from ormconfig and get <code>ConnectionOptions</code> built,
+then you can do whatever you want with those options, before passing them to <code>createConnection</code> function:</p>
+<pre><code class="language-typescript">// read connection options from ormconfig file (or ENV variables)
+const connectionOptions = await getConnectionOptions();
+
+// do something with connectionOptions,
+// for example append a custom naming strategy or a custom logger
+Object.assign(connectionOptions, { namingStrategy: new MyNamingStrategy() });
+
+// create a connection using modified connection options
+const connection = await createConnection(connectionOptions);
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../using-cli/" class="btn btn-neutral float-left" title="Using CLI"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../validation/" class="btn btn-neutral float-right" title="Using Validation">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../using-cli/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../validation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/example-with-express/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Example using TypeORM with Express - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Example using TypeORM with Express";
+        var mkdocs_page_input_path = "example-with-express.md";
+        var mkdocs_page_url = "/example-with-express/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Example using TypeORM with Express</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#initial-setup">Initial setup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-express-to-the-application">Adding Express to the application</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-typeorm-to-the-application">Adding TypeORM to the application</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Example using TypeORM with Express</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="example-using-typeorm-with-express">Example using TypeORM with Express</h1>
+<ul>
+<li><a href="#initial-setup">Initial setup</a></li>
+<li><a href="#adding-express-to-the-application">Adding Express to the application</a></li>
+<li><a href="#adding-typeorm-to-the-application">Adding TypeORM to the application</a></li>
+</ul>
+<h2 id="initial-setup">Initial setup</h2>
+<p>Let's create a simple application called "user" which stores users in the database
+and allows us to create, update, remove, and get a list of all users, as well as a single user by id
+within web api.</p>
+<p>First, create a directory called "user":</p>
+<pre><code>mkdir user
+</code></pre>
+<p>Then switch to the directory and create a new project:</p>
+<pre><code>cd user
+npm init
+</code></pre>
+<p>Finish the init process by filling in all required application information.</p>
+<p>Now we need to install and setup a TypeScript compiler. Lets install it first:</p>
+<pre><code>npm i typescript --save-dev
+</code></pre>
+<p>Then let's create a <code>tsconfig.json</code> file which contains the configuration required for the application to
+compile and run. Create it using your favorite editor and put the following configuration:</p>
+<pre><code class="language-json">{
+  &quot;compilerOptions&quot;: {
+    &quot;lib&quot;: [&quot;es5&quot;, &quot;es6&quot;, &quot;dom&quot;],
+    &quot;target&quot;: &quot;es5&quot;,
+    &quot;module&quot;: &quot;commonjs&quot;,
+    &quot;moduleResolution&quot;: &quot;node&quot;,
+    &quot;emitDecoratorMetadata&quot;: true,
+    &quot;experimentalDecorators&quot;: true
+  }
+}
+</code></pre>
+<p>Now let's create a main application endpoint - <code>app.ts</code> inside the <code>src</code> directory:</p>
+<pre><code>mkdir src
+cd src
+touch app.ts
+</code></pre>
+<p>Let's add a simple <code>console.log</code> inside it:</p>
+<pre><code class="language-typescript">console.log(&quot;Application is up and running&quot;);
+</code></pre>
+<p>Now it's time to run our application.
+To run it, you need to compile your typescript project first:</p>
+<pre><code>tsc
+</code></pre>
+<p>Once you compile it, you should have a <code>src/app.js</code> file generated.
+You can run it using:</p>
+<pre><code>node src/app.js
+</code></pre>
+<p>You should see the, "Application is up and running" message in your console right after you run the application.</p>
+<p>You must compile your files each time you make a change.
+Alternatively, you can setup watcher or install <a href="https://github.com/TypeStrong/ts-node">ts-node</a> to avoid manual compilation each time.</p>
+<h2 id="adding-express-to-the-application">Adding Express to the application</h2>
+<p>Let's add Express to our application. First, let's install the packages we need:</p>
+<pre><code>npm i express  @types/express --save
+</code></pre>
+<ul>
+<li><code>express</code> is the express engine itself. It allows us to create a web api</li>
+<li><code>@types/express</code> is used to have a type information when using express</li>
+</ul>
+<p>Let's edit the <code>src/app.ts</code> file and add express-related logic:</p>
+<pre><code class="language-typescript">import * as express from &quot;express&quot;;
+import {Request, Response} from &quot;express&quot;;
+
+// create and setup express app
+const app = express();
+app.use(express.json());
+
+// register routes
+
+app.get(&quot;/users&quot;, function(req: Request, res: Response) {
+    // here we will have logic to return all users
+});
+
+app.get(&quot;/users/:id&quot;, function(req: Request, res: Response) {
+    // here we will have logic to return user by id
+});
+
+app.post(&quot;/users&quot;, function(req: Request, res: Response) {
+    // here we will have logic to save a user
+});
+
+app.put(&quot;/users/:id&quot;, function(req: Request, res: Response) {
+    // here we will have logic to update a user by a given user id
+});
+
+app.delete(&quot;/users/:id&quot;, function(req: Request, res: Response) {
+    // here we will have logic to delete a user by a given user id
+});
+
+// start express server
+app.listen(3000);
+</code></pre>
+<p>Now you can compile and run your project.
+You should have an express server running now with working routes.
+However, those routes do not return any content yet.</p>
+<h2 id="adding-typeorm-to-the-application">Adding TypeORM to the application</h2>
+<p>Finally, let's add TypeORM to the application.
+In this example, we will use <code>mysql</code> driver.
+Setup process for other drivers is similar.</p>
+<p>Let's install the required packages first:</p>
+<pre><code>npm i typeorm mysql reflect-metadata --save
+</code></pre>
+<ul>
+<li><code>typeorm</code> is the typeorm package itself</li>
+<li><code>mysql</code> is the underlying database driver.
+If you are using a different database system, you must install the appropriate package</li>
+<li><code>reflect-metadata</code> is required to make decorators to work properly</li>
+</ul>
+<p>Now let's create <code>ormconfig.json</code> with the database connection configuration we will use.</p>
+<pre><code class="language-json">  {
+    &quot;type&quot;: &quot;mysql&quot;,
+    &quot;host&quot;: &quot;localhost&quot;,
+    &quot;port&quot;: 3306,
+    &quot;username&quot;: &quot;test&quot;,
+    &quot;password&quot;: &quot;test&quot;,
+    &quot;database&quot;: &quot;test&quot;,
+    &quot;entities&quot;: [&quot;src/entity/*.js&quot;],
+    &quot;logging&quot;: true,
+    &quot;synchronize&quot;: true
+  }
+</code></pre>
+<p>Configure each option as you need.
+Learn more about <a href="../connection-options/">connection options</a>.</p>
+<p>Let's create a <code>User</code> entity inside <code>src/entity</code>:</p>
+<pre><code class="language-typescript">import {Entity, Column, PrimaryGeneratedColumn} from &quot;typeorm&quot;;
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    firstName: string;
+
+    @Column()
+    lastName: string;
+
+}
+</code></pre>
+<p>Let's change <code>src/app.ts</code>:</p>
+<pre><code class="language-typescript">import * as express from &quot;express&quot;;
+import {Request, Response} from &quot;express&quot;;
+import {createConnection} from &quot;typeorm&quot;;
+import {User} from &quot;./entity/User&quot;;
+
+// create typeorm connection
+createConnection().then(connection =&gt; {
+    const userRepository = connection.getRepository(User);
+
+    // create and setup express app
+    const app = express();
+    app.use(express.json());
+
+    // register routes
+
+    app.get(&quot;/users&quot;, async function(req: Request, res: Response) {
+        const users = await userRepository.find();
+        res.json(users);
+    });
+
+    app.get(&quot;/users/:id&quot;, async function(req: Request, res: Response) {
+        const results = await userRepository.findOne(req.params.id);
+        return res.send(results);
+    });
+
+    app.post(&quot;/users&quot;, async function(req: Request, res: Response) {
+        const user = await userRepository.create(req.body);
+        const results = await userRepository.save(user);
+        return res.send(results);
+    });
+
+    app.put(&quot;/users/:id&quot;, async function(req: Request, res: Response) {
+        const user = await userRepository.findOne(req.params.id);
+        userRepository.merge(user, req.body);
+        const results = await userRepository.save(user);
+        return res.send(results);
+    });
+
+    app.delete(&quot;/users/:id&quot;, async function(req: Request, res: Response) {
+        const results = await userRepository.delete(req.params.id);
+        return res.send(results);
+    });
+
+    // start express server
+    app.listen(3000);
+});
+</code></pre>
+<p>If you want to extract action callbacks into separate files and you need the <code>connection</code> instance,
+you can simply use <code>getConnection</code>:</p>
+<pre><code class="language-typescript">import {getConnection} from &quot;typeorm&quot;;
+import {User} from &quot;./entity/User&quot;;
+
+export function UsersListAction(req: Request, res: Response) {
+    return getConnection().getRepository(User).find();
+}
+</code></pre>
+<p>You don't even need <code>getConnection</code> in this example - you can directly use the <code>getRepository</code> function:</p>
+<pre><code class="language-typescript">import {getRepository} from &quot;typeorm&quot;;
+import {User} from &quot;./entity/User&quot;;
+
+export function UsersListAction(req: Request, res: Response) {
+    return getRepository(User).find();
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../entity-metadata/" class="btn btn-neutral float-left" title="Entity Metadata"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../faq/" class="btn btn-neutral float-right" title="FAQ">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../entity-metadata/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../faq/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

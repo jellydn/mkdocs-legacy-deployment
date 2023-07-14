@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/mongodb/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>MongoDB - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "MongoDB";
+        var mkdocs_page_input_path = "mongodb.md";
+        var mkdocs_page_url = "/mongodb/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">MongoDB</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#mongodb-support">MongoDB support</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#defining-entities-and-columns">Defining entities and columns</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#defining-subdocuments-embed-documents">Defining subdocuments (embed documents)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-mongoentitymanager-and-mongorepository">Using MongoEntityManager and MongoRepository</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#createcursor">createCursor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#createentitycursor">createEntityCursor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#aggregate">aggregate</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bulkwrite">bulkWrite</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#count">count</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#createcollectionindex">createCollectionIndex</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#createcollectionindexes">createCollectionIndexes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deletemany">deleteMany</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deleteone">deleteOne</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#distinct">distinct</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dropcollectionindex">dropCollectionIndex</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dropcollectionindexes">dropCollectionIndexes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#findoneanddelete">findOneAndDelete</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#findoneandreplace">findOneAndReplace</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#findoneandupdate">findOneAndUpdate</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#geohaystacksearch">geoHaystackSearch</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#geonear">geoNear</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#group">group</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#collectionindexes">collectionIndexes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#collectionindexexists">collectionIndexExists</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#collectionindexinformation">collectionIndexInformation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#initializeorderedbulkop">initializeOrderedBulkOp</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#initializeunorderedbulkop">initializeUnorderedBulkOp</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#insertmany">insertMany</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#insertone">insertOne</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#iscapped">isCapped</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#listcollectionindexes">listCollectionIndexes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mapreduce">mapReduce</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parallelcollectionscan">parallelCollectionScan</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reindex">reIndex</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rename">rename</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#replaceone">replaceOne</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stats">stats</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#updatemany">updateMany</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#updateone">updateOne</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>MongoDB</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="mongodb">MongoDB</h1>
+<ul>
+<li><a href="#mongodb-support">MongoDB support</a></li>
+<li><a href="#defining-entities-and-columns">Defining entities and columns</a></li>
+<li><a href="#defining-subdocuments-embed-documents">Defining subdocuments (embed documents)</a></li>
+<li><a href="#using-mongoentitymanager-and-mongorepository">Using <code>MongoEntityManager</code> and <code>MongoRepository</code></a></li>
+</ul>
+<h2 id="mongodb-support">MongoDB support</h2>
+<p>TypeORM has basic MongoDB support.
+Most of TypeORM functionality is RDBMS-specific, 
+this page contains all MongoDB-specific functionality documentation.</p>
+<h2 id="defining-entities-and-columns">Defining entities and columns</h2>
+<p>Defining entities and columns is almost the same as in relational databases, 
+the main difference is that you must use <code>@ObjectIdColumn</code> 
+instead of <code>@PrimaryColumn</code> or <code>@PrimaryGeneratedColumn</code>.</p>
+<p>Simple entity example:</p>
+<pre><code class="language-typescript">import {Entity, ObjectID, ObjectIdColumn, Column} from &quot;typeorm&quot;;
+
+@Entity()
+export class User {
+
+    @ObjectIdColumn()
+    id: ObjectID;
+
+    @Column()
+    firstName: string;
+
+    @Column()
+    lastName: string;
+
+}
+</code></pre>
+<p>And this is how you bootstrap the app:</p>
+<pre><code class="language-typescript">import {createConnection, Connection} from &quot;typeorm&quot;;
+
+const connection: Connection = await createConnection({
+    type: &quot;mongodb&quot;,
+    host: &quot;localhost&quot;,
+    port: 27017,
+    database: &quot;test&quot;
+});
+</code></pre>
+<h2 id="defining-subdocuments-embed-documents">Defining subdocuments (embed documents)</h2>
+<p>Since MongoDB stores objects and objects inside objects (or documents inside documents)
+you can do the same in TypeORM:</p>
+<pre><code class="language-typescript">import {Entity, ObjectID, ObjectIdColumn, Column} from &quot;typeorm&quot;;
+
+export class Profile {
+
+    @Column()
+    about: string;
+
+    @Column()
+    education: string;
+
+    @Column()
+    career: string;
+
+}
+</code></pre>
+<pre><code class="language-typescript">import {Entity, ObjectID, ObjectIdColumn, Column} from &quot;typeorm&quot;;
+
+export class Photo {
+
+    @Column()
+    url: string;
+
+    @Column()
+    description: string;
+
+    @Column()
+    size: number;
+
+    constructor(url: string, description: string, size: number) {
+        this.url = url;
+        this.description = description;
+        this.size = size;
+    }
+
+}
+</code></pre>
+<pre><code class="language-typescript">import {Entity, ObjectID, ObjectIdColumn, Column} from &quot;typeorm&quot;;
+
+@Entity()
+export class User {
+
+    @ObjectIdColumn()
+    id: ObjectID;
+
+    @Column()
+    firstName: string;
+
+    @Column()
+    lastName: string;
+
+    @Column(type =&gt; Profile)
+    profile: Profile;
+
+    @Column(type =&gt; Photo)
+    photos: Photo[];
+
+}
+</code></pre>
+<p>If you save this entity:</p>
+<pre><code class="language-typescript">import {getMongoManager} from &quot;typeorm&quot;;
+
+const user = new User();
+user.firstName = &quot;Timber&quot;;
+user.lastName = &quot;Saw&quot;;
+user.profile = new Profile();
+user.profile.about = &quot;About Trees and Me&quot;;
+user.profile.education = &quot;Tree School&quot;;
+user.profile.career = &quot;Lumberjack&quot;;
+user.photos = [
+    new Photo(&quot;me-and-trees.jpg&quot;, &quot;Me and Trees&quot;, 100),
+    new Photo(&quot;me-and-chakram.jpg&quot;, &quot;Me and Chakram&quot;, 200),
+];
+
+const manager = getMongoManager();
+await manager.save(user);
+</code></pre>
+<p>Following document will be saved in the database:</p>
+<pre><code class="language-json">{
+    &quot;firstName&quot;: &quot;Timber&quot;,
+    &quot;lastName&quot;: &quot;Saw&quot;,
+    &quot;profile&quot;: {
+        &quot;about&quot;: &quot;About Trees and Me&quot;,
+        &quot;education&quot;: &quot;Tree School&quot;,
+        &quot;career&quot;: &quot;Lumberjack&quot;
+    },
+    &quot;photos&quot;: [
+        {
+            &quot;url&quot;: &quot;me-and-trees.jpg&quot;,
+            &quot;description&quot;: &quot;Me and Trees&quot;,
+            &quot;size&quot;: 100
+        },
+        {
+            &quot;url&quot;: &quot;me-and-chakram.jpg&quot;,
+            &quot;description&quot;: &quot;Me and Chakram&quot;,
+            &quot;size&quot;: 200
+        }
+    ]
+}
+</code></pre>
+<h2 id="using-mongoentitymanager-and-mongorepository">Using <code>MongoEntityManager</code> and <code>MongoRepository</code></h2>
+<p>You can use the majority of methods inside the <code>EntityManager</code> (except for RDBMS-specific, like <code>query</code> and <code>transaction</code>).
+For example:</p>
+<pre><code class="language-typescript">import {getManager} from &quot;typeorm&quot;;
+
+const manager = getManager(); // or connection.manager
+const timber = await manager.findOne(User, { firstName: &quot;Timber&quot;, lastName: &quot;Saw&quot; });
+</code></pre>
+<p>For MongoDB there is also a separate <code>MongoEntityManager</code> which extends <code>EntityManager</code>.</p>
+<pre><code class="language-typescript">import {getMongoManager} from &quot;typeorm&quot;;
+
+const manager = getMongoManager(); // or connection.mongoManager
+const timber = await manager.findOne(User, { firstName: &quot;Timber&quot;, lastName: &quot;Saw&quot; });
+</code></pre>
+<p>Just like separate like <code>MongoEntityManager</code> there is a <code>MongoRepository</code> with extended <code>Repository</code>:</p>
+<pre><code class="language-typescript">import {getMongoRepository} from &quot;typeorm&quot;;
+
+const userRepository = getMongoRepository(User); // or connection.getMongoRepository
+const timber = await userRepository.findOne({ firstName: &quot;Timber&quot;, lastName: &quot;Saw&quot; });
+</code></pre>
+<p>Use Advanced options in find():</p>
+<p>Equal:</p>
+<pre><code class="language-typescript">import {getMongoRepository} from &quot;typeorm&quot;;
+
+const userRepository = getMongoRepository(User);
+const timber = await userRepository.find({
+  where: {
+    firstName: {$eq: &quot;Timber&quot;},
+  }
+});
+</code></pre>
+<p>LessThan:</p>
+<pre><code class="language-typescript">import {getMongoRepository} from &quot;typeorm&quot;;
+
+const userRepository = getMongoRepository(User);
+const timber = await userRepository.find({
+  where: {
+    age: {$lt: 60},
+  }
+});
+</code></pre>
+<p>In:</p>
+<pre><code class="language-typescript">import {getMongoRepository} from &quot;typeorm&quot;;
+
+const userRepository = getMongoRepository(User);
+const timber = await userRepository.find({
+  where: {
+    firstName: {$in: [&quot;Timber&quot;,&quot;Zhang&quot;]},
+  }
+});
+</code></pre>
+<p>Not in:</p>
+<pre><code class="language-typescript">import {getMongoRepository} from &quot;typeorm&quot;;
+
+const userRepository = getMongoRepository(User);
+const timber = await userRepository.find({
+  where: {
+firstName: {$not: {$in: [&quot;Timber&quot;,&quot;Zhang&quot;]}},
+}
+});
+</code></pre>
+<p>Or:</p>
+<pre><code class="language-typescript">import {getMongoRepository} from &quot;typeorm&quot;;
+
+const userRepository = getMongoRepository(User);
+const timber = await userRepository.find({
+  where: {
+    $or: [
+        {firstName:&quot;Timber&quot;},
+        {firstName:&quot;Zhang&quot;}
+      ]
+  }
+});
+</code></pre>
+<p>Querying subdocuments</p>
+<pre><code class="language-typescript">import {getMongoRepository} from &quot;typeorm&quot;;
+
+const userRepository = getMongoRepository(User);
+// Query users with education Tree School
+const users = await userRepository.find({
+  where: {
+   'profile.education': { $eq: &quot;Tree School&quot;}
+  }
+});
+</code></pre>
+<p>Querying Array of subdocuments</p>
+<pre><code class="language-typescript">import {getMongoRepository} from &quot;typeorm&quot;;
+
+const userRepository = getMongoRepository(User);
+// Query users with photos of size less than 500
+const users = await userRepository.find({
+  where: {
+   'photos.size': { $lt: 500}
+  }
+});
+
+</code></pre>
+<p>Both <code>MongoEntityManager</code> and <code>MongoRepository</code> contain lot of useful MongoDB-specific methods:</p>
+<h4 id="createcursor"><code>createCursor</code></h4>
+<p>Creates a cursor for a query that can be used to iterate over results from MongoDB.</p>
+<h4 id="createentitycursor"><code>createEntityCursor</code></h4>
+<p>Creates a cursor for a query that can be used to iterate over results from MongoDB.
+This returns a modified version of the cursor that transforms each result into Entity models.</p>
+<h4 id="aggregate"><code>aggregate</code></h4>
+<p>Execute an aggregation framework pipeline against the collection.</p>
+<h4 id="bulkwrite"><code>bulkWrite</code></h4>
+<p>Perform a bulkWrite operation without a fluent API.</p>
+<h4 id="count"><code>count</code></h4>
+<p>Count number of matching documents in the db to a query.</p>
+<h4 id="createcollectionindex"><code>createCollectionIndex</code></h4>
+<p>Creates an index on the db and collection.</p>
+<h4 id="createcollectionindexes"><code>createCollectionIndexes</code></h4>
+<p>Creates multiple indexes in the collection, this method is only supported in MongoDB 2.6 or higher.
+Earlier version of MongoDB will throw a command not supported error. Index specifications are defined at http://docs.mongodb.org/manual/reference/command/createIndexes/.</p>
+<h4 id="deletemany"><code>deleteMany</code></h4>
+<p>Delete multiple documents on MongoDB.</p>
+<h4 id="deleteone"><code>deleteOne</code></h4>
+<p>Delete a document on MongoDB.</p>
+<h4 id="distinct"><code>distinct</code></h4>
+<p>The distinct command returns a list of distinct values for the given key across a collection.</p>
+<h4 id="dropcollectionindex"><code>dropCollectionIndex</code></h4>
+<p>Drops an index from this collection.</p>
+<h4 id="dropcollectionindexes"><code>dropCollectionIndexes</code></h4>
+<p>Drops all indexes from the collection.</p>
+<h4 id="findoneanddelete"><code>findOneAndDelete</code></h4>
+<p>Find a document and delete it in one atomic operation, requires a write lock for the duration of the operation.</p>
+<h4 id="findoneandreplace"><code>findOneAndReplace</code></h4>
+<p>Find a document and replace it in one atomic operation, requires a write lock for the duration of the operation.</p>
+<h4 id="findoneandupdate"><code>findOneAndUpdate</code></h4>
+<p>Find a document and update it in one atomic operation, requires a write lock for the duration of the operation.</p>
+<h4 id="geohaystacksearch"><code>geoHaystackSearch</code></h4>
+<p>Execute a geo search using a geo haystack index on a collection.</p>
+<h4 id="geonear"><code>geoNear</code></h4>
+<p>Execute the geoNear command to search for items in the collection.</p>
+<h4 id="group"><code>group</code></h4>
+<p>Run a group command across a collection.</p>
+<h4 id="collectionindexes"><code>collectionIndexes</code></h4>
+<p>Retrieve all the indexes on the collection.</p>
+<h4 id="collectionindexexists"><code>collectionIndexExists</code></h4>
+<p>Retrieve if an index exists on the collection</p>
+<h4 id="collectionindexinformation"><code>collectionIndexInformation</code></h4>
+<p>Retrieves this collections index info.</p>
+<h4 id="initializeorderedbulkop"><code>initializeOrderedBulkOp</code></h4>
+<p>Initiate an In order bulk write operation, operations will be serially executed in the order they are added, creating a new operation for each switch in types.</p>
+<h4 id="initializeunorderedbulkop"><code>initializeUnorderedBulkOp</code></h4>
+<p>Initiate a Out of order batch write operation. All operations will be buffered into insert/update/remove commands executed out of order.</p>
+<h4 id="insertmany"><code>insertMany</code></h4>
+<p>Inserts an array of documents into MongoDB.</p>
+<h4 id="insertone"><code>insertOne</code></h4>
+<p>Inserts a single document into MongoDB.</p>
+<h4 id="iscapped"><code>isCapped</code></h4>
+<p>Returns if the collection is a capped collection.</p>
+<h4 id="listcollectionindexes"><code>listCollectionIndexes</code></h4>
+<p>Get the list of all indexes information for the collection.</p>
+<h4 id="mapreduce"><code>mapReduce</code></h4>
+<p>Run Map Reduce across a collection. Be aware that the inline option for out will return an array of results not a collection.</p>
+<h4 id="parallelcollectionscan"><code>parallelCollectionScan</code></h4>
+<p>Return N number of parallel cursors for a collection allowing parallel reading of entire collection. There are no ordering guarantees for returned results</p>
+<h4 id="reindex"><code>reIndex</code></h4>
+<p>Reindex all indexes on the collection Warning: reIndex is a blocking operation (indexes are rebuilt in the foreground) and will be slow for large collections.</p>
+<h4 id="rename"><code>rename</code></h4>
+<p>Changes the name of an existing collection.</p>
+<h4 id="replaceone"><code>replaceOne</code></h4>
+<p>Replace a document on MongoDB.</p>
+<h4 id="stats"><code>stats</code></h4>
+<p>Get all the collection statistics.</p>
+<h4 id="updatemany"><code>updateMany</code></h4>
+<p>Updates multiple documents within the collection based on the filter.</p>
+<h4 id="updateone"><code>updateOne</code></h4>
+<p>Updates a single document within the collection based on the filter.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../migrations/" class="btn btn-neutral float-left" title="Migrations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../multiple-connections/" class="btn btn-neutral float-right" title="Multiple connections, databases, schemas and replication setup">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../migrations/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../multiple-connections/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

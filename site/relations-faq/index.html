@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/relations-faq/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Relations FAQ - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Relations FAQ";
+        var mkdocs_page_input_path = "relations-faq.md";
+        var mkdocs_page_url = "/relations-faq/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Relations FAQ</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-create-self-referencing-relation">How to create self referencing relation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-use-relation-id-without-joining-relation">How to use relation id without joining relation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-load-relations-in-entities">How to load relations in entities</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#avoid-relation-property-initializers">Avoid relation property initializers</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#avoid-foreign-key-constraint-creation">Avoid foreign key constraint creation</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Relations FAQ</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="relations-faq">Relations FAQ</h1>
+<ul>
+<li><a href="#how-to-create-self-referencing-relation">How to create self referencing relation</a></li>
+<li><a href="#how-to-use-relation-id-without-joining-relation">How to use relation id without joining relation</a></li>
+<li><a href="#how-to-load-relations-in-entities">How to load relations in entities</a></li>
+<li><a href="#avoid-relation-property-initializers">Avoid relation property initializers</a></li>
+<li><a href="#avoid-foreign-key-constraint-creation">Avoid foreign key constraint creation</a></li>
+</ul>
+<h2 id="how-to-create-self-referencing-relation">How to create self referencing relation</h2>
+<p>Self-referencing relations are relations which have a relation to themself.
+This is useful when you are storing entities in a tree-like structures.
+Also "adjacency list" pattern is implemented using self-referenced relations.
+For example, you want to create categories tree in your application.
+Categories can nest categories, nested categories can nest other categories, etc.
+Self-referencing relations come handy here. 
+Basically self-referencing relations are just regular relations that targets entity itself.
+Example:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany} from &quot;typeorm&quot;;
+
+@Entity()
+export class Category {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    text: string;
+
+    @ManyToOne(type =&gt; Category, category =&gt; category.childCategories)
+    parentCategory: Category;
+
+    @OneToMany(type =&gt; Category, category =&gt; category.parentCategory)
+    childCategories: Category[];
+
+}
+</code></pre>
+<h2 id="how-to-use-relation-id-without-joining-relation">How to use relation id without joining relation</h2>
+<p>Sometimes you want to have in your object id of the related object without loading it. 
+For example:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column} from &quot;typeorm&quot;;
+
+@Entity()
+export class Profile {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    gender: string;
+
+    @Column()
+    photo: string;
+
+}
+</code></pre>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn} from &quot;typeorm&quot;;
+import {Profile} from &quot;./Profile&quot;;
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @OneToOne(type =&gt; Profile)
+    @JoinColumn()
+    profile: Profile;
+
+}
+</code></pre>
+<p>When you load a user without <code>profile</code> joined you won't have any information about profile in your user object, 
+even profile id:</p>
+<pre><code class="language-javascript">User {
+  id: 1,
+  name: &quot;Umed&quot;
+}
+</code></pre>
+<p>But sometimes you want to know what is the "profile id" of this user without loading the whole profile for this user.
+To do this you just need to add another property to your entity with <code>@Column</code>
+named exactly as the column created by your relation. Example:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn} from &quot;typeorm&quot;;
+import {Profile} from &quot;./Profile&quot;;
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @Column({ nullable: true })
+    profileId: number;
+
+    @OneToOne(type =&gt; Profile)
+    @JoinColumn()
+    profile: Profile;
+
+}
+</code></pre>
+<p>That's all. Next time you load a user object it will contain a profile id:</p>
+<pre><code class="language-javascript">User {
+  id: 1,
+  name: &quot;Umed&quot;,
+  profileId: 1
+}
+</code></pre>
+<h2 id="how-to-load-relations-in-entities">How to load relations in entities</h2>
+<p>The easiest way to load your entity relations is to use <code>relations</code> option in <code>FindOptions</code>:</p>
+<pre><code class="language-typescript">const users = await connection.getRepository(User).find({ relations: [&quot;profile&quot;, &quot;photos&quot;, &quot;videos&quot;] });
+</code></pre>
+<p>Alternative and more flexible way is to use <code>QueryBuilder</code>:</p>
+<pre><code class="language-typescript">const user = await connection
+    .getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .leftJoinAndSelect(&quot;user.profile&quot;, &quot;profile&quot;)
+    .leftJoinAndSelect(&quot;user.photos&quot;, &quot;photo&quot;)
+    .leftJoinAndSelect(&quot;user.videos&quot;, &quot;video&quot;)
+    .getMany();
+</code></pre>
+<p>Using <code>QueryBuilder</code> you can do <code>innerJoinAndSelect</code> instead of <code>leftJoinAndSelect</code> 
+(to learn the difference between <code>LEFT JOIN</code> and <code>INNER JOIN</code> refer to your SQL documentation),
+you can join relation data by a condition, make ordering, etc.</p>
+<p>Learn more about <a href="../select-query-builder/"><code>QueryBuilder</code></a>.</p>
+<h2 id="avoid-relation-property-initializers">Avoid relation property initializers</h2>
+<p>Sometimes it is useful to initialize your relation properties, for example:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from &quot;typeorm&quot;;
+import {Category} from &quot;./Category&quot;;
+
+@Entity()
+export class Question {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    text: string;
+
+    @ManyToMany(type =&gt; Category, category =&gt; category.questions)
+    @JoinTable()
+    categories: Category[] = []; // see = [] initialization here
+
+}
+</code></pre>
+<p>However in TypeORM entities it may cause problems.
+To understand the problem, let's first try to load a Question entity WITHOUT the initializer set.
+When you load a question it will return an object like this:</p>
+<pre><code class="language-javascript">Question {
+    id: 1,
+    title: &quot;Question about ...&quot;
+}
+</code></pre>
+<p>Now when you save this object <code>categories</code> inside it won't be touched - because it is unset.</p>
+<p>But if you have initializer, the loaded object will look like as follow:</p>
+<pre><code class="language-javascript">Question {
+    id: 1,
+    title: &quot;Question about ...&quot;,
+    categories: []
+}
+</code></pre>
+<p>When you save the object it will check if there are any categories in the database bind to the question -
+and it will detach all of them. Why? Because relation equal to <code>[]</code> or any items inside it will be considered
+like something was removed from it, there is no other way to check if an object was removed from entity or not.</p>
+<p>Therefore, saving an object like this will bring you problems - it will remove all previously set categories.</p>
+<p>How to avoid this behaviour? Simply don't initialize arrays in your entities.
+Same rule applies to a constructor - don't initialize it in a constructor as well.</p>
+<h2 id="avoid-foreign-key-constraint-creation">Avoid foreign key constraint creation</h2>
+<p>Sometimes for performance reasons you might want to have a relation between entities, but without foreign key constraint.
+You can define if foreign key constraint should be created with <code>createForeignKeyConstraints</code> option (default: true).</p>
+<pre><code class="language-typescript">import {Entity, PrimaryColumn, Column, ManyToOne} from &quot;typeorm&quot;;
+import {Person} from &quot;./Person&quot;;
+
+@Entity()
+export class ActionLog {
+
+    @PrimaryColumn()
+    id: number;
+
+    @Column()
+    date: Date;
+
+    @Column()
+    action: string;
+
+    @ManyToOne(type =&gt; Person, {
+        createForeignKeyConstraints: false
+    })
+    person: Person;
+
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../relational-query-builder/" class="btn btn-neutral float-left" title="Working with Relations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../relations/" class="btn btn-neutral float-right" title="Relations">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../relational-query-builder/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../relations/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/relations/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Relations - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Relations";
+        var mkdocs_page_input_path = "relations.md";
+        var mkdocs_page_url = "/relations/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Relations</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-are-relations">What are relations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#relation-options">Relation options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cascades">Cascades</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#cascade-options">Cascade Options</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#joincolumn-options">@JoinColumn options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#jointable-options">@JoinTable options</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Relations</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="relations">Relations</h1>
+<ul>
+<li><a href="#what-are-relations">What are relations</a></li>
+<li><a href="#relation-options">Relation options</a></li>
+<li><a href="#cascades">Cascades</a></li>
+<li><a href="#joincolumn-options"><code>@JoinColumn</code> options</a></li>
+<li><a href="#jointable-options"><code>@JoinTable</code> options</a></li>
+</ul>
+<h2 id="what-are-relations">What are relations</h2>
+<p>Relations helps you to work with related entities easily.
+There are several types of relations:</p>
+<ul>
+<li><a href="../one-to-one-relations/">one-to-one</a> using <code>@OneToOne</code></li>
+<li><a href="../many-to-one-one-to-many-relations/">many-to-one</a> using <code>@ManyToOne</code></li>
+<li><a href="../many-to-one-one-to-many-relations/">one-to-many</a> using <code>@OneToMany</code></li>
+<li><a href="../many-to-many-relations/">many-to-many</a> using <code>@ManyToMany</code></li>
+</ul>
+<h2 id="relation-options">Relation options</h2>
+<p>There are several options you can specify for relations:</p>
+<ul>
+<li><code>eager: boolean</code> - If set to true, the relation will always be loaded with the main entity when using <code>find*</code> methods or <code>QueryBuilder</code> on this entity</li>
+<li><code>cascade: boolean | ("insert" | "update")[]</code> - If set to true, the related object will be inserted and updated in the database. You can also specify an array of <a href="#cascade-options">cascade options</a>.</li>
+<li><code>onDelete: "RESTRICT"|"CASCADE"|"SET NULL"</code> - specifies how foreign key should behave when referenced object is deleted</li>
+<li><code>primary: boolean</code> - Indicates whether this relation's column will be a primary column or not.</li>
+<li><code>nullable: boolean</code> - Indicates whether this relation's column is nullable or not. By default it is nullable.</li>
+<li><code>orphanedRowAction: "nullify" | "delete"</code> - When a child row is removed from its parent, determines if the child row should be orphaned (default) or deleted.</li>
+</ul>
+<h2 id="cascades">Cascades</h2>
+<p>Cascades example:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, ManyToMany} from &quot;typeorm&quot;;
+import {Question} from &quot;./Question&quot;;
+
+@Entity()
+export class Category {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @ManyToMany(type =&gt; Question, question =&gt; question.categories)
+    questions: Question[];
+
+}
+</code></pre>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from &quot;typeorm&quot;;
+import {Category} from &quot;./Category&quot;;
+
+@Entity()
+export class Question {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    text: string;
+
+    @ManyToMany(type =&gt; Category, category =&gt; category.questions, {
+        cascade: true
+    })
+    @JoinTable()
+    categories: Category[];
+
+}
+</code></pre>
+<pre><code class="language-typescript">const category1 = new Category();
+category1.name = &quot;ORMs&quot;;
+
+const category2 = new Category();
+category2.name = &quot;Programming&quot;;
+
+const question = new Question();
+question.title = &quot;How to ask questions?&quot;;
+question.text = &quot;Where can I ask TypeORM-related questions?&quot;;
+question.categories = [category1, category2];
+await connection.manager.save(question);
+</code></pre>
+<p>As you can see in this example we did not call <code>save</code> for <code>category1</code> and <code>category2</code>.
+They will be automatically inserted, because we set <code>cascade</code> to true.</p>
+<p>Keep in mind - great power comes with great responsibility.
+Cascades may seem like a good and easy way to work with relations,
+but they may also bring bugs and security issues when some undesired object is being saved into the database.
+Also, they provide a less explicit way of saving new objects into the database.</p>
+<h3 id="cascade-options">Cascade Options</h3>
+<p>The <code>cascade</code> option can be set as a <code>boolean</code> or an array of cascade options <code>("insert" | "update" | "remove" | "soft-remove" | "recover")[]</code>.</p>
+<p>It will default to <code>false</code>, meaning no cascades. Setting <code>cascade: true</code> will enable full cascades. You can also specify options by providing an array.</p>
+<p>For example:</p>
+<pre><code class="language-typescript">@Entity(Post)
+export class Post {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    text: string;
+
+    // Full cascades on categories.
+    @ManyToMany(type =&gt; PostCategory, {
+        cascade: true
+    })
+    @JoinTable()
+    categories: PostCategory[];
+
+    // Cascade insert here means if there is a new PostDetails instance set
+    // on this relation, it will be inserted automatically to the db when you save this Post entity
+    @ManyToMany(type =&gt; PostDetails, details =&gt; details.posts, {
+        cascade: [&quot;insert&quot;]
+    })
+    @JoinTable()
+    details: PostDetails[];
+
+    // Cascade update here means if there are changes to an existing PostImage, it
+    // will be updated automatically to the db when you save this Post entity
+    @ManyToMany(type =&gt; PostImage, image =&gt; image.posts, {
+        cascade: [&quot;update&quot;]
+    })
+    @JoinTable()
+    images: PostImage[];
+
+    // Cascade insert &amp; update here means if there are new PostInformation instances
+    // or an update to an existing one, they will be automatically inserted or updated
+    // when you save this Post entity
+    @ManyToMany(type =&gt; PostInformation, information =&gt; information.posts, {
+        cascade: [&quot;insert&quot;, &quot;update&quot;]
+    })
+    @JoinTable()
+    informations: PostInformation[];
+}
+</code></pre>
+<h2 id="joincolumn-options"><code>@JoinColumn</code> options</h2>
+<p><code>@JoinColumn</code> not only defines which side of the relation contains the join column with a foreign key,
+but also allows you to customize join column name and referenced column name.</p>
+<p>When we set <code>@JoinColumn</code>, it automatically creates a column in the database named <code>propertyName + referencedColumnName</code>.
+For example:</p>
+<pre><code class="language-typescript">@ManyToOne(type =&gt; Category)
+@JoinColumn() // this decorator is optional for @ManyToOne, but required for @OneToOne
+category: Category;
+</code></pre>
+<p>This code will create a <code>categoryId</code> column in the database.
+If you want to change this name in the database you can specify a custom join column name:</p>
+<pre><code class="language-typescript">@ManyToOne(type =&gt; Category)
+@JoinColumn({ name: &quot;cat_id&quot; })
+category: Category;
+</code></pre>
+<p>Join columns are always a reference to some other columns (using a foreign key).
+By default your relation always refers to the primary column of the related entity.
+If you want to create relation with other columns of the related entity -
+you can specify them in <code>@JoinColumn</code> as well:</p>
+<pre><code class="language-typescript">@ManyToOne(type =&gt; Category)
+@JoinColumn({ referencedColumnName: &quot;name&quot; })
+category: Category;
+</code></pre>
+<p>The relation now refers to <code>name</code> of the <code>Category</code> entity, instead of <code>id</code>.
+Column name for that relation will become <code>categoryName</code>.</p>
+<p>You can also join multiple columns. Note that they do not reference the primary column of the related entity by default: you must provide the referenced column name.</p>
+<pre><code class="language-typescript">@ManyToOne(type =&gt; Category)
+@JoinColumn([
+    { name: &quot;category_id&quot;, referencedColumnName: &quot;id&quot; },
+    { name: &quot;locale_id&quot;, referencedColumnName: &quot;locale_id&quot; }
+])
+category: Category;
+</code></pre>
+<h2 id="jointable-options"><code>@JoinTable</code> options</h2>
+<p><code>@JoinTable</code> is used for <code>many-to-many</code> relations and describes join columns of the "junction" table.
+A junction table is a special separate table created automatically by TypeORM with columns that refer to the related entities.
+You can change column names inside junction tables and their referenced columns with <code>@JoinColumn</code>:
+You can also change the name of the generated "junction" table.</p>
+<pre><code class="language-typescript">@ManyToMany(type =&gt; Category)
+@JoinTable({
+    name: &quot;question_categories&quot;, // table name for the junction table of this relation
+    joinColumn: {
+        name: &quot;question&quot;,
+        referencedColumnName: &quot;id&quot;
+    },
+    inverseJoinColumn: {
+        name: &quot;category&quot;,
+        referencedColumnName: &quot;id&quot;
+    }
+})
+categories: Category[];
+</code></pre>
+<p>If the destination table has composite primary keys,
+then an array of properties must be sent to <code>@JoinTable</code>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../relations-faq/" class="btn btn-neutral float-left" title="Relations FAQ"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../repository-api/" class="btn btn-neutral float-right" title="Repository APIs">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../relations-faq/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../repository-api/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

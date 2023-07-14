@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/logging/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Logging - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Logging";
+        var mkdocs_page_input_path = "logging.md";
+        var mkdocs_page_url = "/logging/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Logging</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#enabling-logging">Enabling logging</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#logging-options">Logging options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#log-long-running-queries">Log long-running queries</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#changing-default-logger">Changing default logger</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-custom-logger">Using custom logger</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Logging</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="logging">Logging</h1>
+<ul>
+<li><a href="#enabling-logging">Enabling logging</a></li>
+<li><a href="#logging-options">Logging options</a></li>
+<li><a href="#log-long-running-queries">Log long-running queries</a></li>
+<li><a href="#changing-default-logger">Changing default logger</a></li>
+<li><a href="#using-custom-logger">Using custom logger</a></li>
+</ul>
+<h2 id="enabling-logging">Enabling logging</h2>
+<p>You can enable logging of all queries and errors by simply setting <code>logging: true</code> in your connection options:</p>
+<pre><code class="language-typescript">{
+    name: &quot;mysql&quot;,
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    port: 3306,
+    username: &quot;test&quot;,
+    password: &quot;test&quot;,
+    database: &quot;test&quot;,
+    ...
+    logging: true
+}
+</code></pre>
+<h2 id="logging-options">Logging options</h2>
+<p>You can enable different types of logging in connection options:</p>
+<pre><code class="language-typescript">{ 
+    host: &quot;localhost&quot;,
+    ...
+    logging: [&quot;query&quot;, &quot;error&quot;]
+}
+</code></pre>
+<p>If you want to enable logging of failed queries only then only add <code>error</code>:</p>
+<pre><code class="language-typescript">{
+    host: &quot;localhost&quot;,
+    ...
+    logging: [&quot;error&quot;]
+}
+</code></pre>
+<p>There are other options you can use:</p>
+<ul>
+<li><code>query</code> - logs all queries.</li>
+<li><code>error</code> - logs all failed queries and errors.</li>
+<li><code>schema</code> - logs the schema build process.</li>
+<li><code>warn</code> - logs internal orm warnings.</li>
+<li><code>info</code> - logs internal orm informative messages.</li>
+<li><code>log</code> - logs internal orm log messages.</li>
+</ul>
+<p>You can specify as many options as needed. 
+If you want to enable all logging you can simply specify <code>logging: "all"</code>:</p>
+<pre><code class="language-typescript">{
+    host: &quot;localhost&quot;,
+    ...
+    logging: &quot;all&quot;
+}
+</code></pre>
+<h2 id="log-long-running-queries">Log long-running queries</h2>
+<p>If you have performance issues, you can log queries that take too much time to execute
+by setting <code>maxQueryExecutionTime</code> in connection options:</p>
+<pre><code class="language-typescript">{
+    host: &quot;localhost&quot;,
+    ...
+    maxQueryExecutionTime: 1000
+}
+</code></pre>
+<p>This code will log all queries which run more then <code>1 second</code>.</p>
+<h2 id="changing-default-logger">Changing default logger</h2>
+<p>TypeORM ships with 4 different types of logger:</p>
+<ul>
+<li><code>advanced-console</code> - this is the default logger which logs all messages into the console using color 
+and sql syntax highlighting (using <a href="https://github.com/chalk/chalk">chalk</a>).</li>
+<li><code>simple-console</code> - this is a simple console logger which is exactly the same as the advanced logger, but it does not use any color highlighting.
+This logger can be used if you have problems / or don't like colorized logs.</li>
+<li><code>file</code> - this logger writes all logs into <code>ormlogs.log</code> in the root folder of your project (near <code>package.json</code> and <code>ormconfig.json</code>).</li>
+<li><code>debug</code> - this logger uses <a href="https://github.com/visionmedia/debug">debug package</a>, to turn on logging set your env variable <code>DEBUG=typeorm:*</code> (note logging option has no effect on this logger).</li>
+</ul>
+<p>You can enable any of them in connection options:</p>
+<pre><code class="language-typescript">{
+    host: &quot;localhost&quot;,
+    ...
+    logging: true,
+    logger: &quot;file&quot;
+}
+</code></pre>
+<h2 id="using-custom-logger">Using custom logger</h2>
+<p>You can create your own logger class by implementing the <code>Logger</code> interface:</p>
+<pre><code class="language-typescript">import {Logger} from &quot;typeorm&quot;;
+
+export class MyCustomLogger implements Logger {
+
+    // implement all methods from logger class
+
+}
+</code></pre>
+<p>And specify it in connection options:</p>
+<pre><code class="language-typescript">import {createConnection} from &quot;typeorm&quot;;
+import {MyCustomLogger} from &quot;./logger/MyCustomLogger&quot;;
+
+createConnection({
+    name: &quot;mysql&quot;,
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    port: 3306,
+    username: &quot;test&quot;,
+    password: &quot;test&quot;,
+    database: &quot;test&quot;,
+    logger: new MyCustomLogger()
+});
+</code></pre>
+<p>If you defined your connection options in the <code>ormconfig</code> file,
+then you can use it and override it in the following way:</p>
+<pre><code class="language-typescript">import {createConnection, getConnectionOptions} from &quot;typeorm&quot;;
+import {MyCustomLogger} from &quot;./logger/MyCustomLogger&quot;;
+
+// getConnectionOptions will read options from your ormconfig file
+// and return it in connectionOptions object
+// then you can simply append additional properties to it
+getConnectionOptions().then(connectionOptions =&gt; {
+    return createConnection(Object.assign(connectionOptions, {
+        logger: new MyCustomLogger()
+    }))
+});
+</code></pre>
+<p>Logger methods can accept <code>QueryRunner</code> when it's available. It's helpful if you want to log additional data.
+Also, via query runner, you can get access to additional data passed during persist/remove. For example:</p>
+<pre><code class="language-typescript">// user sends request during entity save
+postRepository.save(post, { data: { request: request } });
+
+// in logger you can access it this way:
+logQuery(query: string, parameters?: any[], queryRunner?: QueryRunner) {
+    const requestUrl = queryRunner &amp;&amp; queryRunner.data[&quot;request&quot;] ? &quot;(&quot; + queryRunner.data[&quot;request&quot;].url + &quot;) &quot; : &quot;&quot;;
+    console.log(requestUrl + &quot;executing query: &quot; + query);
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../listeners-and-subscribers/" class="btn btn-neutral float-left" title="Entity Listeners and Subscribers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../many-to-many-relations/" class="btn btn-neutral float-right" title="Many-to-many relations">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../listeners-and-subscribers/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../many-to-many-relations/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/faq/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>FAQ - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "FAQ";
+        var mkdocs_page_input_path = "faq.md";
+        var mkdocs_page_url = "/faq/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">FAQ</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#how-do-i-update-a-database-schema">How do I update a database schema?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-do-i-change-a-column-name-in-the-database">How do I change a column name in the database?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-can-i-set-the-default-value-to-some-function-for-example-now">How can I set the default value to some function, for example NOW()?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-do-validation">How to do validation?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-does-owner-side-in-a-relations-mean-or-why-we-need-to-use-joincolumn-and-jointable">What does "owner side" in a relations mean or why we need to use @JoinColumn and @JoinTable?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-do-i-add-extra-columns-into-many-to-many-junction-table">How do I add extra columns into many-to-many (junction) table?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-use-typeorm-with-a-dependency-injection-tool">How to use TypeORM with a dependency injection tool?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-handle-outdir-typescript-compiler-option">How to handle outDir TypeScript compiler option?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-use-typeorm-with-ts-node">How to use TypeORM with ts-node?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-use-webpack-for-the-backend">How to use Webpack for the backend?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#bundling-migration-files">Bundling Migration Files</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>FAQ</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="faq">FAQ</h1>
+<ul>
+<li><a href="#how-do-i-change-a-column-name-in-the-database">How do I change a column name in the database?</a></li>
+<li><a href="#how-can-i-set-the-default-value-to-some-function-for-example-now">How can I set value of default some function, for example <code>NOW()</code>?</a></li>
+<li><a href="#how-to-do-validation">How to do validation?</a></li>
+<li><a href="#what-does-owner-side-in-a-relations-mean-or-why-we-need-to-use-joincolumn-and-jointable">What does "owner side" in relations mean or why we need to put <code>@JoinColumn</code> and <code>@JoinTable</code> decorators?</a></li>
+<li><a href="#how-do-i-add-extra-columns-into-many-to-many-junction-table">How do I add extra columns into many-to-many (junction) table?</a></li>
+<li><a href="#how-to-use-typeorm-with-a-dependency-injection-tool">How to use TypeORM with dependency injection tool?</a></li>
+<li><a href="#how-to-handle-outdir-typescript-compiler-option">How to handle outDir TypeScript compiler option?</a></li>
+<li><a href="#how-to-use-typeorm-with-ts-node">How to use TypeORM with ts-node?</a></li>
+<li><a href="#how-to-use-webpack-for-the-backend">How to use Webpack for the backend</a></li>
+</ul>
+<h2 id="how-do-i-update-a-database-schema">How do I update a database schema?</h2>
+<p>One of the main responsibilities of TypeORM is to keep your database tables in sync with your entities.
+There are two ways that help you achieve this:</p>
+<ul>
+<li>
+<p>Use <code>synchronize: true</code> in your connection options:</p>
+<p>```typescript
+import {createConnection} from "typeorm";</p>
+<p>createConnection({
+    synchronize: true
+});
+```</p>
+<p>This option automatically syncs your database tables with the given entities each time you run this code. 
+This option is perfect during development, but in production you may not want this option to be enabled.</p>
+</li>
+<li>
+<p>Use command line tools and run schema sync manually in the command line:</p>
+<p><code>typeorm schema:sync</code></p>
+<p>This command will execute schema synchronization. 
+Note, to make command line tools work, you must create an ormconfig.json file.</p>
+</li>
+</ul>
+<p>Schema sync is extremely fast. 
+If you are considering the disable synchronize option during development because of performance issues, 
+first check how fast it is.</p>
+<h2 id="how-do-i-change-a-column-name-in-the-database">How do I change a column name in the database?</h2>
+<p>By default, column names are generated from property names.
+You can simply change it by specifying a <code>name</code> column option:</p>
+<pre><code class="language-typescript">@Column({ name: &quot;is_active&quot; })
+isActive: boolean;
+</code></pre>
+<h2 id="how-can-i-set-the-default-value-to-some-function-for-example-now">How can I set the default value to some function, for example <code>NOW()</code>?</h2>
+<p><code>default</code> column option supports a function. 
+If you are passing a function which returns a string,
+it will use that string as a default value without escaping it.
+For example: </p>
+<pre><code class="language-typescript">@Column({ default: () =&gt; &quot;NOW()&quot; })
+date: Date;
+</code></pre>
+<h2 id="how-to-do-validation">How to do validation?</h2>
+<p>Validation is not part of TypeORM because validation is a separate process
+not really related to what TypeORM does.
+If you want to use validation use <a href="https://github.com/pleerock/class-validator">class-validator</a> - it works perfectly with TypeORM.</p>
+<h2 id="what-does-owner-side-in-a-relations-mean-or-why-we-need-to-use-joincolumn-and-jointable">What does "owner side" in a relations mean or why we need to use <code>@JoinColumn</code> and <code>@JoinTable</code>?</h2>
+<p>Let's start with <code>one-to-one</code> relation.
+Let's say we have two entities: <code>User</code> and <code>Photo</code>:</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @OneToOne()
+    photo: Photo;
+
+}
+</code></pre>
+<pre><code class="language-typescript">@Entity()
+export class Photo {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    url: string;
+
+    @OneToOne()
+    user: User;
+
+}
+</code></pre>
+<p>This example does not have a <code>@JoinColumn</code> which is incorrect.
+Why? Because to make a real relation, we need to create a column in the database.
+We need to create a column <code>userId</code> in <code>photo</code> or <code>photoId</code> in <code>user</code>.
+But which column should be created - <code>userId</code> or <code>photoId</code>?
+TypeORM cannot decide for you. 
+To make a decision, you must use <code>@JoinColumn</code> on one of the sides.
+If you put <code>@JoinColumn</code> in <code>Photo</code> then a column called <code>userId</code> will be created in the <code>photo</code> table.
+If you put <code>@JoinColumn</code> in <code>User</code> then a column called <code>photoId</code> will be created in the <code>user</code> table.
+The side with <code>@JoinColumn</code> will be called the "owner side of the relationship".
+The other side of the relation, without <code>@JoinColumn</code>, is called the "inverse (non-owner) side of relationship".</p>
+<p>It is the same in a <code>@ManyToMany</code> relation. You use <code>@JoinTable</code> to show the owner side of the relation.</p>
+<p>In <code>@ManyToOne</code> or <code>@OneToMany</code> relations, <code>@JoinColumn</code> is not necessary because 
+both decorators are different, and the table where you put the <code>@ManyToOne</code> decorator will have the relational column. </p>
+<p><code>@JoinColumn</code> and <code>@JoinTable</code> decorators can also be used to specify additional
+join column / junction table settings, like join column name or junction table name. </p>
+<h2 id="how-do-i-add-extra-columns-into-many-to-many-junction-table">How do I add extra columns into many-to-many (junction) table?</h2>
+<p>It's not possible to add extra columns into a table created by a many-to-many relation.
+You'll need to create a separate entity and bind it using two many-to-one relations with the target entities
+(the effect will be same as creating a many-to-many table), 
+and add extra columns in there. You can read more about this in <a href="../many-to-many-relations/#many-to-many-relations-with-custom-properties">Many-to-Many relations</a>.</p>
+<h2 id="how-to-use-typeorm-with-a-dependency-injection-tool">How to use TypeORM with a dependency injection tool?</h2>
+<p>In TypeORM you can use service containers. Service containers allow you to inject custom services in some places, like in subscribers or custom naming strategies. For example, you can get access to ConnectionManager from any place using a service container.</p>
+<p>Here is an example for how you can set up typedi service containers with TypeORM. Note: you can setup any service container with TypeORM.</p>
+<pre><code class="language-typescript">import {useContainer, createConnection} from &quot;typeorm&quot;;
+import {Container} from &quot;typedi&quot;;
+
+// its important to setup container before you start to work with TypeORM
+useContainer(Container);
+createConnection({/* ... */});
+</code></pre>
+<h2 id="how-to-handle-outdir-typescript-compiler-option">How to handle outDir TypeScript compiler option?</h2>
+<p>When you are using the <code>outDir</code> compiler option, don't forget to copy assets and resources your app is using into the output directory.
+Otherwise, make sure to setup correct paths to those assets.</p>
+<p>One important thing to know is that when you remove or move entities, the old entities are left untouched inside the output directory.
+For example, you create a <code>Post</code> entity and rename it to <code>Blog</code>,
+you no longer have <code>Post.ts</code> in your project. However, <code>Post.js</code> is left inside the output directory.
+Now, when TypeORM reads entities from your output directory, it sees two entities - <code>Post</code> and <code>Blog</code>.
+This may be a source of bugs. 
+That's why when you remove and move entities with <code>outDir</code> enabled, it's strongly recommended to remove your output directory and recompile the project again. </p>
+<h2 id="how-to-use-typeorm-with-ts-node">How to use TypeORM with ts-node?</h2>
+<p>You can prevent compiling files each time using <a href="https://github.com/TypeStrong/ts-node">ts-node</a>.
+If you are using ts-node, you can specify <code>ts</code> entities inside your connection options:</p>
+<pre><code>{
+    entities: [&quot;src/entity/*.ts&quot;],
+    subscribers: [&quot;src/subscriber/*.ts&quot;]
+}
+</code></pre>
+<p>Also, if you are compiling js files into the same folder where your typescript files are, 
+make sure to use the <code>outDir</code> compiler option to prevent 
+<a href="https://github.com/TypeStrong/ts-node/issues/432">this issue</a>. </p>
+<p>Also, if you want to use the ts-node CLI, you can execute TypeORM the following way:</p>
+<pre><code>ts-node ./node_modules/.bin/typeorm schema:sync
+</code></pre>
+<h2 id="how-to-use-webpack-for-the-backend">How to use Webpack for the backend?</h2>
+<p>Webpack produces warnings due to what it views as missing require statements -- require statements for all drivers supported by TypeORM. To suppress these warnings for unused drivers, you will need to edit your webpack config file.</p>
+<pre><code class="language-js">const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
+
+module.exports = {
+    ...
+    plugins: [
+        //ignore the drivers you don't want. This is the complete list of all drivers -- remove the suppressions for drivers you want to use.
+        new FilterWarningsPlugin({
+            exclude: [/mongodb/, /mssql/, /mysql/, /mysql2/, /oracledb/, /pg/, /pg-native/, /pg-query-stream/, /react-native-sqlite-storage/, /redis/, /sqlite3/, /sql.js/, /typeorm-aurora-data-api-driver/]
+        })
+    ]
+};
+</code></pre>
+<h3 id="bundling-migration-files">Bundling Migration Files</h3>
+<p>By default Webpack tries to bundle everything into one file. This can be problematic when your project has migration files which are meant to be executed after bundled code is deployed to production. To make sure all your migrations can be recognized and executed by TypeORM, you may need to use "Object Syntax" for the <code>entry</code> configuration for the migration files only.</p>
+<pre><code class="language-js">const glob = require('glob');
+const path = require('path');
+
+module.exports = {
+  // ... your webpack configurations here...
+  // Dynamically generate a `{ [name]: sourceFileName }` map for the `entry` option
+  // change `src/db/migrations` to the relative path to your migration folder
+  entry: glob.sync(path.resolve('src/db/migrations/*.ts')).reduce((entries, filename) =&gt; {
+    const migrationName = path.basename(filename, '.ts');
+    return Object.assign({}, entries, {
+      [migrationName]: filename,
+    });
+  }, {}),
+  resolve: {
+    // assuming all your migration files are written in TypeScript
+    extensions: ['.ts']
+   },
+  output: {
+    // change `path` to where you want to put transpiled migration files.
+    path: __dirname + '/dist/db/migrations',
+    // this is important - we want UMD (Universal Module Definition) for migration files.
+    libraryTarget: 'umd',
+    filename: '[name].js',
+  },
+};
+</code></pre>
+<p>Also, since Webpack 4, when using <code>mode: 'production'</code>, files are optimized by default which includes mangling your code in order to minimize file sizes. This breaks the migrations because TypeORM relies on their names to determine which has already been executed. You may disable minimization completely by adding:</p>
+<pre><code class="language-js">module.exports = {
+  // ... other Webpack configurations here
+  optimization: {
+    minimize: false,
+  },
+};
+</code></pre>
+<p>Alternatively, if you are using the <code>UglifyJsPlugin</code>, you can tell it to not change class or function names like so:</p>
+<pre><code class="language-js">const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+module.exports = {
+  // ... other Webpack configurations here
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          keep_classnames: true,
+          keep_fnames: true
+        }
+      })
+    ],
+  },
+};
+</code></pre>
+<p>Lastly, make sure in your <code>ormconfig</code> file, the transpiled migration files are included:</p>
+<pre><code class="language-js">// TypeORM Configurations
+module.exports = {
+  // ...
+  migrations: [
+    // this is the relative path to the transpiled migration files in production
+    'db/migrations/**/*.js',
+    // your source migration files, used in development mode
+    'src/db/migrations/**/*.ts',
+  ],
+};
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../example-with-express/" class="btn btn-neutral float-left" title="Example using TypeORM with Express"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../find-options/" class="btn btn-neutral float-right" title="Find Options">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../example-with-express/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../find-options/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

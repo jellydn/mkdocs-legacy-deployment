@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/entities/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Entities - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Entities";
+        var mkdocs_page_input_path = "entities.md";
+        var mkdocs_page_url = "/entities/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Entities</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-entity">What is Entity?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#entity-columns">Entity columns</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#primary-columns">Primary columns</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#special-columns">Special columns</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#spatial-columns">Spatial columns</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#column-types">Column types</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#column-types-for-mysql-mariadb">Column types for mysql / mariadb</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#column-types-for-postgres">Column types for postgres</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#column-types-for-cockroachdb">Column types for cockroachdb</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#column-types-for-sqlite-cordova-react-native-expo">Column types for sqlite / cordova / react-native / expo</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#column-types-for-mssql">Column types for mssql</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#column-types-for-oracle">Column types for oracle</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#enum-column-type">enum column type</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-column-type">set column type</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#simple-array-column-type">simple-array column type</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#simple-json-column-type">simple-json column type</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#columns-with-generated-values">Columns with generated values</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#column-options">Column options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#entity-inheritance">Entity inheritance</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tree-entities">Tree entities</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#adjacency-list">Adjacency list</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#closure-table">Closure table</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Entities</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="entities">Entities</h1>
+<ul>
+<li><a href="#what-is-entity">What is Entity?</a></li>
+<li><a href="#entity-columns">Entity columns</a></li>
+<li><a href="#primary-columns">Primary columns</a></li>
+<li><a href="#special-columns">Special columns</a></li>
+<li><a href="#spatial-columns">Spatial columns</a></li>
+<li><a href="#column-types">Column types</a></li>
+<li><a href="#column-types-for-mysql--mariadb">Column types for <code>mysql</code> / <code>mariadb</code></a></li>
+<li><a href="#column-types-for-postgres">Column types for <code>postgres</code> / <code>cockroachdb</code></a></li>
+<li><a href="#column-types-for-sqlite--cordova--react-native--expo">Column types for <code>sqlite</code> / <code>cordova</code> / <code>react-native</code> / <code>expo</code></a></li>
+<li><a href="#column-types-for-mssql">Column types for <code>mssql</code></a></li>
+<li><a href="#enum-column-type"><code>enum</code> column type</a></li>
+<li><a href="#simple-array-column-type"><code>simple-array</code> column type</a></li>
+<li><a href="#simple-json-column-type"><code>simple-json</code> column type</a></li>
+<li><a href="#columns-with-generated-values">Columns with generated values</a></li>
+<li><a href="#column-options">Column options</a></li>
+</ul>
+<h2 id="what-is-entity">What is Entity?</h2>
+<p>Entity is a class that maps to a database table (or collection when using MongoDB).
+You can create an entity by defining a new class and mark it with <code>@Entity()</code>:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column} from &quot;typeorm&quot;;
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    firstName: string;
+
+    @Column()
+    lastName: string;
+
+    @Column()
+    isActive: boolean;
+
+}
+</code></pre>
+<p>This will create following database table:</p>
+<pre><code class="language-shell">+-------------+--------------+----------------------------+
+|                          user                           |
++-------------+--------------+----------------------------+
+| id          | int(11)      | PRIMARY KEY AUTO_INCREMENT |
+| firstName   | varchar(255) |                            |
+| lastName    | varchar(255) |                            |
+| isActive    | boolean      |                            |
++-------------+--------------+----------------------------+
+</code></pre>
+<p>Basic entities consist of columns and relations.
+Each entity <strong>MUST</strong> have a primary column (or ObjectId column if are using MongoDB).</p>
+<p>Each entity must be registered in your connection options:</p>
+<pre><code class="language-typescript">import {createConnection, Connection} from &quot;typeorm&quot;;
+import {User} from &quot;./entity/User&quot;;
+
+const connection: Connection = await createConnection({
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    port: 3306,
+    username: &quot;test&quot;,
+    password: &quot;test&quot;,
+    database: &quot;test&quot;,
+    entities: [User]
+});
+</code></pre>
+<p>Or you can specify the whole directory with all entities inside - and all of them will be loaded:</p>
+<pre><code class="language-typescript">import {createConnection, Connection} from &quot;typeorm&quot;;
+
+const connection: Connection = await createConnection({
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    port: 3306,
+    username: &quot;test&quot;,
+    password: &quot;test&quot;,
+    database: &quot;test&quot;,
+    entities: [&quot;entity/*.js&quot;]
+});
+</code></pre>
+<p>If you want to use an alternative table name for the <code>User</code> entity you can specify it in <code>@Entity</code>: <code>@Entity("my_users")</code>.
+If you want to set a base prefix for all database tables in your application you can specify <code>entityPrefix</code> in connection options.</p>
+<p>When using an entity constructor its arguments <strong>must be optional</strong>. Since ORM creates instances of entity classes when loading from the database, therefore it is not aware of your constructor arguments.</p>
+<p>Learn more about parameters <code>@Entity</code> in <a href="../decorator-reference/">Decorators reference</a>.</p>
+<h2 id="entity-columns">Entity columns</h2>
+<p>Since database tables consist of columns your entities must consist of columns too.
+Each entity class property you marked with <code>@Column</code> will be mapped to a database table column.</p>
+<h3 id="primary-columns">Primary columns</h3>
+<p>Each entity must have at least one primary column.
+There are several types of primary columns:</p>
+<ul>
+<li><code>@PrimaryColumn()</code> creates a primary column which takes any value of any type. You can specify the column type. If you don't specify a column type it will be inferred from the property type. The example below will create id with <code>int</code> as type which you must manually assign before save.</li>
+</ul>
+<pre><code class="language-typescript">import {Entity, PrimaryColumn} from &quot;typeorm&quot;;
+
+@Entity()
+export class User {
+
+    @PrimaryColumn()
+    id: number;
+
+
+}
+</code></pre>
+<ul>
+<li><code>@PrimaryGeneratedColumn()</code> creates a primary column which value will be automatically generated with an auto-increment value. It will create <code>int</code> column with <code>auto-increment</code>/<code>serial</code>/<code>sequence</code> (depend on the database). You don't have to manually assign its value before save - value will be automatically generated.</li>
+</ul>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn} from &quot;typeorm&quot;;
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+
+}
+</code></pre>
+<ul>
+<li><code>@PrimaryGeneratedColumn("uuid")</code> creates a primary column which value will be automatically generated with <code>uuid</code>. Uuid is a unique string id. You don't have to manually assign its value before save - value will be automatically generated.</li>
+</ul>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn} from &quot;typeorm&quot;;
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn(&quot;uuid&quot;)
+    id: string;
+
+
+}
+</code></pre>
+<p>You can have composite primary columns as well:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryColumn} from &quot;typeorm&quot;;
+
+@Entity()
+export class User {
+
+    @PrimaryColumn()
+    firstName: string;
+
+    @PrimaryColumn()
+    lastName: string;
+
+}
+</code></pre>
+<p>When you save entities using <code>save</code> it always tries to find an entity in the database with the given entity id (or ids).
+If id/ids are found then it will update this row in the database.
+If there is no row with the id/ids, a new row will be inserted.</p>
+<p>To find an entity by id you can use <code>manager.findOne</code> or <code>repository.findOne</code>. Example:</p>
+<pre><code class="language-typescript">// find one by id with single primary key
+const person = await connection.manager.findOne(Person, 1);
+const person = await connection.getRepository(Person).findOne(1);
+
+// find one by id with composite primary keys
+const user = await connection.manager.findOne(User, { firstName: &quot;Timber&quot;, lastName: &quot;Saw&quot; });
+const user = await connection.getRepository(User).findOne({ firstName: &quot;Timber&quot;, lastName: &quot;Saw&quot; });
+</code></pre>
+<h3 id="special-columns">Special columns</h3>
+<p>There are several special column types with additional functionality available:</p>
+<ul>
+<li>
+<p><code>@CreateDateColumn</code> is a special column that is automatically set to the entity's insertion date.
+You don't need to set this column - it will be automatically set.</p>
+</li>
+<li>
+<p><code>@UpdateDateColumn</code> is a special column that is automatically set to the entity's update time 
+each time you call <code>save</code> of entity manager or repository.
+You don't need to set this column - it will be automatically set.</p>
+</li>
+<li>
+<p><code>@DeleteDateColumn</code> is a special column that is automatically set to the entity's delete time each time you call soft-delete of entity manager or repository. You don't need to set this column - it will be automatically set. If the @DeleteDateColumn is set, the default scope will be "non-deleted".</p>
+</li>
+<li>
+<p><code>@VersionColumn</code> is a special column that is automatically set to the version of the entity (incremental number)<br />
+each time you call <code>save</code> of entity manager or repository.
+You don't need to set this column - it will be automatically set.</p>
+</li>
+</ul>
+<h3 id="spatial-columns">Spatial columns</h3>
+<p>MS SQL, MySQL / MariaDB, and PostgreSQL all support spatial columns. TypeORM's
+support for each varies slightly between databases, particularly as the column
+names vary between databases.</p>
+<p>MS SQL and MySQL / MariaDB's TypeORM support exposes (and expects) geometries to
+be provided as <a href="https://en.wikipedia.org/wiki/Well-known_text">well-known text
+(WKT)</a>, so geometry columns
+should be tagged with the <code>string</code> type.</p>
+<p>TypeORM's PostgreSQL support uses <a href="http://geojson.org/">GeoJSON</a> as an
+interchange format, so geometry columns should be tagged either as <code>object</code> or
+<code>Geometry</code> (or subclasses, e.g. <code>Point</code>) after importing <a href="https://www.npmjs.com/package/@types/geojson"><code>geojson</code>
+types</a>.</p>
+<p>TypeORM tries to do the right thing, but it's not always possible to determine
+when a value being inserted or the result of a PostGIS function should be
+treated as a geometry. As a result, you may find yourself writing code similar
+to the following, where values are converted into PostGIS <code>geometry</code>s from
+GeoJSON and into GeoJSON as <code>json</code>:</p>
+<pre><code class="language-typescript">const origin = {
+  type: &quot;Point&quot;,
+  coordinates: [0, 0]
+};
+
+await getManager()
+    .createQueryBuilder(Thing, &quot;thing&quot;)
+    // convert stringified GeoJSON into a geometry with an SRID that matches the
+    // table specification
+    .where(&quot;ST_Distance(geom, ST_SetSRID(ST_GeomFromGeoJSON(:origin), ST_SRID(geom))) &gt; 0&quot;)
+    .orderBy({
+        &quot;ST_Distance(geom, ST_SetSRID(ST_GeomFromGeoJSON(:origin), ST_SRID(geom)))&quot;: {
+            order: &quot;ASC&quot;
+        }
+    })
+    .setParameters({
+      // stringify GeoJSON
+      origin: JSON.stringify(origin)
+    })
+    .getMany();
+
+await getManager()
+    .createQueryBuilder(Thing, &quot;thing&quot;)
+    // convert geometry result into GeoJSON, treated as JSON (so that TypeORM
+    // will know to deserialize it)
+    .select(&quot;ST_AsGeoJSON(ST_Buffer(geom, 0.1))::json geom&quot;)
+    .from(&quot;thing&quot;)
+    .getMany();
+</code></pre>
+<h2 id="column-types">Column types</h2>
+<p>TypeORM supports all of the most commonly used database-supported column types.
+Column types are database-type specific - this provides more flexibility on how your database schema will look like.</p>
+<p>You can specify column type as first parameter of <code>@Column</code>
+or in the column options of <code>@Column</code>, for example:</p>
+<pre><code class="language-typescript">@Column(&quot;int&quot;)
+</code></pre>
+<p>or</p>
+<pre><code class="language-typescript">@Column({ type: &quot;int&quot; })
+</code></pre>
+<p>If you want to specify additional type parameters you can do it via column options.
+For example:</p>
+<pre><code class="language-typescript">@Column(&quot;varchar&quot;, { length: 200 })
+</code></pre>
+<p>or</p>
+<pre><code class="language-typescript">@Column({ type: &quot;int&quot;, width: 200 })
+</code></pre>
+<blockquote>
+<p>Note about <code>bigint</code> type: <code>bigint</code> column type, used in SQL databases, doesn't fit into the regular <code>number</code> type and maps property to a <code>string</code> instead.</p>
+</blockquote>
+<h3 id="column-types-for-mysql-mariadb">Column types for <code>mysql</code> / <code>mariadb</code></h3>
+<p><code>bit</code>, <code>int</code>, <code>integer</code>, <code>tinyint</code>, <code>smallint</code>, <code>mediumint</code>, <code>bigint</code>, <code>float</code>, <code>double</code>,
+<code>double precision</code>, <code>dec</code>, <code>decimal</code>, <code>numeric</code>, <code>fixed</code>, <code>bool</code>, <code>boolean</code>, <code>date</code>, <code>datetime</code>,
+<code>timestamp</code>, <code>time</code>, <code>year</code>, <code>char</code>, <code>nchar</code>, <code>national char</code>, <code>varchar</code>, <code>nvarchar</code>, <code>national varchar</code>,
+<code>text</code>, <code>tinytext</code>, <code>mediumtext</code>, <code>blob</code>, <code>longtext</code>, <code>tinyblob</code>, <code>mediumblob</code>, <code>longblob</code>, <code>enum</code>, <code>set</code>,
+<code>json</code>, <code>binary</code>, <code>varbinary</code>, <code>geometry</code>, <code>point</code>, <code>linestring</code>, <code>polygon</code>, <code>multipoint</code>, <code>multilinestring</code>,
+<code>multipolygon</code>, <code>geometrycollection</code></p>
+<h3 id="column-types-for-postgres">Column types for <code>postgres</code></h3>
+<p><code>int</code>, <code>int2</code>, <code>int4</code>, <code>int8</code>, <code>smallint</code>, <code>integer</code>, <code>bigint</code>, <code>decimal</code>, <code>numeric</code>, <code>real</code>,
+<code>float</code>, <code>float4</code>, <code>float8</code>, <code>double precision</code>, <code>money</code>, <code>character varying</code>, <code>varchar</code>,
+<code>character</code>, <code>char</code>, <code>text</code>, <code>citext</code>, <code>hstore</code>, <code>bytea</code>, <code>bit</code>, <code>varbit</code>, <code>bit varying</code>,
+<code>timetz</code>, <code>timestamptz</code>, <code>timestamp</code>, <code>timestamp without time zone</code>, <code>timestamp with time zone</code>,
+<code>date</code>, <code>time</code>, <code>time without time zone</code>, <code>time with time zone</code>, <code>interval</code>, <code>bool</code>, <code>boolean</code>,
+<code>enum</code>, <code>point</code>, <code>line</code>, <code>lseg</code>, <code>box</code>, <code>path</code>, <code>polygon</code>, <code>circle</code>, <code>cidr</code>, <code>inet</code>, <code>macaddr</code>,
+<code>tsvector</code>, <code>tsquery</code>, <code>uuid</code>, <code>xml</code>, <code>json</code>, <code>jsonb</code>, <code>int4range</code>, <code>int8range</code>, <code>numrange</code>,
+<code>tsrange</code>, <code>tstzrange</code>, <code>daterange</code>, <code>geometry</code>, <code>geography</code>, <code>cube</code>, <code>ltree</code></p>
+<h3 id="column-types-for-cockroachdb">Column types for <code>cockroachdb</code></h3>
+<p><code>array</code>, <code>bool</code>, <code>boolean</code>, <code>bytes</code>, <code>bytea</code>, <code>blob</code>, <code>date</code>, <code>numeric</code>, <code>decimal</code>, <code>dec</code>, <code>float</code>,
+<code>float4</code>, <code>float8</code>, <code>double precision</code>, <code>real</code>, <code>inet</code>, <code>int</code>, <code>integer</code>, <code>int2</code>, <code>int8</code>, <code>int64</code>,
+<code>smallint</code>, <code>bigint</code>, <code>interval</code>, <code>string</code>, <code>character varying</code>, <code>character</code>, <code>char</code>, <code>char varying</code>,
+<code>varchar</code>, <code>text</code>, <code>time</code>, <code>time without time zone</code>, <code>timestamp</code>, <code>timestamptz</code>, <code>timestamp without time zone</code>,
+<code>timestamp with time zone</code>, <code>json</code>, <code>jsonb</code>, <code>uuid</code></p>
+<blockquote>
+<p>Note: CockroachDB returns all numeric data types as <code>string</code>. However if you omit column type and define your property as
+ <code>number</code> ORM will <code>parseInt</code> string into number.</p>
+</blockquote>
+<h3 id="column-types-for-sqlite-cordova-react-native-expo">Column types for <code>sqlite</code> / <code>cordova</code> / <code>react-native</code> / <code>expo</code></h3>
+<p><code>int</code>, <code>int2</code>, <code>int8</code>, <code>integer</code>, <code>tinyint</code>, <code>smallint</code>, <code>mediumint</code>, <code>bigint</code>, <code>decimal</code>,
+<code>numeric</code>, <code>float</code>, <code>double</code>, <code>real</code>, <code>double precision</code>, <code>datetime</code>, <code>varying character</code>,
+<code>character</code>, <code>native character</code>, <code>varchar</code>, <code>nchar</code>, <code>nvarchar2</code>, <code>unsigned big int</code>, <code>boolean</code>,
+<code>blob</code>, <code>text</code>, <code>clob</code>, <code>date</code></p>
+<h3 id="column-types-for-mssql">Column types for <code>mssql</code></h3>
+<p><code>int</code>, <code>bigint</code>, <code>bit</code>, <code>decimal</code>, <code>money</code>, <code>numeric</code>, <code>smallint</code>, <code>smallmoney</code>, <code>tinyint</code>, <code>float</code>,
+<code>real</code>, <code>date</code>, <code>datetime2</code>, <code>datetime</code>, <code>datetimeoffset</code>, <code>smalldatetime</code>, <code>time</code>, <code>char</code>, <code>varchar</code>,
+<code>text</code>, <code>nchar</code>, <code>nvarchar</code>, <code>ntext</code>, <code>binary</code>, <code>image</code>, <code>varbinary</code>, <code>hierarchyid</code>, <code>sql_variant</code>,
+<code>timestamp</code>, <code>uniqueidentifier</code>, <code>xml</code>, <code>geometry</code>, <code>geography</code>, <code>rowversion</code></p>
+<h3 id="column-types-for-oracle">Column types for <code>oracle</code></h3>
+<p><code>char</code>, <code>nchar</code>, <code>nvarchar2</code>, <code>varchar2</code>, <code>long</code>, <code>raw</code>, <code>long raw</code>, <code>number</code>, <code>numeric</code>, <code>float</code>, <code>dec</code>,
+<code>decimal</code>, <code>integer</code>, <code>int</code>, <code>smallint</code>, <code>real</code>, <code>double precision</code>, <code>date</code>, <code>timestamp</code>, <code>timestamp with time zone</code>,
+<code>timestamp with local time zone</code>, <code>interval year to month</code>, <code>interval day to second</code>, <code>bfile</code>, <code>blob</code>, <code>clob</code>,
+<code>nclob</code>, <code>rowid</code>, <code>urowid</code></p>
+<h3 id="enum-column-type"><code>enum</code> column type</h3>
+<p><code>enum</code> column type is supported by <code>postgres</code> and <code>mysql</code>. There are various possible column definitions:</p>
+<p>Using typescript enums:</p>
+<pre><code class="language-typescript">export enum UserRole {
+    ADMIN = &quot;admin&quot;,
+    EDITOR = &quot;editor&quot;,
+    GHOST = &quot;ghost&quot;
+}
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column({
+        type: &quot;enum&quot;,
+        enum: UserRole,
+        default: UserRole.GHOST
+    })
+    role: UserRole
+
+}
+</code></pre>
+<blockquote>
+<p>Note: String, numeric and heterogeneous enums are supported.</p>
+</blockquote>
+<p>Using array with enum values:</p>
+<pre><code class="language-typescript">export type UserRoleType = &quot;admin&quot; | &quot;editor&quot; | &quot;ghost&quot;,
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column({
+        type: &quot;enum&quot;,
+        enum: [&quot;admin&quot;, &quot;editor&quot;, &quot;ghost&quot;],
+        default: &quot;ghost&quot;
+    })
+    role: UserRoleType
+}
+</code></pre>
+<h3 id="set-column-type"><code>set</code> column type</h3>
+<p><code>set</code> column type is supported by <code>mariadb</code> and <code>mysql</code>. There are various possible column definitions:</p>
+<p>Using typescript enums:</p>
+<pre><code class="language-typescript">export enum UserRole {
+    ADMIN = &quot;admin&quot;,
+    EDITOR = &quot;editor&quot;,
+    GHOST = &quot;ghost&quot;
+}
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column({
+        type: &quot;set&quot;,
+        enum: UserRole,
+        default: [UserRole.GHOST, UserRole.EDITOR]
+    })
+    roles: UserRole[]
+
+}
+</code></pre>
+<p>Using array with <code>set</code> values:</p>
+<pre><code class="language-typescript">export type UserRoleType = &quot;admin&quot; | &quot;editor&quot; | &quot;ghost&quot;,
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column({
+        type: &quot;set&quot;,
+        enum: [&quot;admin&quot;, &quot;editor&quot;, &quot;ghost&quot;],
+        default: [&quot;ghost&quot;, &quot;editor&quot;]
+    })
+    roles: UserRoleType[]
+}
+</code></pre>
+<h3 id="simple-array-column-type"><code>simple-array</code> column type</h3>
+<p>There is a special column type called <code>simple-array</code> which can store primitive array values in a single string column.
+All values are separated by a comma. For example:</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column(&quot;simple-array&quot;)
+    names: string[];
+
+}
+</code></pre>
+<pre><code class="language-typescript">const user = new User();
+user.names = [
+    &quot;Alexander&quot;,
+    &quot;Alex&quot;,
+    &quot;Sasha&quot;,
+    &quot;Shurik&quot;
+];
+</code></pre>
+<p>Will be stored in a single database column as <code>Alexander,Alex,Sasha,Shurik</code> value.
+When you'll load data from the database, the names will be returned as an array of names,
+just like you stored them.</p>
+<p>Note you <strong>MUST NOT</strong> have any comma in values you write.</p>
+<h3 id="simple-json-column-type"><code>simple-json</code> column type</h3>
+<p>There is a special column type called <code>simple-json</code> which can store any values which can be stored in database
+via JSON.stringify.
+Very useful when you do not have json type in your database and you want to store and load object
+without any hassle.
+For example:</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column(&quot;simple-json&quot;)
+    profile: { name: string, nickname: string };
+
+}
+</code></pre>
+<pre><code class="language-typescript">const user = new User();
+user.profile = { name: &quot;John&quot;, nickname: &quot;Malkovich&quot; };
+</code></pre>
+<p>Will be stored in a single database column as <code>{"name":"John","nickname":"Malkovich"}</code> value.
+When you'll load data from the database, you will have your object/array/primitive back via JSON.parse</p>
+<h3 id="columns-with-generated-values">Columns with generated values</h3>
+<p>You can create column with generated value using <code>@Generated</code> decorator. For example:</p>
+<pre><code class="language-typescript">@Entity()
+export class User {
+
+    @PrimaryColumn()
+    id: number;
+
+    @Column()
+    @Generated(&quot;uuid&quot;)
+    uuid: string;
+
+}
+</code></pre>
+<p><code>uuid</code> value will be automatically generated and stored into the database.</p>
+<p>Besides "uuid" there is also "increment" and "rowid" (CockroachDB only) generated types, however there are some limitations
+on some database platforms with this type of generation (for example some databases can only have one increment column,
+or some of them require increment to be a primary key).</p>
+<h2 id="column-options">Column options</h2>
+<p>Column options defines additional options for your entity columns.
+You can specify column options on <code>@Column</code>:</p>
+<pre><code class="language-typescript">@Column({
+    type: &quot;varchar&quot;,
+    length: 150,
+    unique: true,
+    // ...
+})
+name: string;
+</code></pre>
+<p>List of available options in <code>ColumnOptions</code>:</p>
+<ul>
+<li><code>type: ColumnType</code> - Column type. One of the type listed <a href="#column-types">above</a>.</li>
+<li>
+<p><code>name: string</code> - Column name in the database table.
+By default the column name is generated from the name of the property.
+You can change it by specifying your own name.</p>
+</li>
+<li>
+<p><code>length: number</code> - Column type's length. For example if you want to create <code>varchar(150)</code> type you specify column type and length options.</p>
+</li>
+<li><code>width: number</code> - column type's display width. Used only for <a href="https://dev.mysql.com/doc/refman/5.7/en/integer-types.html">MySQL integer types</a></li>
+<li><code>onUpdate: string</code> - <code>ON UPDATE</code> trigger. Used only in <a href="https://dev.mysql.com/doc/refman/5.7/en/timestamp-initialization.html">MySQL</a>.</li>
+<li><code>nullable: boolean</code> - Makes column <code>NULL</code> or <code>NOT NULL</code> in the database. By default column is <code>nullable: false</code>.</li>
+<li><code>update: boolean</code> - Indicates if column value is updated by "save" operation. If false, you'll be able to write this value only when you first time insert the object. Default value is <code>true</code>.</li>
+<li><code>insert: boolean</code> - Indicates if column value is set the first time you insert the object.  Default value is <code>true</code>.</li>
+<li><code>select: boolean</code> - Defines whether or not to hide this column by default when making queries. When set to <code>false</code>, the column data will not show with a standard query. By default column is <code>select: true</code></li>
+<li><code>default: string</code> - Adds database-level column's <code>DEFAULT</code> value.</li>
+<li><code>primary: boolean</code> - Marks column as primary. Same if you use <code>@PrimaryColumn</code>.</li>
+<li><code>unique: boolean</code> - Marks column as unique column (creates unique constraint).</li>
+<li><code>comment: string</code> - Database's column comment. Not supported by all database types.</li>
+<li><code>precision: number</code> - The precision for a decimal (exact numeric) column (applies only for decimal column), which is the maximum
+ number of digits that are stored for the values. Used in some column types.</li>
+<li><code>scale: number</code> - The scale for a decimal (exact numeric) column (applies only for decimal column), which represents the number of digits to the right of the decimal point and must not be greater than precision. Used in some column types.</li>
+<li><code>zerofill: boolean</code> - Puts <code>ZEROFILL</code> attribute on to a numeric column. Used only in MySQL. If <code>true</code>, MySQL automatically adds the <code>UNSIGNED</code> attribute to this column.</li>
+<li><code>unsigned: boolean</code> - Puts <code>UNSIGNED</code> attribute on to a numeric column. Used only in MySQL.</li>
+<li><code>charset: string</code> - Defines a column character set. Not supported by all database types.</li>
+<li><code>collation: string</code> - Defines a column collation.</li>
+<li><code>enum: string[]|AnyEnum</code> - Used in <code>enum</code> column type to specify list of allowed enum values. You can specify array of values or specify a enum class.</li>
+<li><code>enumName: string</code> - Defines the name for the used enum.</li>
+<li><code>asExpression: string</code> - Generated column expression. Used only in <a href="https://dev.mysql.com/doc/refman/5.7/en/create-table-generated-columns.html">MySQL</a>.</li>
+<li><code>generatedType: "VIRTUAL"|"STORED"</code> - Generated column type. Used only in <a href="https://dev.mysql.com/doc/refman/5.7/en/create-table-generated-columns.html">MySQL</a>.</li>
+<li><code>hstoreType: "object"|"string"</code> - Return type of <code>HSTORE</code> column. Returns value as string or as object. Used only in <a href="https://www.postgresql.org/docs/9.6/static/hstore.html">Postgres</a>.</li>
+<li><code>array: boolean</code> - Used for postgres and cockroachdb column types which can be array (for example int[])</li>
+<li><code>transformer: { from(value: DatabaseType): EntityType, to(value: EntityType): DatabaseType }</code> - Used to marshal properties of arbitrary type <code>EntityType</code> into a type <code>DatabaseType</code> supported by the database. Array of transformers are also supported and will be applied in natural order when writing, and in reverse order when reading. e.g. <code>[lowercase, encrypt]</code> will first lowercase the string then encrypt it when writing, and will decrypt then do nothing when reading.</li>
+</ul>
+<p>Note: most of those column options are RDBMS-specific and aren't available in <code>MongoDB</code>.</p>
+<h2 id="entity-inheritance">Entity inheritance</h2>
+<p>You can reduce duplication in your code by using entity inheritance.</p>
+<p>For example, you have <code>Photo</code>, <code>Question</code>, <code>Post</code> entities:</p>
+<pre><code class="language-typescript">@Entity()
+export class Photo {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    description: string;
+
+    @Column()
+    size: string;
+
+}
+
+@Entity()
+export class Question {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    description: string;
+
+    @Column()
+    answersCount: number;
+
+}
+
+@Entity()
+export class Post {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    description: string;
+
+    @Column()
+    viewCount: number;
+
+}
+</code></pre>
+<p>As you can see all those entities have common columns: <code>id</code>, <code>title</code>, <code>description</code>. To reduce duplication and produce a better abstraction we can create a base class called <code>Content</code> for them:</p>
+<pre><code class="language-typescript">export abstract class Content {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    description: string;
+
+}
+@Entity()
+export class Photo extends Content {
+
+    @Column()
+    size: string;
+
+}
+
+@Entity()
+export class Question extends Content {
+
+    @Column()
+    answersCount: number;
+
+}
+
+@Entity()
+export class Post extends Content {
+
+    @Column()
+    viewCount: number;
+
+}
+</code></pre>
+<p>All columns (relations, embeds, etc.) from parent entities (parent can extend other entity as well)
+will be inherited and created in final entities.</p>
+<h2 id="tree-entities">Tree entities</h2>
+<p>TypeORM supports the Adjacency list and Closure table patterns of storing tree structures.</p>
+<h3 id="adjacency-list">Adjacency list</h3>
+<p>Adjacency list is a simple model with self-referencing.
+Benefit of this approach is simplicity,
+drawback is you can't load a big tree at once because of join limitations.
+Example:</p>
+<pre><code class="language-typescript">import {Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany} from &quot;typeorm&quot;;
+
+@Entity()
+export class Category {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @Column()
+    description: string;
+
+    @ManyToOne(type =&gt; Category, category =&gt; category.children)
+    parent: Category;
+
+    @OneToMany(type =&gt; Category, category =&gt; category.parent)
+    children: Category[];
+}
+
+</code></pre>
+<h3 id="closure-table">Closure table</h3>
+<p>A closure table stores relations between parent and child in a separate table in a special way.
+Its efficient in both reads and writes.
+To learn more about closure table take a look at <a href="https://www.slideshare.net/billkarwin/models-for-hierarchical-data">this awesome presentation by Bill Karwin</a>.
+Example:</p>
+<pre><code class="language-typescript">import {Entity, Tree, Column, PrimaryGeneratedColumn, TreeChildren, TreeParent, TreeLevelColumn} from &quot;typeorm&quot;;
+
+@Entity()
+@Tree(&quot;closure-table&quot;)
+export class Category {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @Column()
+    description: string;
+
+    @TreeChildren()
+    children: Category[];
+
+    @TreeParent()
+    parent: Category;
+
+    @TreeLevelColumn()
+    level: number;
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../embedded-entities/" class="btn btn-neutral float-left" title="Embedded Entities"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../entity-inheritance/" class="btn btn-neutral float-right" title="Entity Inheritance">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../embedded-entities/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../entity-inheritance/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

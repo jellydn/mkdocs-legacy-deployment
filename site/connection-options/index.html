@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/connection-options/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Connection Options - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Connection Options";
+        var mkdocs_page_input_path = "connection-options.md";
+        var mkdocs_page_url = "/connection-options/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Connection Options</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-connectionoptions">What is ConnectionOptions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#common-connection-options">Common connection options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mysql-mariadb-connection-options">mysql / mariadb connection options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#postgres-cockroachdb-connection-options">postgres / cockroachdb connection options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sqlite-connection-options">sqlite connection options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#better-sqlite3-connection-options">better-sqlite3 connection options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#capacitor-connection-options">capacitor connection options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cordova-connection-options">cordova connection options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#react-native-connection-options">react-native connection options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nativescript-connection-options">nativescript connection options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mssql-connection-options">mssql connection options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mongodb-connection-options">mongodb connection options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sqljs-connection-options">sql.js connection options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#expo-connection-options">expo connection options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#connection-options-example">Connection options example</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Connection Options</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="connection-options">Connection Options</h1>
+<ul>
+<li><a href="#what-is-connectionoptions">What is <code>ConnectionOptions</code></a></li>
+<li><a href="#common-connection-options">Common connection options</a></li>
+<li><a href="#mysql--mariadb-connection-options"><code>mysql</code> / <code>mariadb</code> connection options</a></li>
+<li><a href="#postgres--cockroachdb-connection-options"><code>postgres</code> / <code>cockroachdb</code> connection options</a></li>
+<li><a href="#sqlite-connection-options"><code>sqlite</code> connection options</a></li>
+<li><a href="#better-sqlite3-connection-options"><code>better-sqlite3</code> connection options</a></li>
+<li><a href="#capacitor-connection-options"><code>capacitor</code> connection options</a></li>
+<li><a href="#cordova-connection-options"><code>cordova</code> connection options</a></li>
+<li><a href="#react-native-connection-options"><code>react-native</code> connection options</a></li>
+<li><a href="#nativescript-connection-options"><code>nativescript</code> connection options</a></li>
+<li><a href="#mssql-connection-options"><code>mssql</code> connection options</a></li>
+<li><a href="#mongodb-connection-options"><code>mongodb</code> connection options</a></li>
+<li><a href="#sqljs-connection-options"><code>sql.js</code> connection options</a></li>
+<li><a href="#expo-connection-options"><code>expo</code> connection options</a></li>
+<li><a href="#connection-options-example">Connection options example</a></li>
+</ul>
+<h2 id="what-is-connectionoptions">What is <code>ConnectionOptions</code></h2>
+<p>Connection options is a connection configuration you pass to <code>createConnection</code>
+ or define in <code>ormconfig</code> file. Different databases have their own specific connection options.</p>
+<h2 id="common-connection-options">Common connection options</h2>
+<ul>
+<li>
+<p><code>type</code> - Database type. You must specify what database engine you use.
+ Possible values are "mysql", "postgres", "cockroachdb", "mariadb", "sqlite", "better-sqlite3", "capacitor", "cordova", 
+ "nativescript", "oracle", "mssql", "mongodb", "sqljs", "react-native".
+ This option is <strong>required</strong>.</p>
+</li>
+<li>
+<p><code>name</code> - Connection name. You'll use it to get connection you need using <code>getConnection(name: string)</code> 
+or <code>ConnectionManager.get(name: string)</code>. 
+Connection names for different connections cannot be same - they all must be unique.
+If connection name is not given then it will be called "default".</p>
+</li>
+<li>
+<p><code>extra</code> - Extra connection options to be passed to the underlying driver. 
+Use it if you want to pass extra settings to underlying database driver.</p>
+</li>
+<li>
+<p><code>entities</code> - Entities, or Entity Schemas, to be loaded and used for this connection.
+Accepts both entity classes, entity schema classes, and directories paths to load from.
+Directories support glob patterns.
+Example: <code>entities: [Post, Category, "entity/*.js", "modules/**/entity/*.js"]</code>.
+Learn more about <a href="../entities/">Entities</a>. 
+Learn more about <a href="../separating-entity-definition/">Entity Schemas</a>.</p>
+</li>
+<li>
+<p><code>subscribers</code> - Subscribers to be loaded and used for this connection.
+Accepts both entity classes and directories to load from.
+Directories support glob patterns.
+Example: <code>subscribers: [PostSubscriber, AppSubscriber, "subscriber/*.js", "modules/**/subscriber/*.js"]</code>.
+Learn more about <a href="../listeners-and-subscribers/">Subscribers</a>.</p>
+</li>
+<li>
+<p><code>migrations</code> - Migrations to be loaded and used for this connection.
+Accepts both migration classes and directories to load from.
+Directories support glob patterns.
+Example: <code>migrations: [FirstMigration, SecondMigration, "migration/*.js", "modules/**/migration/*.js"]</code>.
+Learn more about <a href="../migrations/">Migrations</a>.</p>
+</li>
+<li>
+<p><code>logging</code> - Indicates if logging is enabled or not. 
+If set to <code>true</code> then query and error logging will be enabled.
+You can also specify different types of logging to be enabled, for example <code>["query", "error", "schema"]</code>.
+Learn more about <a href="../logging/">Logging</a>.</p>
+</li>
+<li>
+<p><code>logger</code> - Logger to be used for logging purposes. Possible values are "advanced-console", "simple-console" and "file". 
+Default is "advanced-console". You can also specify a logger class that implements <code>Logger</code> interface.
+Learn more about <a href="../logging/">Logging</a>.</p>
+</li>
+<li>
+<p><code>maxQueryExecutionTime</code> - If query execution time exceed this given max execution time (in milliseconds)
+then logger will log this query.</p>
+</li>
+<li>
+<p><code>namingStrategy</code> - Naming strategy to be used to name tables and columns in the database.
+Learn more about <a href="../naming-strategy/">Naming strategies</a>.</p>
+</li>
+<li>
+<p><code>entityPrefix</code> - Prefixes with the given string all tables (or collections) on this database connection.</p>
+</li>
+<li>
+<p><code>entitySkipConstructor</code> - Indicates if TypeORM should skip constructors when deserializing entities
+  from the database. Note that when you do not call the constructor both private properties and default
+  properties will not operate as expected.</p>
+</li>
+<li>
+<p><code>dropSchema</code> - Drops the schema each time connection is being established.
+Be careful with this option and don't use this in production - otherwise you'll lose all production data.
+This option is useful during debug and development.</p>
+</li>
+<li>
+<p><code>synchronize</code> - Indicates if database schema should be auto created on every application launch.
+ Be careful with this option and don't use this in production - otherwise you can lose production data.
+ This option is useful during debug and development.
+ As an alternative to it, you can use CLI and run schema:sync command.
+ Note that for MongoDB database it does not create schema, because MongoDB is schemaless.
+ Instead, it syncs just by creating indices.</p>
+</li>
+<li>
+<p><code>migrationsRun</code> - Indicates if migrations should be auto run on every application launch.
+As an alternative, you can use CLI and run migration:run command.</p>
+</li>
+<li>
+<p><code>migrationsTableName</code> - Name of the table in the database which is going to contain information about executed migrations.
+By default this table is called "migrations".</p>
+</li>
+<li>
+<p><code>migrationsTransactionMode</code> - Control transactions for migrations (default: <code>all</code>), can be one of <code>all</code> | <code>none</code> | <code>each</code></p>
+</li>
+<li>
+<p><code>cache</code> - Enables entity result caching. You can also configure cache type and other cache options here.
+Read more about caching <a href="../caching/">here</a>.</p>
+</li>
+<li>
+<p><code>cli.entitiesDir</code> - Directory where entities should be created by default by CLI.</p>
+</li>
+<li>
+<p><code>cli.migrationsDir</code> - Directory where migrations should be created by default by CLI.</p>
+</li>
+<li>
+<p><code>cli.subscribersDir</code> - Directory where subscribers should be created by default by CLI.</p>
+</li>
+</ul>
+<h2 id="mysql-mariadb-connection-options"><code>mysql</code> / <code>mariadb</code> connection options</h2>
+<ul>
+<li>
+<p><code>url</code> - Connection url where perform connection to. Please note that other connection options will override parameters set from url.</p>
+</li>
+<li>
+<p><code>host</code> - Database host.</p>
+</li>
+<li>
+<p><code>port</code> - Database host port. Default mysql port is <code>3306</code>.</p>
+</li>
+<li>
+<p><code>username</code> - Database username.</p>
+</li>
+<li>
+<p><code>password</code> - Database password.</p>
+</li>
+<li>
+<p><code>database</code> - Database name.</p>
+</li>
+<li>
+<p><code>charset</code> - The charset for the connection. This is called "collation" in the SQL-level of MySQL 
+(like utf8_general_ci). If a SQL-level charset is specified (like utf8mb4) then the default collation for that charset is used. (Default: <code>UTF8_GENERAL_CI</code>).</p>
+</li>
+<li>
+<p><code>timezone</code> - the timezone configured on the MySQL server. This is used to typecast server date/time 
+values to JavaScript Date object and vice versa. This can be <code>local</code>, <code>Z</code>, or an offset in the form 
+<code>+HH:MM</code> or <code>-HH:MM</code>. (Default: <code>local</code>)</p>
+</li>
+<li>
+<p><code>connectTimeout</code> - The milliseconds before a timeout occurs during the initial connection to the MySQL server.
+ (Default: <code>10000</code>)</p>
+</li>
+<li>
+<p><code>acquireTimeout</code> - The milliseconds before a timeout occurs during the initial connection to the MySql server. It differs from <code>connectTimeout</code> as it governs the TCP connection timeout where as connectTimeout does not. (default: <code>10000</code>)</p>
+</li>
+<li>
+<p><code>insecureAuth</code> - Allow connecting to MySQL instances that ask for the old (insecure) authentication method. 
+(Default: <code>false</code>)</p>
+</li>
+<li>
+<p><code>supportBigNumbers</code> - When dealing with big numbers (<code>BIGINT</code> and <code>DECIMAL</code> columns) in the database, 
+you should enable this option (Default: <code>true</code>)</p>
+</li>
+<li>
+<p><code>bigNumberStrings</code> - Enabling both <code>supportBigNumbers</code> and <code>bigNumberStrings</code> forces big numbers 
+(<code>BIGINT</code> and <code>DECIMAL</code> columns) to be always returned as JavaScript String objects (Default: <code>true</code>). 
+Enabling <code>supportBigNumbers</code> but leaving <code>bigNumberStrings</code> disabled will return big numbers as String 
+objects only when they cannot be accurately represented with 
+<a href="http://ecma262-5.com/ELS5_HTML.htm#Section_8.5">JavaScript Number objects</a> 
+(which happens when they exceed the <code>[-2^53, +2^53]</code> range), otherwise they will be returned as 
+Number objects. This option is ignored if <code>supportBigNumbers</code> is disabled.</p>
+</li>
+<li>
+<p><code>dateStrings</code> - Force date types (<code>TIMESTAMP</code>, <code>DATETIME</code>, <code>DATE</code>) to be returned as strings rather than 
+inflated into JavaScript Date objects. Can be true/false or an array of type names to keep as strings. 
+(Default: <code>false</code>)</p>
+</li>
+<li>
+<p><code>debug</code> - Prints protocol details to stdout. Can be true/false or an array of packet type names that 
+should be printed. (Default: <code>false</code>)</p>
+</li>
+<li>
+<p><code>trace</code> - Generates stack traces on Error to include call site of library entrance ("long stack traces"). 
+Slight performance penalty for most calls. (Default: <code>true</code>)</p>
+</li>
+<li>
+<p><code>multipleStatements</code> - Allow multiple mysql statements per query. Be careful with this, it could increase the scope 
+of SQL injection attacks. (Default: <code>false</code>)</p>
+</li>
+<li>
+<p><code>legacySpatialSupport</code> - Use spatial functions like GeomFromText and AsText which are removed in MySQL 8. (Default: true)</p>
+</li>
+<li>
+<p><code>flags</code> - List of connection flags to use other than the default ones. It is also possible to blacklist default ones.
+ For more information, check <a href="https://github.com/mysqljs/mysql#connection-flags">Connection Flags</a>.</p>
+</li>
+<li>
+<p><code>ssl</code> -  object with ssl parameters or a string containing the name of ssl profile. 
+See <a href="https://github.com/mysqljs/mysql#ssl-options">SSL options</a>.</p>
+</li>
+</ul>
+<h2 id="postgres-cockroachdb-connection-options"><code>postgres</code> / <code>cockroachdb</code> connection options</h2>
+<ul>
+<li>
+<p><code>url</code> - Connection url where perform connection to. Please note that other connection options will override parameters set from url.</p>
+</li>
+<li>
+<p><code>host</code> - Database host.</p>
+</li>
+<li>
+<p><code>port</code> - Database host port. Default postgres port is <code>5432</code>.</p>
+</li>
+<li>
+<p><code>username</code> - Database username.</p>
+</li>
+<li>
+<p><code>password</code> - Database password.</p>
+</li>
+<li>
+<p><code>database</code> - Database name.</p>
+</li>
+<li>
+<p><code>schema</code> - Schema name. Default is "public".</p>
+</li>
+<li>
+<p><code>connectTimeoutMS</code> - The milliseconds before a timeout occurs during the initial connection to the postgres server. If <code>undefined</code>, or set to <code>0</code>, there is no timeout. Defaults to <code>undefined</code>. </p>
+</li>
+<li>
+<p><code>ssl</code> - Object with ssl parameters. See <a href="https://node-postgres.com/features/ssl">TLS/SSL</a>.</p>
+</li>
+<li>
+<p><code>uuidExtension</code> - The Postgres extension to use when generating UUIDs. Defaults to <code>uuid-ossp</code>. Can be changed to <code>pgcrypto</code> if the <code>uuid-ossp</code> extension is unavailable.</p>
+</li>
+<li>
+<p><code>poolErrorHandler</code> - A function that get's called when underlying pool emits <code>'error'</code> event. Takes single parameter (error instance) and defaults to logging with <code>warn</code> level.</p>
+</li>
+<li>
+<p><code>logNotifications</code> - A boolean to determine whether postgres server <a href="https://www.postgresql.org/docs/current/plpgsql-errors-and-messages.html">notice messages</a> and <a href="https://www.postgresql.org/docs/current/sql-notify.html">notification events</a> should be included in client's logs with <code>info</code> level (default: <code>false</code>).</p>
+</li>
+<li>
+<p><code>installExtensions</code> - A boolean to control whether to install necessary postgres extensions automatically or not (default: <code>true</code>)</p>
+</li>
+<li>
+<p><code>applicationName</code> - A string visible in statistics and logs to help referencing an application to a connection (default: <code>undefined</code>)</p>
+</li>
+</ul>
+<h2 id="sqlite-connection-options"><code>sqlite</code> connection options</h2>
+<ul>
+<li><code>database</code> - Database path. For example "./mydb.sql"</li>
+</ul>
+<h2 id="better-sqlite3-connection-options"><code>better-sqlite3</code> connection options</h2>
+<ul>
+<li>
+<p><code>database</code> - Database path. For example "./mydb.sql"</p>
+</li>
+<li>
+<p><code>statementCacheSize</code> - Cache size of sqlite statement to speed up queries (default 100).</p>
+</li>
+<li>
+<p><code>prepareDatabase</code> - Function to run before a database is used in typeorm. You can access original better-sqlite3 Database object here.</p>
+</li>
+</ul>
+<h2 id="capacitor-connection-options"><code>capacitor</code> connection options</h2>
+<ul>
+<li>
+<p><code>database</code> - Database name (capacitor-sqlite will add the suffix <code>SQLite.db</code>)</p>
+</li>
+<li>
+<p><code>driver</code> - The capacitor-sqlite instance. For example, <code>new SQLiteConnection(CapacitorSQLite)</code>.</p>
+</li>
+<li>
+<p><code>mode</code> - Set the mode for database encryption: "no-encryption" | "encryption" | "secret" | "newsecret"</p>
+</li>
+<li>
+<p><code>version</code> - Database version</p>
+</li>
+<li>
+<p><code>journalMode</code> - The SQLite journal mode (optional)</p>
+</li>
+</ul>
+<h2 id="cordova-connection-options"><code>cordova</code> connection options</h2>
+<ul>
+<li>
+<p><code>database</code> - Database name</p>
+</li>
+<li>
+<p><code>location</code> - Where to save the database. See <a href="https://github.com/litehelpers/Cordova-sqlite-storage#opening-a-database">cordova-sqlite-storage</a> for options.</p>
+</li>
+</ul>
+<h2 id="react-native-connection-options"><code>react-native</code> connection options</h2>
+<ul>
+<li>
+<p><code>database</code> - Database name</p>
+</li>
+<li>
+<p><code>location</code> - Where to save the database. See <a href="https://github.com/andpor/react-native-sqlite-storage#opening-a-database">react-native-sqlite-storage</a> for options.</p>
+</li>
+</ul>
+<h2 id="nativescript-connection-options"><code>nativescript</code> connection options</h2>
+<ul>
+<li><code>database</code> - Database name</li>
+</ul>
+<h2 id="mssql-connection-options"><code>mssql</code> connection options</h2>
+<ul>
+<li>
+<p><code>url</code> - Connection url where perform connection to. Please note that other connection options will override parameters set from url.</p>
+</li>
+<li>
+<p><code>host</code> - Database host.</p>
+</li>
+<li>
+<p><code>port</code> - Database host port. Default mssql port is <code>1433</code>.</p>
+</li>
+<li>
+<p><code>username</code> - Database username.</p>
+</li>
+<li>
+<p><code>password</code> - Database password.</p>
+</li>
+<li>
+<p><code>database</code> - Database name.</p>
+</li>
+<li>
+<p><code>schema</code> - Schema name. Default is "public".</p>
+</li>
+<li>
+<p><code>domain</code> - Once you set domain, the driver will connect to SQL Server using domain login.</p>
+</li>
+<li>
+<p><code>connectionTimeout</code> - Connection timeout in ms (default: <code>15000</code>).</p>
+</li>
+<li>
+<p><code>requestTimeout</code> - Request timeout in ms (default: <code>15000</code>). NOTE: msnodesqlv8 driver doesn't support
+ timeouts &lt; 1 second.</p>
+</li>
+<li>
+<p><code>stream</code> - Stream recordsets/rows instead of returning them all at once as an argument of callback (default: <code>false</code>).
+ You can also enable streaming for each request independently (<code>request.stream = true</code>). Always set to <code>true</code> if you plan to
+ work with a large amount of rows.</p>
+</li>
+<li>
+<p><code>pool.max</code> - The maximum number of connections there can be in the pool (default: <code>10</code>).</p>
+</li>
+<li>
+<p><code>pool.min</code> - The minimum of connections there can be in the pool (default: <code>0</code>).</p>
+</li>
+<li>
+<p><code>pool.maxWaitingClients</code> - maximum number of queued requests allowed, additional acquire calls will be callback with
+ an err in a future cycle of the event loop.</p>
+</li>
+<li>
+<p><code>pool.testOnBorrow</code> -  should the pool validate resources before giving them to clients. Requires that either
+  <code>factory.validate</code> or <code>factory.validateAsync</code> to be specified.</p>
+</li>
+<li>
+<p><code>pool.acquireTimeoutMillis</code> - max milliseconds an <code>acquire</code> call will wait for a resource before timing out.
+ (default no limit), if supplied should non-zero positive integer.</p>
+</li>
+<li>
+<p><code>pool.fifo</code> - if true the oldest resources will be first to be allocated. If false the most recently released resources
+ will be the first to be allocated. This in effect turns the pool's behaviour from a queue into a stack. boolean,
+ (default <code>true</code>).</p>
+</li>
+<li>
+<p><code>pool.priorityRange</code> - int between 1 and x - if set, borrowers can specify their relative priority in the queue if no
+ resources are available. see example. (default <code>1</code>).</p>
+</li>
+<li>
+<p><code>pool.evictionRunIntervalMillis</code> - How often to run eviction checks. Default: <code>0</code> (does not run).</p>
+</li>
+<li>
+<p><code>pool.numTestsPerRun</code> - Number of resources to check each eviction run. Default: <code>3</code>.</p>
+</li>
+<li>
+<p><code>pool.softIdleTimeoutMillis</code> - amount of time an object may sit idle in the pool before it is eligible for eviction by
+ the idle object evictor (if any), with the extra condition that at least "min idle" object instances remain in the pool.
+ Default <code>-1</code> (nothing can get evicted).</p>
+</li>
+<li>
+<p><code>pool.idleTimeoutMillis</code> -  the minimum amount of time that an object may sit idle in the pool before it is eligible for
+ eviction due to idle time. Supersedes <code>softIdleTimeoutMillis</code>. Default: <code>30000</code>.</p>
+</li>
+<li>
+<p><code>pool.errorHandler</code> - A function that get's called when underlying pool emits <code>'error'</code> event. Takes single parameter (error instance) and defaults to logging with <code>warn</code> level.</p>
+</li>
+<li>
+<p><code>options.fallbackToDefaultDb</code> - By default, if the database requestion by <code>options.database</code> cannot be accessed, the connection
+ will fail with an error. However, if <code>options.fallbackToDefaultDb</code> is set to <code>true</code>, then the user's default database will
+  be used instead (Default: <code>false</code>).</p>
+</li>
+<li>
+<p><code>options.instanceName</code> - The instance name to connect to. The SQL Server Browser service must be running on the database server, and UDP port 1434 on the database server must be reachable. Mutually exclusive with <code>port</code>. (no default).</p>
+</li>
+<li>
+<p><code>options.enableAnsiNullDefault</code> - If true, SET ANSI_NULL_DFLT_ON ON will be set in the initial sql. This means new
+ columns will be nullable by default. See the <a href="https://msdn.microsoft.com/en-us/library/ms187375.aspx">T-SQL documentation</a>
+ for more details. (Default: <code>true</code>).</p>
+</li>
+<li>
+<p><code>options.cancelTimeout</code> - The number of milliseconds before the cancel (abort) of a request is considered failed (default: <code>5000</code>).</p>
+</li>
+<li>
+<p><code>options.packetSize</code> - The size of TDS packets (subject to negotiation with the server). Should be a power of 2. (default: <code>4096</code>).</p>
+</li>
+<li>
+<p><code>options.useUTC</code> - A boolean determining whether to pass time values in UTC or local time. (default: <code>true</code>).</p>
+</li>
+<li>
+<p><code>options.abortTransactionOnError</code> - A boolean determining whether to rollback a transaction automatically if any
+ error is encountered during the given transaction's execution. This sets the value for <code>SET XACT_ABORT</code> during the
+ initial SQL phase of a connection (<a href="http://msdn.microsoft.com/en-us/library/ms188792.aspx">documentation</a>).</p>
+</li>
+<li>
+<p><code>options.localAddress</code> - A string indicating which network interface (ip address) to use when connecting to SQL Server.</p>
+</li>
+<li>
+<p><code>options.useColumnNames</code> - A boolean determining whether to return rows as arrays or key-value collections. (default: <code>false</code>).</p>
+</li>
+<li>
+<p><code>options.camelCaseColumns</code> - A boolean, controlling whether the column names returned will have the first letter
+ converted to lower case (<code>true</code>) or not. This value is ignored if you provide a <code>columnNameReplacer</code>. (default: <code>false</code>).</p>
+</li>
+<li>
+<p><code>options.isolationLevel</code> - The default isolation level that transactions will be run with. The isolation levels are
+ available from <code>require('tedious').ISOLATION_LEVEL</code>.</p>
+</li>
+<li><code>READ_UNCOMMITTED</code></li>
+<li><code>READ_COMMITTED</code></li>
+<li><code>REPEATABLE_READ</code></li>
+<li><code>SERIALIZABLE</code></li>
+<li><code>SNAPSHOT</code></li>
+</ul>
+<p>(default: <code>READ_COMMITTED</code>)</p>
+<ul>
+<li><code>options.connectionIsolationLevel</code> - The default isolation level for new connections. All out-of-transaction queries
+ are executed with this setting. The isolation levels are available from <code>require('tedious').ISOLATION_LEVEL</code>.</li>
+<li><code>READ_UNCOMMITTED</code></li>
+<li><code>READ_COMMITTED</code></li>
+<li><code>REPEATABLE_READ</code></li>
+<li><code>SERIALIZABLE</code></li>
+<li><code>SNAPSHOT</code></li>
+</ul>
+<p>(default: <code>READ_COMMITTED</code>)</p>
+<ul>
+<li>
+<p><code>options.readOnlyIntent</code> - A boolean, determining whether the connection will request read-only access from a
+ SQL Server Availability Group. For more information, see here. (default: <code>false</code>).</p>
+</li>
+<li>
+<p><code>options.encrypt</code> - A boolean determining whether or not the connection will be encrypted. Set to true if you're
+ on Windows Azure. (default: <code>false</code>).</p>
+</li>
+<li>
+<p><code>options.cryptoCredentialsDetails</code> - When encryption is used, an object may be supplied that will be used for the
+ first argument when calling <a href="http://nodejs.org/docs/latest/api/tls.html#tls_tls_createsecurepair_credentials_isserver_requestcert_rejectunauthorized">tls.createSecurePair</a>
+  (default: <code>{}</code>).</p>
+</li>
+<li>
+<p><code>options.rowCollectionOnDone</code> - A boolean, that when true will expose received rows in Requests' <code>done*</code> events.
+ See done, <a href="http://tediousjs.github.io/tedious/api-request.html#event_doneInProc">doneInProc</a>
+ and <a href="http://tediousjs.github.io/tedious/api-request.html#event_doneProc">doneProc</a>. (default: <code>false</code>)</p>
+</li>
+</ul>
+<p>Caution: If many rows are received, enabling this option could result in excessive memory usage.</p>
+<ul>
+<li><code>options.rowCollectionOnRequestCompletion</code> - A boolean, that when true will expose received rows
+ in Requests' completion callback. See <a href="http://tediousjs.github.io/tedious/api-request.html#function_newRequest">new Request</a>. (default: <code>false</code>)</li>
+</ul>
+<p>Caution: If many rows are received, enabling this option could result in excessive memory usage.</p>
+<ul>
+<li><code>options.tdsVersion</code> - The version of TDS to use. If the server doesn't support the specified version, a negotiated version
+ is used instead. The versions are available from <code>require('tedious').TDS_VERSION</code>.</li>
+<li><code>7_1</code></li>
+<li><code>7_2</code></li>
+<li><code>7_3_A</code></li>
+<li><code>7_3_B</code></li>
+<li><code>7_4</code></li>
+</ul>
+<p>(default: <code>7_4</code>)</p>
+<ul>
+<li>
+<p><code>options.debug.packet</code> - A boolean, controlling whether <code>debug</code> events will be emitted with text describing packet
+ details (default: <code>false</code>).</p>
+</li>
+<li>
+<p><code>options.debug.data</code> - A boolean, controlling whether <code>debug</code> events will be emitted with text describing packet data
+ details (default: <code>false</code>).</p>
+</li>
+<li>
+<p><code>options.debug.payload</code> - A boolean, controlling whether <code>debug</code> events will be emitted with text describing packet
+ payload details (default: <code>false</code>).</p>
+</li>
+<li>
+<p><code>options.debug.token</code> - A boolean, controlling whether <code>debug</code> events will be emitted with text describing token stream
+ tokens (default: <code>false</code>).</p>
+</li>
+</ul>
+<h2 id="mongodb-connection-options"><code>mongodb</code> connection options</h2>
+<ul>
+<li>
+<p><code>url</code> - Connection url where perform connection to. Please note that other connection options will override parameters set from url.</p>
+</li>
+<li>
+<p><code>host</code> - Database host.</p>
+</li>
+<li>
+<p><code>port</code> - Database host port. Default mongodb port is <code>27017</code>.</p>
+</li>
+<li>
+<p><code>username</code> - Database username (replacement for <code>auth.user</code>).</p>
+</li>
+<li>
+<p><code>password</code> - Database password (replacement for <code>auth.password</code>).</p>
+</li>
+<li>
+<p><code>database</code> - Database name.</p>
+</li>
+<li>
+<p><code>poolSize</code> - Set the maximum pool size for each individual server or proxy connection.</p>
+</li>
+<li>
+<p><code>ssl</code> - Use ssl connection (needs to have a mongod server with ssl support). Default: <code>false</code>.</p>
+</li>
+<li>
+<p><code>sslValidate</code> - Validate mongod server certificate against ca (needs to have a mongod server with ssl support,
+ 2.4 or higher). Default: <code>true</code>.</p>
+</li>
+<li>
+<p><code>sslCA</code> - Array of valid certificates either as Buffers or Strings (needs to have a mongod server with ssl support,
+ 2.4 or higher).</p>
+</li>
+<li>
+<p><code>sslCert</code> - String or buffer containing the certificate we wish to present (needs to have a mongod server with ssl
+ support, 2.4 or higher)</p>
+</li>
+<li>
+<p><code>sslKey</code> - String or buffer containing the certificate private key we wish to present (needs to have a mongod server
+ with ssl support, 2.4 or higher).</p>
+</li>
+<li>
+<p><code>sslPass</code> - String or buffer containing the certificate password (needs to have a mongod server with ssl support,
+ 2.4 or higher).</p>
+</li>
+<li>
+<p><code>autoReconnect</code> - Reconnect on error. Default: <code>true</code>.</p>
+</li>
+<li>
+<p><code>noDelay</code> - TCP Socket NoDelay option. Default: <code>true</code>.</p>
+</li>
+<li>
+<p><code>keepAlive</code> - The number of milliseconds to wait before initiating keepAlive on the TCP socket. Default: <code>30000</code>.</p>
+</li>
+<li>
+<p><code>connectTimeoutMS</code> - TCP Connection timeout setting. Default: <code>30000</code>.</p>
+</li>
+<li>
+<p><code>socketTimeoutMS</code> - TCP Socket timeout setting. Default: <code>360000</code>.</p>
+</li>
+<li>
+<p><code>reconnectTries</code> - Server attempt to reconnect #times. Default: <code>30</code>.</p>
+</li>
+<li>
+<p><code>reconnectInterval</code> - Server will wait #milliseconds between retries. Default: <code>1000</code>.</p>
+</li>
+<li>
+<p><code>ha</code> - Turn on high availability monitoring. Default: <code>true</code>.</p>
+</li>
+<li>
+<p><code>haInterval</code> - Time between each replicaset status check. Default: <code>10000,5000</code>.</p>
+</li>
+<li>
+<p><code>replicaSet</code> - The name of the replicaset to connect to.</p>
+</li>
+<li>
+<p><code>acceptableLatencyMS</code> - Sets the range of servers to pick when using NEAREST (lowest ping ms + the latency fence,
+ ex: range of 1 to (1 + 15) ms). Default: <code>15</code>.</p>
+</li>
+<li>
+<p><code>secondaryAcceptableLatencyMS</code> - Sets the range of servers to pick when using NEAREST (lowest ping ms + the latency
+ fence, ex: range of 1 to (1 + 15) ms). Default: <code>15</code>.</p>
+</li>
+<li>
+<p><code>connectWithNoPrimary</code> - Sets if the driver should connect even if no primary is available. Default: <code>false</code>.</p>
+</li>
+<li>
+<p><code>authSource</code> - If the database authentication is dependent on another databaseName.</p>
+</li>
+<li>
+<p><code>w</code> - The write concern.</p>
+</li>
+<li>
+<p><code>wtimeout</code> - The write concern timeout value.</p>
+</li>
+<li>
+<p><code>j</code> - Specify a journal write concern. Default: <code>false</code>.</p>
+</li>
+<li>
+<p><code>forceServerObjectId</code> - Force server to assign _id values instead of driver. Default: <code>false</code>.</p>
+</li>
+<li>
+<p><code>serializeFunctions</code> - Serialize functions on any object. Default: <code>false</code>.</p>
+</li>
+<li>
+<p><code>ignoreUndefined</code> - Specify if the BSON serializer should ignore undefined fields. Default: <code>false</code>.</p>
+</li>
+<li>
+<p><code>raw</code> - Return document results as raw BSON buffers. Default: <code>false</code>.</p>
+</li>
+<li>
+<p><code>promoteLongs</code> - Promotes Long values to number if they fit inside the 53 bits resolution. Default: <code>true</code>.</p>
+</li>
+<li>
+<p><code>promoteBuffers</code> - Promotes Binary BSON values to native Node Buffers. Default: <code>false</code>.</p>
+</li>
+<li>
+<p><code>promoteValues</code> - Promotes BSON values to native types where possible, set to false to only receive wrapper types.
+ Default: <code>true</code>.</p>
+</li>
+<li>
+<p><code>domainsEnabled</code> - Enable the wrapping of the callback in the current domain, disabled by default to avoid perf hit.
+ Default: <code>false</code>.</p>
+</li>
+<li>
+<p><code>bufferMaxEntries</code> - Sets a cap on how many operations the driver will buffer up before giving up on getting a
+ working connection, default is -1 which is unlimited.</p>
+</li>
+<li>
+<p><code>readPreference</code> - The preferred read preference.</p>
+</li>
+<li><code>ReadPreference.PRIMARY</code></li>
+<li><code>ReadPreference.PRIMARY_PREFERRED</code></li>
+<li><code>ReadPreference.SECONDARY</code></li>
+<li><code>ReadPreference.SECONDARY_PREFERRED</code></li>
+<li>
+<p><code>ReadPreference.NEAREST</code></p>
+</li>
+<li>
+<p><code>pkFactory</code> - A primary key factory object for generation of custom _id keys.</p>
+</li>
+<li>
+<p><code>promiseLibrary</code> - A Promise library class the application wishes to use such as Bluebird, must be ES6 compatible.</p>
+</li>
+<li>
+<p><code>readConcern</code> - Specify a read concern for the collection. (only MongoDB 3.2 or higher supported).</p>
+</li>
+<li>
+<p><code>maxStalenessSeconds</code> - Specify a maxStalenessSeconds value for secondary reads, minimum is 90 seconds.</p>
+</li>
+<li>
+<p><code>appname</code> - The name of the application that created this MongoClient instance. MongoDB 3.4 and newer will print this
+ value in the server log upon establishing each connection. It is also recorded in the slow query log and profile
+ collections</p>
+</li>
+<li>
+<p><code>loggerLevel</code> - Specify the log level used by the driver logger (<code>error/warn/info/debug</code>).</p>
+</li>
+<li>
+<p><code>logger</code> - Specify a customer logger mechanism, can be used to log using your app level logger.</p>
+</li>
+<li>
+<p><code>authMechanism</code> - Sets the authentication mechanism that MongoDB will use to authenticate the connection.</p>
+</li>
+</ul>
+<h2 id="sqljs-connection-options"><code>sql.js</code> connection options</h2>
+<ul>
+<li>
+<p><code>database</code>: The raw UInt8Array database that should be imported.</p>
+</li>
+<li>
+<p><code>sqlJsConfig</code>: Optional initialize config for sql.js.</p>
+</li>
+<li>
+<p><code>autoSave</code>: Whether or not autoSave should be disabled. If set to true the database will be saved to the given file location (Node.js) or LocalStorage element (browser) when a change happens and <code>location</code> is specified. Otherwise <code>autoSaveCallback</code> can be used.</p>
+</li>
+<li>
+<p><code>autoSaveCallback</code>: A function that get's called when changes to the database are made and <code>autoSave</code> is enabled. The function gets a <code>UInt8Array</code> that represents the database.</p>
+</li>
+<li>
+<p><code>location</code>: The file location to load and save the database to.</p>
+</li>
+<li>
+<p><code>useLocalForage</code>: Enables the usage of the localforage library (https://github.com/localForage/localForage) to save &amp; load the database asynchronously from the indexedDB instead of using the synchron local storage methods in a browser environment. The localforage node module needs to be added to your project and the localforage.js should be imported in your page.</p>
+</li>
+</ul>
+<h2 id="expo-connection-options"><code>expo</code> connection options</h2>
+<ul>
+<li><code>database</code> - Name of the database. For example, "mydb".</li>
+<li><code>driver</code> - The Expo SQLite module. For example, <code>require('expo-sqlite')</code>.</li>
+</ul>
+<h2 id="connection-options-example">Connection options example</h2>
+<p>Here is a small example of connection options for mysql:</p>
+<pre><code class="language-typescript">{
+    host: &quot;localhost&quot;,
+    port: 3306,
+    username: &quot;test&quot;,
+    password: &quot;test&quot;,
+    database: &quot;test&quot;,
+    logging: true,
+    synchronize: true,
+    entities: [
+        &quot;entity/*.js&quot;
+    ],
+    subscribers: [
+        &quot;subscriber/*.js&quot;
+    ],
+    entitySchemas: [
+        &quot;schema/*.json&quot;
+    ],
+    migrations: [
+        &quot;migration/*.js&quot;
+    ],
+    cli: {
+        entitiesDir: &quot;entity&quot;,
+        migrationsDir: &quot;migration&quot;,
+        subscribersDir: &quot;subscriber&quot;
+    }
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../connection-api/" class="btn btn-neutral float-left" title="Connection APIs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../connection/" class="btn btn-neutral float-right" title="Working with Connection">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../connection-api/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../connection/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

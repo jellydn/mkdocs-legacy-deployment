@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/entity-manager-api/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>`EntityManager` API - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "`EntityManager` API";
+        var mkdocs_page_input_path = "entity-manager-api.md";
+        var mkdocs_page_url = "/entity-manager-api/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">`EntityManager` API</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>`EntityManager` API</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="entitymanager-api"><code>EntityManager</code> API</h1>
+<ul>
+<li><code>connection</code> - The connection used by <code>EntityManager</code>.</li>
+</ul>
+<pre><code class="language-typescript">const connection = manager.connection;
+</code></pre>
+<ul>
+<li><code>queryRunner</code> - The query runner used by <code>EntityManager</code>.
+Used only in transactional instances of EntityManager.</li>
+</ul>
+<pre><code class="language-typescript">const queryRunner = manager.queryRunner;
+</code></pre>
+<ul>
+<li><code>transaction</code> - Provides a transaction where multiple database requests will be executed in a single database transaction.
+Learn more <a href="../transactions/">Transactions</a>.</li>
+</ul>
+<pre><code class="language-typescript">await manager.transaction(async manager =&gt; {
+    // NOTE: you must perform all database operations using the given manager instance
+    // it's a special instance of EntityManager working with this transaction
+    // and don't forget to await things here
+});
+</code></pre>
+<ul>
+<li><code>query</code> - Executes a raw SQL query.</li>
+</ul>
+<pre><code class="language-typescript">const rawData = await manager.query(`SELECT * FROM USERS`);
+</code></pre>
+<ul>
+<li><code>createQueryBuilder</code> - Creates a query builder use to build SQL queries.
+Learn more about <a href="../select-query-builder/">QueryBuilder</a>.</li>
+</ul>
+<pre><code class="language-typescript">const users = await manager.createQueryBuilder()
+    .select()
+    .from(User, &quot;user&quot;)
+    .where(&quot;user.name = :name&quot;, { name: &quot;John&quot; })
+    .getMany();
+</code></pre>
+<ul>
+<li><code>hasId</code> - Checks if given entity has its primary column property defined.</li>
+</ul>
+<pre><code class="language-typescript"> if (manager.hasId(user)) {
+    // ... do something
+ }
+</code></pre>
+<ul>
+<li><code>getId</code> - Gets given entity's primary column property value. 
+If the entity has composite primary keys then the returned value will be an object with names and values of primary columns.</li>
+</ul>
+<pre><code class="language-typescript">const userId = manager.getId(user); // userId === 1
+</code></pre>
+<ul>
+<li><code>create</code> - Creates a new instance of <code>User</code>. Optionally accepts an object literal with user properties
+which will be written into newly created user object.</li>
+</ul>
+<pre><code class="language-typescript">const user = manager.create(User); // same as const user = new User();
+const user = manager.create(User, {
+    id: 1,
+    firstName: &quot;Timber&quot;,
+    lastName: &quot;Saw&quot;
+}); // same as const user = new User(); user.firstName = &quot;Timber&quot;; user.lastName = &quot;Saw&quot;;
+</code></pre>
+<ul>
+<li><code>merge</code> - Merges multiple entities into a single entity.</li>
+</ul>
+<pre><code class="language-typescript">const user = new User();
+manager.merge(User, user, { firstName: &quot;Timber&quot; }, { lastName: &quot;Saw&quot; }); // same as user.firstName = &quot;Timber&quot;; user.lastName = &quot;Saw&quot;;
+</code></pre>
+<ul>
+<li><code>preload</code> - Creates a new entity from the given plain javascript object. If the entity already exist in the database, then
+it loads it (and everything related to it), replaces all values with the new ones from the given object,
+and returns the new entity. The new entity is actually loaded from the database entity with all properties
+replaced from the new object.</li>
+</ul>
+<pre><code class="language-typescript">const partialUser = {
+    id: 1,
+    firstName: &quot;Rizzrak&quot;,
+    profile: {
+        id: 1
+    }
+};
+const user = await manager.preload(User, partialUser);
+// user will contain all missing data from partialUser with partialUser property values:
+// { id: 1, firstName: &quot;Rizzrak&quot;, lastName: &quot;Saw&quot;, profile: { id: 1, ... } }
+</code></pre>
+<ul>
+<li><code>save</code> - Saves a given entity or array of entities.
+If the entity already exists in the database, then it's updated.
+If the entity does not exist in the database yet, it's inserted.
+It saves all given entities in a single transaction (in the case of entity manager is not transactional).
+Also supports partial updating since all undefined properties are skipped. In order to make a value <code>NULL</code>, you must manually set the property to equal <code>null</code>.</li>
+</ul>
+<pre><code class="language-typescript">await manager.save(user);
+await manager.save([
+    category1,
+    category2,
+    category3
+]);
+</code></pre>
+<ul>
+<li><code>remove</code> - Removes a given entity or array of entities.
+It removes all given entities in a single transaction (in the case of entity, manager is not transactional).</li>
+</ul>
+<pre><code class="language-typescript">await manager.remove(user);
+await manager.remove([
+    category1,
+    category2,
+    category3
+]);
+</code></pre>
+<ul>
+<li><code>insert</code> - Inserts a new entity, or array of entities.</li>
+</ul>
+<pre><code class="language-typescript">await manager.insert(User, { 
+    firstName: &quot;Timber&quot;, 
+    lastName: &quot;Timber&quot; 
+});
+
+await manager.insert(User, [{ 
+    firstName: &quot;Foo&quot;, 
+    lastName: &quot;Bar&quot; 
+}, { 
+    firstName: &quot;Rizz&quot;, 
+    lastName: &quot;Rak&quot; 
+}]);
+</code></pre>
+<ul>
+<li><code>update</code> - Partially updates entity by a given update options or entity id.</li>
+</ul>
+<pre><code class="language-typescript">await manager.update(User, { firstName: &quot;Timber&quot; }, { firstName: &quot;Rizzrak&quot; });
+// executes UPDATE user SET firstName = Rizzrak WHERE firstName = Timber
+
+await manager.update(User, 1, { firstName: &quot;Rizzrak&quot; });
+// executes UPDATE user SET firstName = Rizzrak WHERE id = 1
+</code></pre>
+<ul>
+<li><code>delete</code> - Deletes entities by entity id, ids or given conditions:</li>
+</ul>
+<pre><code class="language-typescript">await manager.delete(User, 1);
+await manager.delete(User, [1, 2, 3]);
+await manager.delete(User, { firstName: &quot;Timber&quot; });
+</code></pre>
+<ul>
+<li><code>count</code> - Counts entities that match given options. Useful for pagination.</li>
+</ul>
+<pre><code class="language-typescript">const count = await manager.count(User, { firstName: &quot;Timber&quot; });
+</code></pre>
+<ul>
+<li><code>increment</code> - Increments some column by provided value of entities that match given options.</li>
+</ul>
+<pre><code class="language-typescript">await manager.increment(User, { firstName: &quot;Timber&quot; }, &quot;age&quot;, 3);
+</code></pre>
+<ul>
+<li><code>decrement</code> - Decrements some column by provided value that match given options.</li>
+</ul>
+<pre><code class="language-typescript">await manager.decrement(User, { firstName: &quot;Timber&quot; }, &quot;age&quot;, 3);
+</code></pre>
+<ul>
+<li><code>find</code> - Finds entities that match given options.</li>
+</ul>
+<pre><code class="language-typescript">const timbers = await manager.find(User, { firstName: &quot;Timber&quot; });
+</code></pre>
+<ul>
+<li><code>findAndCount</code> - Finds entities that match given find options.
+Also counts all entities that match given conditions,
+but ignores pagination settings (from and take options).</li>
+</ul>
+<pre><code class="language-typescript">const [timbers, timbersCount] = await manager.findAndCount(User, { firstName: &quot;Timber&quot; });
+</code></pre>
+<ul>
+<li><code>findByIds</code> - Finds multiple entities by id.</li>
+</ul>
+<pre><code class="language-typescript">const users = await manager.findByIds(User, [1, 2, 3]);
+</code></pre>
+<ul>
+<li><code>findOne</code> - Finds the first entity that matches some id or find options.</li>
+</ul>
+<pre><code class="language-typescript">const user = await manager.findOne(User, 1);
+const timber = await manager.findOne(User, { firstName: &quot;Timber&quot; });
+</code></pre>
+<ul>
+<li><code>findOneOrFail</code> - Finds the first entity that matches some id or find options.
+Rejects the returned promise if nothing matches.</li>
+</ul>
+<pre><code class="language-typescript">const user = await manager.findOneOrFail(User, 1);
+const timber = await manager.findOneOrFail(User, { firstName: &quot;Timber&quot; });
+</code></pre>
+<ul>
+<li><code>clear</code> - Clears all the data from the given table (truncates/drops it).</li>
+</ul>
+<pre><code class="language-typescript">await manager.clear(User);
+</code></pre>
+<ul>
+<li><code>getRepository</code> - Gets <code>Repository</code> to perform operations on a specific entity.
+ Learn more about <a href="../working-with-repository/">Repositories</a>.</li>
+</ul>
+<pre><code class="language-typescript">const userRepository = manager.getRepository(User);
+</code></pre>
+<ul>
+<li><code>getTreeRepository</code> - Gets <code>TreeRepository</code> to perform operations on a specific entity.
+ Learn more about <a href="../working-with-repository/">Repositories</a>.</li>
+</ul>
+<pre><code class="language-typescript">const categoryRepository = manager.getTreeRepository(Category);
+</code></pre>
+<ul>
+<li><code>getMongoRepository</code> - Gets <code>MongoRepository</code> to perform operations on a specific entity.
+ Learn more about <a href="../mongodb/">MongoDB</a>.</li>
+</ul>
+<pre><code class="language-typescript">const userRepository = manager.getMongoRepository(User);
+</code></pre>
+<ul>
+<li><code>getCustomRepository</code> - Gets custom entity repository.
+ Learn more about <a href="../custom-repository/">Custom repositories</a>.</li>
+</ul>
+<pre><code class="language-typescript">const myUserRepository = manager.getCustomRepository(UserRepository);
+</code></pre>
+<ul>
+<li><code>release</code> - Releases query runner of an entity manager. 
+Used only when query runner was created and managed manually.</li>
+</ul>
+<pre><code class="language-typescript">await manager.release();
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../entity-inheritance/" class="btn btn-neutral float-left" title="Entity Inheritance"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../entity-metadata/" class="btn btn-neutral float-right" title="Entity Metadata">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../entity-inheritance/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../entity-metadata/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

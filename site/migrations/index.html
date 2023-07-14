@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/migrations/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Migrations - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Migrations";
+        var mkdocs_page_input_path = "migrations.md";
+        var mkdocs_page_url = "/migrations/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Migrations</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#how-migrations-work">How migrations work</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creating-a-new-migration">Creating a new migration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#running-and-reverting-migrations">Running and reverting migrations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#generating-migrations">Generating migrations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#connection-option">Connection option</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-migration-api-to-write-migrations">Using migration API to write migrations</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Migrations</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="migrations">Migrations</h1>
+<ul>
+<li><a href="#how-migrations-work">How migrations work</a></li>
+<li><a href="#creating-a-new-migration">Creating a new migration</a></li>
+<li><a href="#running-and-reverting-migrations">Running and reverting migrations</a></li>
+<li><a href="#generating-migrations">Generating migrations</a></li>
+<li><a href="#connection-option">Connection option</a></li>
+<li><a href="#using-migration-api-to-write-migrations">Using migration API to write migrations</a></li>
+</ul>
+<h2 id="how-migrations-work">How migrations work</h2>
+<p>Once you get into production you'll need to synchronize model changes into the database.
+Typically it is unsafe to use <code>synchronize: true</code> for schema synchronization on production once
+you get data in your database. Here is where migrations come to help.</p>
+<p>A migration is just a single file with sql queries to update a database schema
+and apply new changes to an existing database.</p>
+<p>Let's say you already have a database and a post entity:</p>
+<pre><code class="language-typescript">import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+
+@Entity()
+export class Post {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    text: string;
+
+}
+</code></pre>
+<p>And your entity worked in production for months without any changes.
+You have thousands of posts in your database.</p>
+<p>Now you need to make a new release and rename <code>title</code> to <code>name</code>.
+What would you do?</p>
+<p>You need to create a new migration with the following sql query (postgres dialect):</p>
+<pre><code class="language-sql">ALTER TABLE &quot;post&quot; ALTER COLUMN &quot;title&quot; RENAME TO &quot;name&quot;;
+</code></pre>
+<p>Once you run this sql query your database schema is ready to work with your new codebase.
+TypeORM provides a place where you can write such sql queries and run them when needed.
+This place is called "migrations".</p>
+<h2 id="creating-a-new-migration">Creating a new migration</h2>
+<p><strong>Pre-requisites</strong>: <a href="../using-cli/#installing-cli">Installing CLI</a></p>
+<p>Before creating a new migration you need to setup your connection options properly:</p>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;mysql&quot;,
+    &quot;host&quot;: &quot;localhost&quot;,
+    &quot;port&quot;: 3306,
+    &quot;username&quot;: &quot;test&quot;,
+    &quot;password&quot;: &quot;test&quot;,
+    &quot;database&quot;: &quot;test&quot;,
+    &quot;entities&quot;: [&quot;entity/*.js&quot;],
+    &quot;migrationsTableName&quot;: &quot;custom_migration_table&quot;,
+    &quot;migrations&quot;: [&quot;migration/*.js&quot;],
+    &quot;cli&quot;: {
+        &quot;migrationsDir&quot;: &quot;migration&quot;
+    }
+}
+</code></pre>
+<p>Here we setup three options:
+* <code>"migrationsTableName": "migrations"</code> - Specify this option only if you need migration table name to be different from <code>"migrations"</code>.
+* <code>"migrations": ["migration/*.js"]</code> - indicates that typeorm must load migrations from the given "migration" directory.
+* <code>"cli": { "migrationsDir": "migration" }</code> - indicates that the CLI must create new migrations in the "migration" directory.</p>
+<p>Once you setup connection options you can create a new migration using CLI:</p>
+<pre><code>typeorm migration:create -n PostRefactoring
+</code></pre>
+<p>Here, <code>PostRefactoring</code> is the name of the migration - you can specify any name you want.
+After you run the command you can see a new file generated in the "migration" directory
+named <code>{TIMESTAMP}-PostRefactoring.ts</code> where <code>{TIMESTAMP}</code> is the current timestamp when the migration was generated.
+Now you can open the file and add your migration sql queries there.</p>
+<p>You should see the following content inside your migration:</p>
+<pre><code class="language-typescript">import {MigrationInterface, QueryRunner} from &quot;typeorm&quot;;
+
+export class PostRefactoringTIMESTAMP implements MigrationInterface {
+
+    async up(queryRunner: QueryRunner): Promise&lt;void&gt; {
+
+    }
+
+    async down(queryRunner: QueryRunner): Promise&lt;void&gt; {
+
+    }
+
+
+}
+</code></pre>
+<p>There are two methods you must fill with your migration code: <code>up</code> and <code>down</code>.
+<code>up</code> has to contain the code you need to perform the migration.
+<code>down</code> has to revert whatever <code>up</code> changed.
+<code>down</code> method is used to revert the last migration.</p>
+<p>Inside both <code>up</code> and <code>down</code> you have a <code>QueryRunner</code> object.
+All database operations are executed using this object.
+Learn more about <a href="../query-runner/">query runner</a>.</p>
+<p>Let's see what the migration looks like with our <code>Post</code> changes:</p>
+<pre><code class="language-typescript">import {MigrationInterface, QueryRunner} from &quot;typeorm&quot;;
+
+export class PostRefactoringTIMESTAMP implements MigrationInterface {
+
+    async up(queryRunner: QueryRunner): Promise&lt;void&gt; {
+        await queryRunner.query(`ALTER TABLE &quot;post&quot; RENAME COLUMN &quot;title&quot; TO &quot;name&quot;`);
+    }
+
+    async down(queryRunner: QueryRunner): Promise&lt;void&gt; {
+        await queryRunner.query(`ALTER TABLE &quot;post&quot; RENAME COLUMN &quot;name&quot; TO &quot;title&quot;`); // reverts things made in &quot;up&quot; method
+    }
+}
+</code></pre>
+<h2 id="running-and-reverting-migrations">Running and reverting migrations</h2>
+<p>Once you have a migration to run on production, you can run them using a CLI command:</p>
+<pre><code>typeorm migration:run
+</code></pre>
+<p><strong><code>typeorm migration:create</code> and <code>typeorm migration:generate</code> will create <code>.ts</code> files, unless you use the <code>o</code> flag (see more in <a href="#generating-migrations">Generating migrations</a>). The <code>migration:run</code> and <code>migration:revert</code> commands only work on <code>.js</code> files. Thus the typescript files need to be compiled before running the commands.</strong> Alternatively you can use <code>ts-node</code> in conjunction with <code>typeorm</code> to run <code>.ts</code> migration files.</p>
+<p>Example with <code>ts-node</code>:</p>
+<pre><code>ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run
+</code></pre>
+<p>Example <code>ts-node</code> not using <code>node_modules</code> directly:</p>
+<pre><code>ts-node $(yarn bin typeorm) migration:run
+</code></pre>
+<p>This command will execute all pending migrations and run them in a sequence ordered by their timestamps.
+This means all sql queries written in the <code>up</code> methods of your created migrations will be executed.
+That's all! Now you have your database schema up-to-date.</p>
+<p>If for some reason you want to revert the changes, you can run:</p>
+<pre><code>typeorm migration:revert
+</code></pre>
+<p>This command will execute <code>down</code> in the latest executed migration.
+If you need to revert multiple migrations you must call this command multiple times.</p>
+<h2 id="generating-migrations">Generating migrations</h2>
+<p>TypeORM is able to automatically generate migration files with schema changes you made.</p>
+<p>Let's say you have a <code>Post</code> entity with a <code>title</code> column, and you have changed the name <code>title</code> to <code>name</code>.
+You can run following command:</p>
+<pre><code>typeorm migration:generate -n PostRefactoring
+</code></pre>
+<p>And it will generate a new migration called <code>{TIMESTAMP}-PostRefactoring.ts</code> with the following content:</p>
+<pre><code class="language-typescript">import {MigrationInterface, QueryRunner} from &quot;typeorm&quot;;
+
+export class PostRefactoringTIMESTAMP implements MigrationInterface {
+
+    async up(queryRunner: QueryRunner): Promise&lt;void&gt; {
+        await queryRunner.query(`ALTER TABLE &quot;post&quot; ALTER COLUMN &quot;title&quot; RENAME TO &quot;name&quot;`);
+    }
+
+    async down(queryRunner: QueryRunner): Promise&lt;void&gt; {
+        await queryRunner.query(`ALTER TABLE &quot;post&quot; ALTER COLUMN &quot;name&quot; RENAME TO &quot;title&quot;`);
+    }
+
+
+}
+</code></pre>
+<p>Alternatively you can also output your migrations as Javascript files using the <code>o</code> (alias for <code>--outputJs</code>) flag. This is useful for Javascript only projects in which TypeScript additional packages are not installed. This command, will generate a new migration file <code>{TIMESTAMP}-PostRefactoring.js</code> with the following content:</p>
+<pre><code class="language-javascript">const { MigrationInterface, QueryRunner } = require(&quot;typeorm&quot;);
+
+module.exports = class PostRefactoringTIMESTAMP {
+
+    async up(queryRunner) {
+        await queryRunner.query(`ALTER TABLE &quot;post&quot; ALTER COLUMN &quot;title&quot; RENAME TO &quot;name&quot;`);
+    }
+
+    async down(queryRunner) {
+        await queryRunner.query(`ALTER TABLE &quot;post&quot; ALTER COLUMN &quot;title&quot; RENAME TO &quot;name&quot;`);
+    }
+}
+</code></pre>
+<p>See, you don't need to write the queries on your own.
+The rule of thumb for generating migrations is that you generate them after <strong>each</strong> change you made to your models. To apply multi-line formatting to your generated migration queries, use the <code>p</code> (alias for <code>--pretty</code>) flag. </p>
+<h2 id="connection-option">Connection option</h2>
+<p>If you need to run/revert your migrations for another connection rather than the default, use the <code>-c</code> (alias for <code>--connection</code>) and pass the config name as an argument</p>
+<pre><code>typeorm -c &lt;your-config-name&gt; migration:{run|revert}
+</code></pre>
+<h2 id="using-migration-api-to-write-migrations">Using migration API to write migrations</h2>
+<p>In order to use an API to change a database schema you can use <code>QueryRunner</code>.</p>
+<p>Example:</p>
+<pre><code class="language-ts">import {MigrationInterface, QueryRunner, Table, TableIndex, TableColumn, TableForeignKey } from &quot;typeorm&quot;;
+
+export class QuestionRefactoringTIMESTAMP implements MigrationInterface {
+
+    async up(queryRunner: QueryRunner): Promise&lt;void&gt; {
+        await queryRunner.createTable(new Table({
+            name: &quot;question&quot;,
+            columns: [
+                {
+                    name: &quot;id&quot;,
+                    type: &quot;int&quot;,
+                    isPrimary: true
+                },
+                {
+                    name: &quot;name&quot;,
+                    type: &quot;varchar&quot;,
+                }
+            ]
+        }), true)
+
+        await queryRunner.createIndex(&quot;question&quot;, new TableIndex({
+            name: &quot;IDX_QUESTION_NAME&quot;,
+            columnNames: [&quot;name&quot;]
+        }));
+
+        await queryRunner.createTable(new Table({
+            name: &quot;answer&quot;,
+            columns: [
+                {
+                    name: &quot;id&quot;,
+                    type: &quot;int&quot;,
+                    isPrimary: true
+                },
+                {
+                    name: &quot;name&quot;,
+                    type: &quot;varchar&quot;,
+                },
+                {
+                  name: 'created_at',
+                  type: 'timestamp',
+                  default: 'now()'
+                }
+            ]
+        }), true);
+
+        await queryRunner.addColumn(&quot;answer&quot;, new TableColumn({
+            name: &quot;questionId&quot;,
+            type: &quot;int&quot;
+        }));
+
+        await queryRunner.createForeignKey(&quot;answer&quot;, new TableForeignKey({
+            columnNames: [&quot;questionId&quot;],
+            referencedColumnNames: [&quot;id&quot;],
+            referencedTableName: &quot;question&quot;,
+            onDelete: &quot;CASCADE&quot;
+        }));
+    }
+
+    async down(queryRunner: QueryRunner): Promise&lt;void&gt; {
+        const table = await queryRunner.getTable(&quot;answer&quot;);
+        const foreignKey = table.foreignKeys.find(fk =&gt; fk.columnNames.indexOf(&quot;questionId&quot;) !== -1);
+        await queryRunner.dropForeignKey(&quot;answer&quot;, foreignKey);
+        await queryRunner.dropColumn(&quot;answer&quot;, &quot;questionId&quot;);
+        await queryRunner.dropTable(&quot;answer&quot;);
+        await queryRunner.dropIndex(&quot;question&quot;, &quot;IDX_QUESTION_NAME&quot;);
+        await queryRunner.dropTable(&quot;question&quot;);
+    }
+
+}
+</code></pre>
+<hr />
+<pre><code class="language-ts">getDatabases(): Promise&lt;string[]&gt;
+</code></pre>
+<p>Returns all available database names including system databases.</p>
+<hr />
+<pre><code class="language-ts">getSchemas(database?: string): Promise&lt;string[]&gt;
+</code></pre>
+<ul>
+<li><code>database</code> - If database parameter specified, returns schemas of that database</li>
+</ul>
+<p>Returns all available schema names including system schemas. Useful for SQLServer and Postgres only.</p>
+<hr />
+<pre><code class="language-ts">getTable(tableName: string): Promise&lt;Table|undefined&gt;
+</code></pre>
+<ul>
+<li><code>tableName</code> - name of a table to be loaded</li>
+</ul>
+<p>Loads a table by a given name from the database.</p>
+<hr />
+<pre><code class="language-ts">getTables(tableNames: string[]): Promise&lt;Table[]&gt;
+</code></pre>
+<ul>
+<li><code>tableNames</code> - name of a tables to be loaded</li>
+</ul>
+<p>Loads a tables by a given names from the database.</p>
+<hr />
+<pre><code class="language-ts">hasDatabase(database: string): Promise&lt;boolean&gt;
+</code></pre>
+<ul>
+<li><code>database</code> - name of a database to be checked</li>
+</ul>
+<p>Checks if database with the given name exist.</p>
+<hr />
+<pre><code class="language-ts">hasSchema(schema: string): Promise&lt;boolean&gt;
+</code></pre>
+<ul>
+<li><code>schema</code> - name of a schema to be checked</li>
+</ul>
+<p>Checks if schema with the given name exist. Used only for SqlServer and Postgres.</p>
+<hr />
+<pre><code class="language-ts">hasTable(table: Table|string): Promise&lt;boolean&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+</ul>
+<p>Checks if table exist.</p>
+<hr />
+<pre><code class="language-ts">hasColumn(table: Table|string, columnName: string): Promise&lt;boolean&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>columnName</code> - name of a column to be checked</li>
+</ul>
+<p>Checks if column exist in the table.</p>
+<hr />
+<pre><code class="language-ts">createDatabase(database: string, ifNotExist?: boolean): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>database</code> - database name</li>
+<li><code>ifNotExist</code> - skips creation if <code>true</code>, otherwise throws error if database already exist</li>
+</ul>
+<p>Creates a new database.</p>
+<hr />
+<pre><code class="language-ts">dropDatabase(database: string, ifExist?: boolean): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>database</code> - database name</li>
+<li><code>ifExist</code> - skips deletion if <code>true</code>, otherwise throws error if database was not found</li>
+</ul>
+<p>Drops database.</p>
+<hr />
+<pre><code class="language-ts">createSchema(schemaPath: string, ifNotExist?: boolean): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>schemaPath</code> - schema name. For SqlServer can accept schema path (e.g. 'dbName.schemaName') as parameter.
+If schema path passed, it will create schema in specified database</li>
+<li><code>ifNotExist</code> - skips creation if <code>true</code>, otherwise throws error if schema already exist</li>
+</ul>
+<p>Creates a new table schema.</p>
+<hr />
+<pre><code class="language-ts">dropSchema(schemaPath: string, ifExist?: boolean, isCascade?: boolean): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>schemaPath</code> - schema name. For SqlServer can accept schema path (e.g. 'dbName.schemaName') as parameter.
+If schema path passed, it will drop schema in specified database</li>
+<li><code>ifExist</code> - skips deletion if <code>true</code>, otherwise throws error if schema was not found</li>
+<li><code>isCascade</code> - If <code>true</code>, automatically drop objects (tables, functions, etc.) that are contained in the schema.
+Used only in Postgres.</li>
+</ul>
+<p>Drops a table schema.</p>
+<hr />
+<pre><code class="language-ts">createTable(table: Table, ifNotExist?: boolean, createForeignKeys?: boolean, createIndices?: boolean): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object.</li>
+<li><code>ifNotExist</code> - skips creation if <code>true</code>, otherwise throws error if table already exist. Default <code>false</code></li>
+<li><code>createForeignKeys</code> - indicates whether foreign keys will be created on table creation. Default <code>true</code></li>
+<li><code>createIndices</code> - indicates whether indices will be created on table creation. Default <code>true</code></li>
+</ul>
+<p>Creates a new table.</p>
+<hr />
+<pre><code class="language-ts">dropTable(table: Table|string, ifExist?: boolean, dropForeignKeys?: boolean, dropIndices?: boolean): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or table name to be dropped</li>
+<li><code>ifExist</code> - skips dropping if <code>true</code>, otherwise throws error if table does not exist</li>
+<li><code>dropForeignKeys</code> - indicates whether foreign keys will be dropped on table deletion. Default <code>true</code></li>
+<li><code>dropIndices</code> - indicates whether indices will be dropped on table deletion. Default <code>true</code></li>
+</ul>
+<p>Drops a table.</p>
+<hr />
+<pre><code class="language-ts">renameTable(oldTableOrName: Table|string, newTableName: string): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>oldTableOrName</code> - old Table object or name to be renamed</li>
+<li><code>newTableName</code> - new table name</li>
+</ul>
+<p>Renames a table.</p>
+<hr />
+<pre><code class="language-ts">addColumn(table: Table|string, column: TableColumn): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>column</code> - new column</li>
+</ul>
+<p>Adds a new column.</p>
+<hr />
+<pre><code class="language-ts">addColumns(table: Table|string, columns: TableColumn[]): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>columns</code> - new columns</li>
+</ul>
+<p>Adds a new column.</p>
+<hr />
+<pre><code class="language-ts">renameColumn(table: Table|string, oldColumnOrName: TableColumn|string, newColumnOrName: TableColumn|string): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>oldColumnOrName</code> - old column. Accepts TableColumn object or column name</li>
+<li><code>newColumnOrName</code> - new column. Accepts TableColumn object or column name</li>
+</ul>
+<p>Renames a column.</p>
+<hr />
+<pre><code class="language-ts">changeColumn(table: Table|string, oldColumn: TableColumn|string, newColumn: TableColumn): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>oldColumn</code> -  old column. Accepts TableColumn object or column name</li>
+<li><code>newColumn</code> -  new column. Accepts TableColumn object</li>
+</ul>
+<p>Changes a column in the table.</p>
+<hr />
+<pre><code class="language-ts">changeColumns(table: Table|string, changedColumns: { oldColumn: TableColumn, newColumn: TableColumn }[]): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>changedColumns</code> - array of changed columns.</li>
+<li><code>oldColumn</code> - old TableColumn object</li>
+<li><code>newColumn</code> - new TableColumn object</li>
+</ul>
+<p>Changes a columns in the table.</p>
+<hr />
+<pre><code class="language-ts">dropColumn(table: Table|string, column: TableColumn|string): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>column</code> - TableColumn object or column name to be dropped</li>
+</ul>
+<p>Drops a column in the table.</p>
+<hr />
+<pre><code class="language-ts">dropColumns(table: Table|string, columns: TableColumn[]|string[]): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>columns</code> - array of TableColumn objects or column names to be dropped </li>
+</ul>
+<p>Drops a columns in the table.</p>
+<hr />
+<pre><code class="language-ts">createPrimaryKey(table: Table|string, columnNames: string[]): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>columnNames</code> - array of column names which will be primary</li>
+</ul>
+<p>Creates a new primary key.</p>
+<hr />
+<pre><code class="language-ts">updatePrimaryKeys(table: Table|string, columns: TableColumn[]): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>columns</code> - array of TableColumn objects which will be updated</li>
+</ul>
+<p>Updates composite primary keys.</p>
+<hr />
+<pre><code class="language-ts">dropPrimaryKey(table: Table|string): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+</ul>
+<p>Drops a primary key.</p>
+<hr />
+<pre><code class="language-ts">createUniqueConstraint(table: Table|string, uniqueConstraint: TableUnique): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>uniqueConstraint</code> - TableUnique object to be created</li>
+</ul>
+<p>Creates new unique constraint.</p>
+<blockquote>
+<p>Note: does not work for MySQL, because MySQL stores unique constraints as unique indices. Use <code>createIndex()</code> method instead.</p>
+</blockquote>
+<hr />
+<pre><code class="language-ts">createUniqueConstraints(table: Table|string, uniqueConstraints: TableUnique[]): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>uniqueConstraints</code> - array of TableUnique objects to be created</li>
+</ul>
+<p>Creates new unique constraints.</p>
+<blockquote>
+<p>Note: does not work for MySQL, because MySQL stores unique constraints as unique indices. Use <code>createIndices()</code> method instead.</p>
+</blockquote>
+<hr />
+<pre><code class="language-ts">dropUniqueConstraint(table: Table|string, uniqueOrName: TableUnique|string): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>uniqueOrName</code> - TableUnique object or unique constraint name to be dropped</li>
+</ul>
+<p>Drops an unique constraint.</p>
+<blockquote>
+<p>Note: does not work for MySQL, because MySQL stores unique constraints as unique indices. Use <code>dropIndex()</code> method instead.</p>
+</blockquote>
+<hr />
+<pre><code class="language-ts">dropUniqueConstraints(table: Table|string, uniqueConstraints: TableUnique[]): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>uniqueConstraints</code> - array of TableUnique objects to be dropped</li>
+</ul>
+<p>Drops an unique constraints.</p>
+<blockquote>
+<p>Note: does not work for MySQL, because MySQL stores unique constraints as unique indices. Use <code>dropIndices()</code> method instead.</p>
+</blockquote>
+<hr />
+<pre><code class="language-ts">createCheckConstraint(table: Table|string, checkConstraint: TableCheck): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>checkConstraint</code> - TableCheck object</li>
+</ul>
+<p>Creates new check constraint.</p>
+<blockquote>
+<p>Note: MySQL does not support check constraints.</p>
+</blockquote>
+<hr />
+<pre><code class="language-ts">createCheckConstraints(table: Table|string, checkConstraints: TableCheck[]): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>checkConstraints</code> - array of TableCheck objects</li>
+</ul>
+<p>Creates new check constraint.</p>
+<blockquote>
+<p>Note: MySQL does not support check constraints.</p>
+</blockquote>
+<hr />
+<pre><code class="language-ts">dropCheckConstraint(table: Table|string, checkOrName: TableCheck|string): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>checkOrName</code> - TableCheck object or check constraint name</li>
+</ul>
+<p>Drops check constraint.</p>
+<blockquote>
+<p>Note: MySQL does not support check constraints.</p>
+</blockquote>
+<hr />
+<pre><code class="language-ts">dropCheckConstraints(table: Table|string, checkConstraints: TableCheck[]): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>checkConstraints</code> - array of TableCheck objects</li>
+</ul>
+<p>Drops check constraints.</p>
+<blockquote>
+<p>Note: MySQL does not support check constraints.</p>
+</blockquote>
+<hr />
+<pre><code class="language-ts">createForeignKey(table: Table|string, foreignKey: TableForeignKey): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>foreignKey</code> - TableForeignKey object</li>
+</ul>
+<p>Creates a new foreign key.</p>
+<hr />
+<pre><code class="language-ts">createForeignKeys(table: Table|string, foreignKeys: TableForeignKey[]): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>foreignKeys</code> - array of TableForeignKey objects</li>
+</ul>
+<p>Creates a new foreign keys.</p>
+<hr />
+<pre><code class="language-ts">dropForeignKey(table: Table|string, foreignKeyOrName: TableForeignKey|string): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>foreignKeyOrName</code> - TableForeignKey object or foreign key name</li>
+</ul>
+<p>Drops a foreign key.</p>
+<hr />
+<pre><code class="language-ts">dropForeignKeys(table: Table|string, foreignKeys: TableForeignKey[]): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>foreignKeys</code> - array of TableForeignKey objects</li>
+</ul>
+<p>Drops a foreign keys.</p>
+<hr />
+<pre><code class="language-ts">createIndex(table: Table|string, index: TableIndex): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>index</code> - TableIndex object</li>
+</ul>
+<p>Creates a new index.</p>
+<hr />
+<pre><code class="language-ts">createIndices(table: Table|string, indices: TableIndex[]): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>indices</code> - array of TableIndex objects</li>
+</ul>
+<p>Creates a new indices.</p>
+<hr />
+<pre><code class="language-ts">dropIndex(table: Table|string, index: TableIndex|string): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>index</code> - TableIndex object or index name</li>
+</ul>
+<p>Drops an index.</p>
+<hr />
+<pre><code class="language-ts">dropIndices(table: Table|string, indices: TableIndex[]): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>table</code> - Table object or name</li>
+<li><code>indices</code> - array of TableIndex objects</li>
+</ul>
+<p>Drops an indices.</p>
+<hr />
+<pre><code class="language-ts">clearTable(tableName: string): Promise&lt;void&gt;
+</code></pre>
+<ul>
+<li><code>tableName</code> - table name</li>
+</ul>
+<p>Clears all table contents.</p>
+<blockquote>
+<p>Note: this operation uses SQL's TRUNCATE query which cannot be reverted in transactions.</p>
+</blockquote>
+<hr />
+<pre><code class="language-ts">enableSqlMemory(): void
+</code></pre>
+<p>Enables special query runner mode in which sql queries won't be executed, instead they will be memorized into a special variable inside query runner.
+You can get memorized sql using <code>getMemorySql()</code> method.</p>
+<hr />
+<pre><code class="language-ts">disableSqlMemory(): void
+</code></pre>
+<p>Disables special query runner mode in which sql queries won't be executed. Previously memorized sql will be flushed.</p>
+<hr />
+<pre><code class="language-ts">clearSqlMemory(): void
+</code></pre>
+<p>Flushes all memorized sql statements.</p>
+<hr />
+<pre><code class="language-ts">getMemorySql(): SqlInMemory
+</code></pre>
+<ul>
+<li>returns <code>SqlInMemory</code> object with array of <code>upQueries</code> and <code>downQueries</code> sql statements</li>
+</ul>
+<p>Gets sql stored in the memory. Parameters in the sql are already replaced.</p>
+<hr />
+<pre><code class="language-ts">executeMemoryUpSql(): Promise&lt;void&gt;
+</code></pre>
+<p>Executes memorized up sql queries.</p>
+<hr />
+<pre><code class="language-ts">executeMemoryDownSql(): Promise&lt;void&gt;
+</code></pre>
+<p>Executes memorized down sql queries.</p>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../many-to-one-one-to-many-relations/" class="btn btn-neutral float-left" title="Many-to-one / one-to-many relations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../mongodb/" class="btn btn-neutral float-right" title="MongoDB">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../many-to-one-one-to-many-relations/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../mongodb/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

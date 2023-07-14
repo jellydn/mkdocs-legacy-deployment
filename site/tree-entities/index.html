@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/tree-entities/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Tree Entities - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Tree Entities";
+        var mkdocs_page_input_path = "tree-entities.md";
+        var mkdocs_page_url = "/tree-entities/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Tree Entities</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#adjacency-list">Adjacency list</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nested-set">Nested set</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#materialized-path-aka-path-enumeration">Materialized Path (aka Path Enumeration)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#closure-table">Closure table</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#working-with-tree-entities">Working with tree entities</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Tree Entities</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tree-entities">Tree Entities</h1>
+<p>TypeORM supports the Adjacency list and Closure table patterns for storing tree structures.
+To learn more about hierarchy table take a look at <a href="https://www.slideshare.net/billkarwin/models-for-hierarchical-data">this awesome presentation by Bill Karwin</a>.</p>
+<ul>
+<li><a href="#adjacency-list">Adjacency list</a></li>
+<li><a href="#nested-set">Nested set</a></li>
+<li><a href="#materialized-path-aka-path-enumeration">Materialized Path (aka Path Enumeration)</a></li>
+<li><a href="#closure-table">Closure table</a></li>
+<li><a href="#working-with-tree-entities">Working with tree entities</a></li>
+</ul>
+<h2 id="adjacency-list">Adjacency list</h2>
+<p>Adjacency list is a simple model with self-referencing.
+The benefit of this approach is simplicity,
+drawback is that you can't load big trees in all at once because of join limitations.
+To learn more about the benefits and use of Adjacency Lists look at <a href="http://schinckel.net/2014/09/13/long-live-adjacency-lists/">this article by Matthew Schinckel</a>.
+Example:</p>
+<pre><code class="language-typescript">import {Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany} from &quot;typeorm&quot;;
+
+@Entity()
+export class Category {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @Column()
+    description: string;
+
+    @ManyToOne(type =&gt; Category, category =&gt; category.children)
+    parent: Category;
+
+    @OneToMany(type =&gt; Category, category =&gt; category.parent)
+    children: Category[];
+}
+
+</code></pre>
+<h2 id="nested-set">Nested set</h2>
+<p>Nested set is another pattern of storing tree structures in the database.
+Its very efficient for reads, but bad for writes.
+You cannot have multiple roots in nested set.
+Example:</p>
+<pre><code class="language-typescript">import {Entity, Tree, Column, PrimaryGeneratedColumn, TreeChildren, TreeParent, TreeLevelColumn} from &quot;typeorm&quot;;
+
+@Entity()
+@Tree(&quot;nested-set&quot;)
+export class Category {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @TreeChildren()
+    children: Category[];
+
+    @TreeParent()
+    parent: Category;
+}
+</code></pre>
+<h2 id="materialized-path-aka-path-enumeration">Materialized Path (aka Path Enumeration)</h2>
+<p>Materialized Path (also called Path Enumeration) is another pattern of storing tree structures in the database.
+Its simple and effective.
+Example:</p>
+<pre><code class="language-typescript">import {Entity, Tree, Column, PrimaryGeneratedColumn, TreeChildren, TreeParent, TreeLevelColumn} from &quot;typeorm&quot;;
+
+@Entity()
+@Tree(&quot;materialized-path&quot;)
+export class Category {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @TreeChildren()
+    children: Category[];
+
+    @TreeParent()
+    parent: Category;
+}
+</code></pre>
+<h2 id="closure-table">Closure table</h2>
+<p>Closure table stores relations between parent and child in a separate table in a special way.
+It's efficient in both reads and writes.
+Example:</p>
+<pre><code class="language-typescript">import {Entity, Tree, Column, PrimaryGeneratedColumn, TreeChildren, TreeParent, TreeLevelColumn} from &quot;typeorm&quot;;
+
+@Entity()
+@Tree(&quot;closure-table&quot;)
+export class Category {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @TreeChildren()
+    children: Category[];
+
+    @TreeParent()
+    parent: Category;
+}
+</code></pre>
+<p>You can specify closure table name and / or closure table columns names by setting optional parameter <code>options</code> into <code>@Tree("closure-table", options)</code>. <code>ancestorColumnName</code> and <code>descandantColumnName</code> are callback functions, which receive primary column's metadata and return column's name.</p>
+<pre><code class="language-ts">@Tree(&quot;closure-table&quot;, {
+    closureTableName: &quot;category_closure&quot;,
+    ancestorColumnName: (column) =&gt; &quot;ancestor_&quot; + column.propertyName,
+    descendantColumnName: (column) =&gt; &quot;descendant_&quot; + column.propertyName,
+})
+</code></pre>
+<h2 id="working-with-tree-entities">Working with tree entities</h2>
+<p>To bind tree entities to each other, it is required to set the parent in the child entity and then save them.
+for example:</p>
+<pre><code class="language-typescript">const manager = getManager();
+
+const a1 = new Category(&quot;a1&quot;);
+a1.name = &quot;a1&quot;;
+await manager.save(a1);
+
+const a11 = new Category();
+a11.name = &quot;a11&quot;;
+a11.parent = a1;
+await manager.save(a11);
+
+const a12 = new Category();
+a12.name = &quot;a12&quot;;
+a12.parent = a1;
+await manager.save(a12);
+
+const a111 = new Category();
+a111.name = &quot;a111&quot;;
+a111.parent = a11;
+await manager.save(a111);
+
+const a112 = new Category();
+a112.name = &quot;a112&quot;;
+a112.parent = a11;
+await manager.save(a112);
+</code></pre>
+<p>To load such a tree use <code>TreeRepository</code>:</p>
+<pre><code class="language-typescript">const manager = getManager();
+const trees = await manager.getTreeRepository(Category).findTrees();
+</code></pre>
+<p><code>trees</code> will be following:</p>
+<pre><code class="language-json">[{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;a1&quot;,
+    &quot;children&quot;: [{
+        &quot;id&quot;: 2,
+        &quot;name&quot;: &quot;a11&quot;,
+        &quot;children&quot;: [{
+            &quot;id&quot;: 4,
+            &quot;name&quot;: &quot;a111&quot;
+        }, {
+            &quot;id&quot;: 5,
+            &quot;name&quot;: &quot;a112&quot;
+        }]
+    }, {
+        &quot;id&quot;: 3,
+        &quot;name&quot;: &quot;a12&quot;
+    }]
+}]
+</code></pre>
+<p>There are other special methods to work with tree entities through <code>TreeRepository</code>:</p>
+<ul>
+<li><code>findTrees</code> - Returns all trees in the database with all their children, children of children, etc.</li>
+</ul>
+<pre><code class="language-typescript">const treeCategories = await repository.findTrees();
+// returns root categories with sub categories inside
+
+const treeCategoriesWithRelations = await repository.findTrees({ relations: [&quot;sites&quot;] });
+// automatically joins the sites relation
+</code></pre>
+<ul>
+<li><code>findRoots</code> - Roots are entities that have no ancestors. Finds them all.
+Does not load children leafs.</li>
+</ul>
+<pre><code class="language-typescript">const rootCategories = await repository.findRoots();
+// returns root categories without sub categories inside
+</code></pre>
+<ul>
+<li><code>findDescendants</code> - Gets all children (descendants) of the given entity. Returns them all in a flat array.</li>
+</ul>
+<pre><code class="language-typescript">const children = await repository.findDescendants(parentCategory);
+// returns all direct subcategories (without its nested categories) of a parentCategory
+</code></pre>
+<ul>
+<li><code>findDescendantsTree</code> - Gets all children (descendants) of the given entity. Returns them in a tree - nested into each other.</li>
+</ul>
+<pre><code class="language-typescript">const childrenTree = await repository.findDescendantsTree(parentCategory);
+// returns all direct subcategories (with its nested categories) of a parentCategory
+</code></pre>
+<ul>
+<li><code>createDescendantsQueryBuilder</code> - Creates a query builder used to get descendants of the entities in a tree.</li>
+</ul>
+<pre><code class="language-typescript">const children = await repository
+    .createDescendantsQueryBuilder(&quot;category&quot;, &quot;categoryClosure&quot;, parentCategory)
+    .andWhere(&quot;category.type = 'secondary'&quot;)
+    .getMany();
+</code></pre>
+<ul>
+<li><code>countDescendants</code> - Gets number of descendants of the entity.</li>
+</ul>
+<pre><code class="language-typescript">const childrenCount = await repository.countDescendants(parentCategory);
+</code></pre>
+<ul>
+<li><code>findAncestors</code> - Gets all parent (ancestors) of the given entity. Returns them all in a flat array.</li>
+</ul>
+<pre><code class="language-typescript">const parents = await repository.findAncestors(childCategory);
+// returns all direct childCategory's parent categories (without &quot;parent of parents&quot;)
+</code></pre>
+<ul>
+<li><code>findAncestorsTree</code> - Gets all parent (ancestors) of the given entity. Returns them in a tree - nested into each other.</li>
+</ul>
+<pre><code class="language-typescript">const parentsTree = await repository.findAncestorsTree(childCategory);
+// returns all direct childCategory's parent categories (with &quot;parent of parents&quot;)
+</code></pre>
+<ul>
+<li><code>createAncestorsQueryBuilder</code> - Creates a query builder used to get ancestors of the entities in a tree.</li>
+</ul>
+<pre><code class="language-typescript">const parents = await repository
+    .createAncestorsQueryBuilder(&quot;category&quot;, &quot;categoryClosure&quot;, childCategory)
+    .andWhere(&quot;category.type = 'secondary'&quot;)
+    .getMany();
+</code></pre>
+<ul>
+<li><code>countAncestors</code> - Gets the number of ancestors of the entity.</li>
+</ul>
+<pre><code class="language-typescript">const parentsCount = await repository.countAncestors(childCategory);
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../transactions/" class="btn btn-neutral float-left" title="Transactions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../troubleshooting/" class="btn btn-neutral float-right" title="Troubleshooting">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../transactions/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../troubleshooting/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

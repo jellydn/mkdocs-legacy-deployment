@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/find-options/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Find Options - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Find Options";
+        var mkdocs_page_input_path = "find-options.md";
+        var mkdocs_page_url = "/find-options/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Find Options</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#basic-options">Basic options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#advanced-options">Advanced options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combining-advanced-options">Combining Advanced Options</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Find Options</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="find-options">Find Options</h1>
+<ul>
+<li><a href="#basic-options">Basic options</a></li>
+<li><a href="#advanced-options">Advanced options</a></li>
+</ul>
+<h2 id="basic-options">Basic options</h2>
+<p>All repository and manager <code>find</code> methods accept special options you can use to query data you need without using <code>QueryBuilder</code>:</p>
+<ul>
+<li><code>select</code> - indicates which properties of the main object must be selected</li>
+</ul>
+<pre><code class="language-typescript">userRepository.find({ select: [&quot;firstName&quot;, &quot;lastName&quot;] });
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT &quot;firstName&quot;, &quot;lastName&quot; FROM &quot;user&quot;
+</code></pre>
+<ul>
+<li><code>relations</code> - relations needs to be loaded with the main entity. Sub-relations can also be loaded (shorthand for join and leftJoinAndSelect)</li>
+</ul>
+<pre><code class="language-typescript">userRepository.find({ relations: [&quot;profile&quot;, &quot;photos&quot;, &quot;videos&quot;] });
+userRepository.find({
+    relations: [&quot;profile&quot;, &quot;photos&quot;, &quot;videos&quot;, &quot;videos.video_attributes&quot;],
+});
+</code></pre>
+<p>will execute following queries:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;user&quot;
+LEFT JOIN &quot;profile&quot; ON &quot;profile&quot;.&quot;id&quot; = &quot;user&quot;.&quot;profileId&quot;
+LEFT JOIN &quot;photos&quot; ON &quot;photos&quot;.&quot;id&quot; = &quot;user&quot;.&quot;photoId&quot;
+LEFT JOIN &quot;videos&quot; ON &quot;videos&quot;.&quot;id&quot; = &quot;user&quot;.&quot;videoId&quot;
+
+SELECT * FROM &quot;user&quot;
+LEFT JOIN &quot;profile&quot; ON &quot;profile&quot;.&quot;id&quot; = &quot;user&quot;.&quot;profileId&quot;
+LEFT JOIN &quot;photos&quot; ON &quot;photos&quot;.&quot;id&quot; = &quot;user&quot;.&quot;photoId&quot;
+LEFT JOIN &quot;videos&quot; ON &quot;videos&quot;.&quot;id&quot; = &quot;user&quot;.&quot;videoId&quot;
+LEFT JOIN &quot;video_attributes&quot; ON &quot;video_attributes&quot;.&quot;id&quot; = &quot;videos&quot;.&quot;video_attributesId&quot;
+</code></pre>
+<ul>
+<li><code>join</code> - joins needs to be performed for the entity. Extended version of "relations".</li>
+</ul>
+<pre><code class="language-typescript">userRepository.find({
+    join: {
+        alias: &quot;user&quot;,
+        leftJoinAndSelect: {
+            profile: &quot;user.profile&quot;,
+            photo: &quot;user.photos&quot;,
+            video: &quot;user.videos&quot;,
+        },
+    },
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;user&quot; &quot;user&quot;
+LEFT JOIN &quot;profile&quot; ON &quot;profile&quot;.&quot;id&quot; = &quot;user&quot;.&quot;profile&quot;
+LEFT JOIN &quot;photo&quot; ON &quot;photo&quot;.&quot;id&quot; = &quot;user&quot;.&quot;photos&quot;
+LEFT JOIN &quot;video&quot; ON &quot;video&quot;.&quot;id&quot; = &quot;user&quot;.&quot;videos&quot;
+</code></pre>
+<ul>
+<li><code>where</code> - simple conditions by which entity should be queried.</li>
+</ul>
+<pre><code class="language-typescript">userRepository.find({ where: { firstName: &quot;Timber&quot;, lastName: &quot;Saw&quot; } });
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;user&quot;
+WHERE &quot;firstName&quot; = 'Timber' AND &quot;lastName&quot; = 'Saw'
+</code></pre>
+<p>Querying a column from an embedded entity should be done with respect to the hierarchy in which it was defined. Example:</p>
+<pre><code class="language-typescript">userRepository.find({
+    where: {
+        project: { name: &quot;TypeORM&quot;, initials: &quot;TORM&quot; },
+    },
+    relations: [&quot;project&quot;],
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;user&quot;
+WHERE &quot;project&quot;.&quot;name&quot; = 'TypeORM' AND &quot;project&quot;.&quot;initials&quot; = 'TORM'
+LEFT JOIN &quot;project&quot; ON &quot;project&quot;.&quot;id&quot; = &quot;user&quot;.&quot;projectId&quot;
+</code></pre>
+<p>Querying with OR operator:</p>
+<pre><code class="language-typescript">userRepository.find({
+    where: [
+        { firstName: &quot;Timber&quot;, lastName: &quot;Saw&quot; },
+        { firstName: &quot;Stan&quot;, lastName: &quot;Lee&quot; },
+    ],
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;user&quot; WHERE (&quot;firstName&quot; = 'Timber' AND &quot;lastName&quot; = 'Saw') OR (&quot;firstName&quot; = 'Stan' AND &quot;lastName&quot; = 'Lee')
+</code></pre>
+<ul>
+<li><code>order</code> - selection order.</li>
+</ul>
+<pre><code class="language-typescript">userRepository.find({
+    order: {
+        name: &quot;ASC&quot;,
+        id: &quot;DESC&quot;,
+    },
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;user&quot;
+ORDER BY &quot;name&quot; ASC, &quot;id&quot; DESC
+</code></pre>
+<ul>
+<li><code>withDeleted</code> - include entities which have been soft deleted with <code>softDelete</code> or <code>softRemove</code>, e.g. have their <code>@DeleteDateColumn</code> column set. By default, soft deleted entities are not included.</li>
+</ul>
+<pre><code class="language-typescript">userRepository.find({
+    withDeleted: true,
+});
+</code></pre>
+<p><code>find</code> methods which return multiple entities (<code>find</code>, <code>findAndCount</code>, <code>findByIds</code>) also accept following options:</p>
+<ul>
+<li><code>skip</code> - offset (paginated) from where entities should be taken.</li>
+</ul>
+<pre><code class="language-typescript">userRepository.find({
+    skip: 5,
+});
+</code></pre>
+<pre><code class="language-sql">SELECT * FROM &quot;user&quot;
+OFFSET 5
+</code></pre>
+<ul>
+<li><code>take</code> - limit (paginated) - max number of entities that should be taken.</li>
+</ul>
+<pre><code class="language-typescript">userRepository.find({
+    take: 10,
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;user&quot;
+LIMIT 10
+</code></pre>
+<p>** <code>skip</code> and <code>take</code> should be used together</p>
+<p>** If you are using typeorm with MSSQL, and want to use <code>take</code> or <code>limit</code>, you need to use order as well or you will receive the following error: <code>'Invalid usage of the option NEXT in the FETCH statement.'</code></p>
+<pre><code class="language-typescript">userRepository.find({
+    order: {
+        columnName: &quot;ASC&quot;,
+    },
+    skip: 0,
+    take: 10,
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;user&quot;
+ORDER BY &quot;columnName&quot; ASC
+LIMIT 10 OFFSET 0
+</code></pre>
+<ul>
+<li><code>cache</code> - Enables or disables query result caching. See <a href="../caching/">caching</a> for more information and options.</li>
+</ul>
+<pre><code class="language-typescript">userRepository.find({
+    cache: true,
+});
+</code></pre>
+<ul>
+<li><code>lock</code> - Enables locking mechanism for query. Can be used only in <code>findOne</code> method. <code>lock</code> is an object which can be defined as:</li>
+</ul>
+<pre><code class="language-ts">{ mode: &quot;optimistic&quot;, version: number|Date }
+</code></pre>
+<p>or</p>
+<pre><code class="language-ts">{
+    mode: &quot;pessimistic_read&quot; |
+        &quot;pessimistic_write&quot; |
+        &quot;dirty_read&quot; |
+        &quot;pessimistic_partial_write&quot; |
+        &quot;pessimistic_write_or_fail&quot; |
+        &quot;for_no_key_update&quot;;
+}
+</code></pre>
+<p>for example:</p>
+<pre><code class="language-typescript">userRepository.findOne(1, {
+    lock: { mode: &quot;optimistic&quot;, version: 1 },
+});
+</code></pre>
+<p>Support of lock modes, and SQL statements they translate to, are listed in the table below (blank cell denotes unsupported). When specified lock mode is not supported, a <code>LockNotSupportedOnGivenDriverError</code> error will be thrown.</p>
+<pre><code class="language-text">|                 | pessimistic_read         | pessimistic_write       | dirty_read    | pessimistic_partial_write   | pessimistic_write_or_fail   | for_no_key_update   |
+| --------------- | --------------------     | ----------------------- | ------------- | --------------------------- | --------------------------- | ------------------- |
+| MySQL           | LOCK IN SHARE MODE       | FOR UPDATE              | (nothing)     | FOR UPDATE SKIP LOCKED      | FOR UPDATE NOWAIT           |                     |
+| Postgres        | FOR SHARE                | FOR UPDATE              | (nothing)     | FOR UPDATE SKIP LOCKED      | FOR UPDATE NOWAIT           | FOR NO KEY UPDATE   |
+| Oracle          | FOR UPDATE               | FOR UPDATE              | (nothing)     |                             |                             |                     |
+| SQL Server      | WITH (HOLDLOCK, ROWLOCK) | WITH (UPDLOCK, ROWLOCK) | WITH (NOLOCK) |                             |                             |                     |
+| AuroraDataApi   | LOCK IN SHARE MODE       | FOR UPDATE              | (nothing)     |                             |                             |                     |
+
+</code></pre>
+<p>Complete example of find options:</p>
+<pre><code class="language-typescript">userRepository.find({
+    select: [&quot;firstName&quot;, &quot;lastName&quot;],
+    relations: [&quot;profile&quot;, &quot;photos&quot;, &quot;videos&quot;],
+    where: {
+        firstName: &quot;Timber&quot;,
+        lastName: &quot;Saw&quot;,
+        profile: {
+            userName: &quot;tshaw&quot;,
+        },
+    },
+    order: {
+        name: &quot;ASC&quot;,
+        id: &quot;DESC&quot;,
+    },
+    skip: 5,
+    take: 10,
+    cache: true,
+});
+</code></pre>
+<h2 id="advanced-options">Advanced options</h2>
+<p>TypeORM provides a lot of built-in operators that can be used to create more complex comparisons:</p>
+<ul>
+<li><code>Not</code></li>
+</ul>
+<pre><code class="language-ts">import { Not } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    title: Not(&quot;About #1&quot;),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;title&quot; != 'About #1'
+</code></pre>
+<ul>
+<li><code>LessThan</code></li>
+</ul>
+<pre><code class="language-ts">import { LessThan } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    likes: LessThan(10),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;likes&quot; &lt; 10
+</code></pre>
+<ul>
+<li><code>LessThanOrEqual</code></li>
+</ul>
+<pre><code class="language-ts">import { LessThanOrEqual } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    likes: LessThanOrEqual(10),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;likes&quot; &lt;= 10
+</code></pre>
+<ul>
+<li><code>MoreThan</code></li>
+</ul>
+<pre><code class="language-ts">import { MoreThan } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    likes: MoreThan(10),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;likes&quot; &gt; 10
+</code></pre>
+<ul>
+<li><code>MoreThanOrEqual</code></li>
+</ul>
+<pre><code class="language-ts">import { MoreThanOrEqual } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    likes: MoreThanOrEqual(10),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;likes&quot; &gt;= 10
+</code></pre>
+<ul>
+<li><code>Equal</code></li>
+</ul>
+<pre><code class="language-ts">import { Equal } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    title: Equal(&quot;About #2&quot;),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;title&quot; = 'About #2'
+</code></pre>
+<ul>
+<li><code>Like</code></li>
+</ul>
+<pre><code class="language-ts">import { Like } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    title: Like(&quot;%out #%&quot;),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;title&quot; LIKE '%out #%'
+</code></pre>
+<ul>
+<li><code>ILike</code></li>
+</ul>
+<pre><code class="language-ts">import { ILike } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    title: ILike(&quot;%out #%&quot;),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;title&quot; ILIKE '%out #%'
+</code></pre>
+<ul>
+<li><code>Between</code></li>
+</ul>
+<pre><code class="language-ts">import { Between } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    likes: Between(1, 10),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;likes&quot; BETWEEN 1 AND 10
+</code></pre>
+<ul>
+<li><code>In</code></li>
+</ul>
+<pre><code class="language-ts">import { In } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    title: In([&quot;About #2&quot;, &quot;About #3&quot;]),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;title&quot; IN ('About #2','About #3')
+</code></pre>
+<ul>
+<li><code>Any</code></li>
+</ul>
+<pre><code class="language-ts">import { Any } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    title: Any([&quot;About #2&quot;, &quot;About #3&quot;]),
+});
+</code></pre>
+<p>will execute following query (Postgres notation):</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;title&quot; = ANY(['About #2','About #3'])
+</code></pre>
+<ul>
+<li><code>IsNull</code></li>
+</ul>
+<pre><code class="language-ts">import { IsNull } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    title: IsNull(),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;title&quot; IS NULL
+</code></pre>
+<ul>
+<li><code>Raw</code></li>
+</ul>
+<pre><code class="language-ts">import { Raw } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    likes: Raw(&quot;dislikes - 4&quot;),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;likes&quot; = &quot;dislikes&quot; - 4
+</code></pre>
+<p>In the simplest case, a raw query is inserted immediately after the equal symbol.
+But you can also completely rewrite the comparison logic using the function.</p>
+<pre><code class="language-ts">import { Raw } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    currentDate: Raw((alias) =&gt; `${alias} &gt; NOW()`),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;currentDate&quot; &gt; NOW()
+</code></pre>
+<p>If you need to provide user input, you should not include the user input directly in your query as this may create a SQL injection vulnerability. Instead, you can use the second argument of the <code>Raw</code> function to provide a list of parameters to bind to the query.</p>
+<pre><code class="language-ts">import { Raw } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    currentDate: Raw((alias) =&gt; `${alias} &gt; :date`, { date: &quot;2020-10-06&quot; }),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;currentDate&quot; &gt; '2020-10-06'
+</code></pre>
+<p>If you need to provide user input that is an array, you can bind them as a list of values in the SQL statement by using the special expression syntax:</p>
+<pre><code class="language-ts">import { Raw } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    title: Raw((alias) =&gt; `${alias} IN (:...titles)`, {
+        titles: [
+            &quot;Go To Statement Considered Harmful&quot;,
+            &quot;Structured Programming&quot;,
+        ],
+    }),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE &quot;titles&quot; IN ('Go To Statement Considered Harmful', 'Structured Programming')
+</code></pre>
+<h2 id="combining-advanced-options">Combining Advanced Options</h2>
+<p>Also you can combine these operators with <code>Not</code> operator:</p>
+<pre><code class="language-ts">import { Not, MoreThan, Equal } from &quot;typeorm&quot;;
+
+const loadedPosts = await connection.getRepository(Post).find({
+    likes: Not(MoreThan(10)),
+    title: Not(Equal(&quot;About #2&quot;)),
+});
+</code></pre>
+<p>will execute following query:</p>
+<pre><code class="language-sql">SELECT * FROM &quot;post&quot; WHERE NOT(&quot;likes&quot; &gt; 10) AND NOT(&quot;title&quot; = 'About #2')
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../faq/" class="btn btn-neutral float-left" title="FAQ"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../indices/" class="btn btn-neutral float-right" title="Indices">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../faq/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../indices/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

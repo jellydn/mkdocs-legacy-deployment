@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/caching/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Caching queries - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Caching queries";
+        var mkdocs_page_input_path = "caching.md";
+        var mkdocs_page_url = "/caching/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Caching queries</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Caching queries</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="caching-queries">Caching queries</h1>
+<p>You can cache results selected by these <code>QueryBuilder</code> methods: <code>getMany</code>, <code>getOne</code>, <code>getRawMany</code>, <code>getRawOne</code>  and <code>getCount</code>.</p>
+<p>You can also cache results selected by these <code>Repository</code> methods: <code>find</code>, <code>findAndCount</code>, <code>findByIds</code>, and <code>count</code>.</p>
+<p>To enable caching you need to explicitly enable it in your connection options:</p>
+<pre><code class="language-typescript">{
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    username: &quot;test&quot;,
+    ...
+    cache: true
+}
+</code></pre>
+<p>When you enable cache for the first time,
+you must synchronize your database schema (using CLI, migrations or the <code>synchronize</code> connection option).</p>
+<p>Then in <code>QueryBuilder</code> you can enable query cache for any query:</p>
+<pre><code class="language-typescript">const users = await connection
+    .createQueryBuilder(User, &quot;user&quot;)
+    .where(&quot;user.isAdmin = :isAdmin&quot;, { isAdmin: true })
+    .cache(true)
+    .getMany();
+</code></pre>
+<p>Equivalent <code>Repository</code> query:</p>
+<pre><code class="language-typescript">const users = await connection
+    .getRepository(User)
+    .find({
+        where: { isAdmin: true },
+        cache: true
+    });
+</code></pre>
+<p>This will execute a query to fetch all admin users and cache the results.
+Next time you execute the same code, it will get all admin users from the cache.
+Default cache lifetime is equal to <code>1000 ms</code>, e.g. 1 second.
+This means the cache will be invalid 1 second after the query builder code is called.
+In practice, this means that if users open the user page 150 times within 3 seconds, only three queries will be executed during this period.
+Any users inserted during the 1 second cache window won't be returned to the user.</p>
+<p>You can change cache time manually via <code>QueryBuilder</code>:</p>
+<pre><code class="language-typescript">const users = await connection
+    .createQueryBuilder(User, &quot;user&quot;)
+    .where(&quot;user.isAdmin = :isAdmin&quot;, { isAdmin: true })
+    .cache(60000) // 1 minute
+    .getMany();
+</code></pre>
+<p>Or via <code>Repository</code>:</p>
+<pre><code class="language-typescript">const users = await connection
+    .getRepository(User)
+    .find({
+        where: { isAdmin: true },
+        cache: 60000
+    });
+</code></pre>
+<p>Or globally in connection options:</p>
+<pre><code class="language-typescript">{
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    username: &quot;test&quot;,
+    ...
+    cache: {
+        duration: 30000 // 30 seconds
+    }
+}
+</code></pre>
+<p>Also, you can set a "cache id" via <code>QueryBuilder</code>:</p>
+<pre><code class="language-typescript">const users = await connection
+    .createQueryBuilder(User, &quot;user&quot;)
+    .where(&quot;user.isAdmin = :isAdmin&quot;, { isAdmin: true })
+    .cache(&quot;users_admins&quot;, 25000)
+    .getMany();
+</code></pre>
+<p>Or with <code>Repository</code>:</p>
+<pre><code class="language-typescript">const users = await connection
+    .getRepository(User)
+    .find({
+        where: { isAdmin: true },
+        cache: {
+            id: &quot;users_admins&quot;,
+            milliseconds: 25000
+        }
+    });
+</code></pre>
+<p>This gives you granular control of your cache,
+for example, clearing cached results when you insert a new user:</p>
+<pre><code class="language-typescript">await connection.queryResultCache.remove([&quot;users_admins&quot;]);
+</code></pre>
+<p>By default, TypeORM uses a separate table called <code>query-result-cache</code> and stores all queries and results there.
+Table name is configurable, so you could change it by specifying a different value in the tableName property.
+Example:</p>
+<pre><code class="language-typescript">{
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    username: &quot;test&quot;,
+    ...
+    cache: {
+        type: &quot;database&quot;,
+        tableName: &quot;configurable-table-query-result-cache&quot;
+    }
+}
+</code></pre>
+<p>If storing cache in a single database table is not effective for you,
+you can change the cache type to "redis" or "ioredis" and TypeORM will store all cached records in redis instead.
+Example:</p>
+<pre><code class="language-typescript">{
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    username: &quot;test&quot;,
+    ...
+    cache: {
+        type: &quot;redis&quot;,
+        options: {
+            host: &quot;localhost&quot;,
+            port: 6379
+        }
+    }
+}
+</code></pre>
+<p>"options" can be <a href="https://github.com/NodeRedis/node_redis#options-object-properties">node_redis specific options</a> or <a href="https://github.com/luin/ioredis/blob/master/API.md#new-redisport-host-options">ioredis specific options</a> depending on what type you're using.</p>
+<p>In case you want to connect to a redis-cluster using IORedis's cluster functionality, you can do that as well by doing the following:</p>
+<pre><code class="language-typescript">{
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    username: &quot;test&quot;,
+    cache: {
+        type: &quot;ioredis/cluster&quot;,
+        options: {
+            startupNodes: [
+                {
+                    host: 'localhost',
+                    port: 7000,
+                },
+                {
+                    host: 'localhost',
+                    port: 7001,
+                },
+                {
+                    host: 'localhost',
+                    port: 7002,
+                }
+            ],
+            options: {
+                scaleReads: 'all',
+                clusterRetryStrategy: function (times) { return null },
+                redisOptions: {
+                    maxRetriesPerRequest: 1
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<p>Note that, you can still use options as the first argument of IORedis's cluster constructor.</p>
+<pre><code class="language-typescript">{
+    ...
+    cache: {
+        type: &quot;ioredis/cluster&quot;,
+        options: [
+            {
+                host: 'localhost',
+                port: 7000,
+            },
+            {
+                host: 'localhost',
+                port: 7001,
+            },
+            {
+                host: 'localhost',
+                port: 7002,
+            }
+        ]
+    },
+    ...
+}
+</code></pre>
+<p>If none of the built-in cache providers satisfy your demands, then you can also specify your own cache provider by using a <code>provider</code> factory function which needs to return a new object that implements the <code>QueryResultCache</code> interface:</p>
+<pre><code class="language-typescript">class CustomQueryResultCache implements QueryResultCache {
+    constructor(private connection: Connection) {}
+    ...
+}
+</code></pre>
+<pre><code class="language-typescript">{
+    ...
+    cache: {
+        provider(connection) {
+            return new CustomQueryResultCache(connection);
+        }
+    }
+}
+</code></pre>
+<p>If you wish to ignore cache errors and want the queries to pass through to database in case of cache errors, you can use ignoreErrors option. 
+Example:</p>
+<pre><code class="language-typescript">{
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    username: &quot;test&quot;,
+    ...
+    cache: {
+        type: &quot;redis&quot;,
+        options: {
+            host: &quot;localhost&quot;,
+            port: 6379
+        },
+        ignoreErrors: true
+    }
+}
+</code></pre>
+<p>You can use <code>typeorm cache:clear</code> to clear everything stored in the cache.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../active-record-data-mapper/" class="btn btn-neutral float-left" title="Active Record vs Data Mapper"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../connection-api/" class="btn btn-neutral float-right" title="Connection APIs">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../active-record-data-mapper/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../connection-api/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

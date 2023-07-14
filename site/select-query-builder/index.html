@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/select-query-builder/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Select using Query Builder - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Select using Query Builder";
+        var mkdocs_page_input_path = "select-query-builder.md";
+        var mkdocs_page_url = "/select-query-builder/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Select using Query Builder</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-querybuilder">What is QueryBuilder</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#important-note-when-using-the-querybuilder">Important note when using the QueryBuilder</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-create-and-use-a-querybuilder">How to create and use a QueryBuilder</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-values-using-querybuilder">Getting values using QueryBuilder</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-are-aliases-for">What are aliases for?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-parameters-to-escape-data">Using parameters to escape data</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-where-expression">Adding WHERE expression</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-having-expression">Adding HAVING expression</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-order-by-expression">Adding ORDER BY expression</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-distinct-on-expression-postgres-only">Adding DISTINCT ON expression (Postgres only)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-group-by-expression">Adding GROUP BY expression</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-limit-expression">Adding LIMIT expression</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-offset-expression">Adding OFFSET expression</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#joining-relations">Joining relations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#inner-and-left-joins">Inner and left joins</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#join-without-selection">Join without selection</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#joining-any-entity-or-table">Joining any entity or table</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#joining-and-mapping-functionality">Joining and mapping functionality</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-the-generated-query">Getting the generated query</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-raw-results">Getting raw results</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#streaming-result-data">Streaming result data</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-pagination">Using pagination</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#set-locking">Set locking</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#max-execution-time">Max execution time</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#partial-selection">Partial selection</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-subqueries">Using subqueries</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hidden-columns">Hidden Columns</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#querying-deleted-rows">Querying Deleted rows</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Select using Query Builder</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="select-using-query-builder">Select using Query Builder</h1>
+<ul>
+<li><a href="#what-is-querybuilder">What is <code>QueryBuilder</code></a></li>
+<li><a href="#important-note-when-using-the-querybuilder">Important note when using the <code>QueryBuilder</code></a></li>
+<li><a href="#how-to-create-and-use-a-querybuilder">How to create and use a <code>QueryBuilder</code></a></li>
+<li><a href="#getting-values-using-querybuilder">Getting values using QueryBuilder</a></li>
+<li><a href="#what-are-aliases-for">What are aliases for?</a></li>
+<li><a href="#using-parameters-to-escape-data">Using parameters to escape data</a></li>
+<li><a href="#adding-where-expression">Adding <code>WHERE</code> expression</a></li>
+<li><a href="#adding-having-expression">Adding <code>HAVING</code> expression</a></li>
+<li><a href="#adding-order-by-expression">Adding <code>ORDER BY</code> expression</a></li>
+<li><a href="#adding-group-by-expression">Adding <code>GROUP BY</code> expression</a></li>
+<li><a href="#adding-limit-expression">Adding <code>LIMIT</code> expression</a></li>
+<li><a href="#adding-offset-expression">Adding <code>OFFSET</code> expression</a></li>
+<li><a href="#joining-relations">Joining relations</a></li>
+<li><a href="#inner-and-left-joins">Inner and left joins</a></li>
+<li><a href="#join-without-selection">Join without selection</a></li>
+<li><a href="#joining-any-entity-or-table">Joining any entity or table</a></li>
+<li><a href="#joining-and-mapping-functionality">Joining and mapping functionality</a></li>
+<li><a href="#getting-the-generated-query">Getting the generated query</a></li>
+<li><a href="#getting-raw-results">Getting raw results</a></li>
+<li><a href="#streaming-result-data">Streaming result data</a></li>
+<li><a href="#using-pagination">Using pagination</a></li>
+<li><a href="#set-locking">Set locking</a></li>
+<li><a href="#max-execution-time">Max execution time</a></li>
+<li><a href="#partial-selection">Partial selection</a></li>
+<li><a href="#using-subqueries">Using subqueries</a></li>
+<li><a href="#hidden-columns">Hidden Columns</a></li>
+<li><a href="#querying-deleted-rows">Querying Deleted rows</a></li>
+</ul>
+<h2 id="what-is-querybuilder">What is <code>QueryBuilder</code></h2>
+<p><code>QueryBuilder</code> is one of the most powerful features of TypeORM -
+it allows you to build SQL queries using elegant and convenient syntax,
+execute them and get automatically transformed entities.</p>
+<p>Simple example of <code>QueryBuilder</code>:</p>
+<pre><code class="language-typescript">const firstUser = await connection
+    .getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .where(&quot;user.id = :id&quot;, { id: 1 })
+    .getOne();
+</code></pre>
+<p>It builds the following SQL query:</p>
+<pre><code class="language-sql">SELECT
+    user.id as userId,
+    user.firstName as userFirstName,
+    user.lastName as userLastName
+FROM users user
+WHERE user.id = 1
+</code></pre>
+<p>and returns you an instance of <code>User</code>:</p>
+<pre><code>User {
+    id: 1,
+    firstName: &quot;Timber&quot;,
+    lastName: &quot;Saw&quot;
+}
+</code></pre>
+<h2 id="important-note-when-using-the-querybuilder">Important note when using the <code>QueryBuilder</code></h2>
+<p>When using the <code>QueryBuilder</code>, you need to provide unique parameters in your <code>WHERE</code> expressions. <strong>This will not work</strong>:</p>
+<pre><code class="language-TypeScript">const result = await getConnection()
+    .createQueryBuilder('user')
+    .leftJoinAndSelect('user.linkedSheep', 'linkedSheep')
+    .leftJoinAndSelect('user.linkedCow', 'linkedCow')
+    .where('user.linkedSheep = :id', { id: sheepId })
+    .andWhere('user.linkedCow = :id', { id: cowId });
+</code></pre>
+<p>... but this will:</p>
+<pre><code class="language-TypeScript">const result = await getConnection()
+    .createQueryBuilder('user')
+    .leftJoinAndSelect('user.linkedSheep', 'linkedSheep')
+    .leftJoinAndSelect('user.linkedCow', 'linkedCow')
+    .where('user.linkedSheep = :sheepId', { sheepId })
+    .andWhere('user.linkedCow = :cowId', { cowId });
+</code></pre>
+<p>Note that we uniquely named <code>:sheepId</code> and <code>:cowId</code> instead of using <code>:id</code> twice for different parameters.</p>
+<h2 id="how-to-create-and-use-a-querybuilder">How to create and use a <code>QueryBuilder</code></h2>
+<p>There are several ways how you can create a <code>Query Builder</code>:</p>
+<ul>
+<li>
+<p>Using connection:</p>
+<p>```typescript
+import {getConnection} from "typeorm";</p>
+<p>const user = await getConnection()
+    .createQueryBuilder()
+    .select("user")
+    .from(User, "user")
+    .where("user.id = :id", { id: 1 })
+    .getOne();
+```</p>
+</li>
+<li>
+<p>Using entity manager:</p>
+<p>```typescript
+import {getManager} from "typeorm";</p>
+<p>const user = await getManager()
+    .createQueryBuilder(User, "user")
+    .where("user.id = :id", { id: 1 })
+    .getOne();
+```</p>
+</li>
+<li>
+<p>Using repository:</p>
+<p>```typescript
+import {getRepository} from "typeorm";</p>
+<p>const user = await getRepository(User)
+    .createQueryBuilder("user")
+    .where("user.id = :id", { id: 1 })
+    .getOne();
+```</p>
+</li>
+</ul>
+<p>There are 5 different <code>QueryBuilder</code> types available:</p>
+<ul>
+<li>
+<p><code>SelectQueryBuilder</code> - used to build and execute <code>SELECT</code> queries. Example:</p>
+<p>```typescript
+import {getConnection} from "typeorm";</p>
+<p>const user = await getConnection()
+    .createQueryBuilder()
+    .select("user")
+    .from(User, "user")
+    .where("user.id = :id", { id: 1 })
+    .getOne();
+```</p>
+</li>
+<li>
+<p><code>InsertQueryBuilder</code> - used to build and execute <code>INSERT</code> queries. Example:</p>
+<p>```typescript
+import {getConnection} from "typeorm";</p>
+<p>await getConnection()
+    .createQueryBuilder()
+    .insert()
+    .into(User)
+    .values([
+        { firstName: "Timber", lastName: "Saw" },
+        { firstName: "Phantom", lastName: "Lancer" }
+     ])
+    .execute();
+```</p>
+</li>
+<li>
+<p><code>UpdateQueryBuilder</code> - used to build and execute <code>UPDATE</code> queries. Example:</p>
+<p>```typescript
+import {getConnection} from "typeorm";</p>
+<p>await getConnection()
+    .createQueryBuilder()
+    .update(User)
+    .set({ firstName: "Timber", lastName: "Saw" })
+    .where("id = :id", { id: 1 })
+    .execute();
+<code>``
+*</code>DeleteQueryBuilder<code>- used to build and execute</code>DELETE` queries. Example:</p>
+<p>```typescript
+import {getConnection} from "typeorm";</p>
+<p>await getConnection()
+    .createQueryBuilder()
+    .delete()
+    .from(User)
+    .where("id = :id", { id: 1 })
+    .execute();
+```</p>
+</li>
+<li>
+<p><code>RelationQueryBuilder</code> - used to build and execute relation-specific operations [TBD].</p>
+</li>
+</ul>
+<p>You can switch between different types of query builder within any of them,
+once you do, you will get a new instance of query builder (unlike all other methods).</p>
+<h2 id="getting-values-using-querybuilder">Getting values using <code>QueryBuilder</code></h2>
+<p>To get a single result from the database,
+for example to get a user by id or name, you must use <code>getOne</code>:</p>
+<pre><code class="language-typescript">const timber = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .where(&quot;user.id = :id OR user.name = :name&quot;, { id: 1, name: &quot;Timber&quot; })
+    .getOne();
+</code></pre>
+<p><code>getOneOrFail</code> will get a single result from the database, but if
+no result exists it will throw an <code>EntityNotFoundError</code>:</p>
+<pre><code class="language-typescript">const timber = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .where(&quot;user.id = :id OR user.name = :name&quot;, { id: 1, name: &quot;Timber&quot; })
+    .getOneOrFail();
+</code></pre>
+<p>To get multiple results from the database,
+for example, to get all users from the database, use <code>getMany</code>:</p>
+<pre><code class="language-typescript">const users = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .getMany();
+</code></pre>
+<p>There are two types of results you can get using select query builder: <strong>entities</strong> or <strong>raw results</strong>.
+Most of the time, you need to select real entities from your database, for example, users.
+For this purpose, you use <code>getOne</code> and <code>getMany</code>.
+But sometimes you need to select some specific data, let's say the <em>sum of all user photos</em>.
+This data is not an entity, it's called raw data.
+To get raw data, you use <code>getRawOne</code> and <code>getRawMany</code>.
+Examples:</p>
+<pre><code class="language-typescript">const { sum } = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .select(&quot;SUM(user.photosCount)&quot;, &quot;sum&quot;)
+    .where(&quot;user.id = :id&quot;, { id: 1 })
+    .getRawOne();
+</code></pre>
+<pre><code class="language-typescript">const photosSums = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .select(&quot;user.id&quot;)
+    .addSelect(&quot;SUM(user.photosCount)&quot;, &quot;sum&quot;)
+    .groupBy(&quot;user.id&quot;)
+    .getRawMany();
+
+// result will be like this: [{ id: 1, sum: 25 }, { id: 2, sum: 13 }, ...]
+</code></pre>
+<h2 id="what-are-aliases-for">What are aliases for?</h2>
+<p>We used <code>createQueryBuilder("user")</code>. But what is "user"?
+It's just a regular SQL alias.
+We use aliases everywhere, except when we work with selected data.</p>
+<p><code>createQueryBuilder("user")</code> is equivalent to:</p>
+<pre><code class="language-typescript">createQueryBuilder()
+    .select(&quot;user&quot;)
+    .from(User, &quot;user&quot;)
+</code></pre>
+<p>Which will result in the following sql query:</p>
+<pre><code class="language-sql">SELECT ... FROM users user
+</code></pre>
+<p>In this SQL query, <code>users</code> is the table name, and <code>user</code> is an alias we assign to this table.
+Later we use this alias to access the table:</p>
+<pre><code class="language-typescript">createQueryBuilder()
+    .select(&quot;user&quot;)
+    .from(User, &quot;user&quot;)
+    .where(&quot;user.name = :name&quot;, { name: &quot;Timber&quot; })
+</code></pre>
+<p>Which produces the following SQL query:</p>
+<pre><code class="language-sql">SELECT ... FROM users user WHERE user.name = 'Timber'
+</code></pre>
+<p>See, we used the users table by using the <code>user</code> alias we assigned when we created a query builder.</p>
+<p>One query builder is not limited to one alias, they can have multiple aliases.
+Each select can have its own alias,
+you can select from multiple tables each with its own alias,
+you can join multiple tables each with its own alias.
+You can use those aliases to access tables are you selecting (or data you are selecting).</p>
+<h2 id="using-parameters-to-escape-data">Using parameters to escape data</h2>
+<p>We used <code>where("user.name = :name", { name: "Timber" })</code>.
+What does <code>{ name: "Timber" }</code> stand for? It's a parameter we used to prevent SQL injection.
+We could have written: <code>where("user.name = '" + name + "')</code>,
+however this is not safe, as it opens the code to SQL injections.
+The safe way is to use this special syntax: <code>where("user.name = :name", { name: "Timber" })</code>,
+where <code>:name</code> is a parameter name and the value is specified in an object: <code>{ name: "Timber" }</code>.</p>
+<pre><code class="language-typescript">.where(&quot;user.name = :name&quot;, { name: &quot;Timber&quot; })
+</code></pre>
+<p>is a shortcut for:</p>
+<pre><code class="language-typescript">.where(&quot;user.name = :name&quot;)
+.setParameter(&quot;name&quot;, &quot;Timber&quot;)
+</code></pre>
+<p>Note: do not use the same parameter name for different values across the query builder. Values will be overridden if you set them multiple times.</p>
+<p>You can also supply an array of values, and have them transformed into a list of values in the SQL
+statement, by using the special expansion syntax:</p>
+<pre><code class="language-typescript">.where(&quot;user.name IN (:...names)&quot;, { names: [ &quot;Timber&quot;, &quot;Cristal&quot;, &quot;Lina&quot; ] })
+</code></pre>
+<p>Which becomes:</p>
+<pre><code class="language-sql">WHERE user.name IN ('Timber', 'Cristal', 'Lina')
+</code></pre>
+<h2 id="adding-where-expression">Adding <code>WHERE</code> expression</h2>
+<p>Adding a <code>WHERE</code> expression is as easy as:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .where(&quot;user.name = :name&quot;, { name: &quot;Timber&quot; })
+</code></pre>
+<p>Which will produce:</p>
+<pre><code class="language-sql">SELECT ... FROM users user WHERE user.name = 'Timber'
+</code></pre>
+<p>You can add <code>AND</code> into an existing <code>WHERE</code> expression:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .where(&quot;user.firstName = :firstName&quot;, { firstName: &quot;Timber&quot; })
+    .andWhere(&quot;user.lastName = :lastName&quot;, { lastName: &quot;Saw&quot; });
+</code></pre>
+<p>Which will produce the following SQL query:</p>
+<pre><code class="language-sql">SELECT ... FROM users user WHERE user.firstName = 'Timber' AND user.lastName = 'Saw'
+</code></pre>
+<p>You can add <code>OR</code> into an existing <code>WHERE</code> expression:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .where(&quot;user.firstName = :firstName&quot;, { firstName: &quot;Timber&quot; })
+    .orWhere(&quot;user.lastName = :lastName&quot;, { lastName: &quot;Saw&quot; });
+</code></pre>
+<p>Which will produce the following SQL query:</p>
+<pre><code class="language-sql">SELECT ... FROM users user WHERE user.firstName = 'Timber' OR user.lastName = 'Saw'
+</code></pre>
+<p>You can do an <code>IN</code> query with the <code>WHERE</code> expression:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .where(&quot;user.id IN (:...ids)&quot;, { ids: [1, 2, 3, 4] })
+</code></pre>
+<p>Which will produce the following SQL query:</p>
+<pre><code class="language-sql">SELECT ... FROM users user WHERE user.id IN (1, 2, 3, 4)
+</code></pre>
+<p>You can add a complex <code>WHERE</code> expression into an existing <code>WHERE</code> using <code>Brackets</code></p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .where(&quot;user.registered = :registered&quot;, { registered: true })
+    .andWhere(new Brackets(qb =&gt; {
+        qb.where(&quot;user.firstName = :firstName&quot;, { firstName: &quot;Timber&quot; })
+          .orWhere(&quot;user.lastName = :lastName&quot;, { lastName: &quot;Saw&quot; })
+    }))
+</code></pre>
+<p>Which will produce the following SQL query:</p>
+<pre><code class="language-sql">SELECT ... FROM users user WHERE user.registered = true AND (user.firstName = 'Timber' OR user.lastName = 'Saw')
+</code></pre>
+<p>You can combine as many <code>AND</code> and <code>OR</code> expressions as you need.
+If you use <code>.where</code> more than once you'll override all previous <code>WHERE</code> expressions.</p>
+<p>Note: be careful with <code>orWhere</code> - if you use complex expressions with both <code>AND</code> and <code>OR</code> expressions,
+keep in mind that they are stacked without any pretences.
+Sometimes you'll need to create a where string instead, and avoid using <code>orWhere</code>.</p>
+<h2 id="adding-having-expression">Adding <code>HAVING</code> expression</h2>
+<p>Adding a <code>HAVING</code> expression is easy as:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .having(&quot;user.name = :name&quot;, { name: &quot;Timber&quot; })
+</code></pre>
+<p>Which will produce following SQL query:</p>
+<pre><code class="language-sql">SELECT ... FROM users user HAVING user.name = 'Timber'
+</code></pre>
+<p>You can add <code>AND</code> into an exist <code>HAVING</code> expression:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .having(&quot;user.firstName = :firstName&quot;, { firstName: &quot;Timber&quot; })
+    .andHaving(&quot;user.lastName = :lastName&quot;, { lastName: &quot;Saw&quot; });
+</code></pre>
+<p>Which will produce the following SQL query:</p>
+<pre><code class="language-sql">SELECT ... FROM users user HAVING user.firstName = 'Timber' AND user.lastName = 'Saw'
+</code></pre>
+<p>You can add <code>OR</code> into a exist <code>HAVING</code> expression:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .having(&quot;user.firstName = :firstName&quot;, { firstName: &quot;Timber&quot; })
+    .orHaving(&quot;user.lastName = :lastName&quot;, { lastName: &quot;Saw&quot; });
+</code></pre>
+<p>Which will produce the following SQL query:</p>
+<pre><code class="language-sql">SELECT ... FROM users user HAVING user.firstName = 'Timber' OR user.lastName = 'Saw'
+</code></pre>
+<p>You can combine as many <code>AND</code> and <code>OR</code> expressions as you need.
+If you use <code>.having</code> more than once you'll override all previous <code>HAVING</code> expressions.</p>
+<h2 id="adding-order-by-expression">Adding <code>ORDER BY</code> expression</h2>
+<p>Adding an <code>ORDER BY</code> expression is easy as:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .orderBy(&quot;user.id&quot;)
+</code></pre>
+<p>Which will produce:</p>
+<pre><code class="language-sql">SELECT ... FROM users user ORDER BY user.id
+</code></pre>
+<p>You can change the ordering direction from ascending to descending (or versa):</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .orderBy(&quot;user.id&quot;, &quot;DESC&quot;)
+
+createQueryBuilder(&quot;user&quot;)
+    .orderBy(&quot;user.id&quot;, &quot;ASC&quot;)
+</code></pre>
+<p>You can add multiple order-by criteria:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .orderBy(&quot;user.name&quot;)
+    .addOrderBy(&quot;user.id&quot;);
+</code></pre>
+<p>You can also use a map of order-by fields:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .orderBy({
+        &quot;user.name&quot;: &quot;ASC&quot;,
+        &quot;user.id&quot;: &quot;DESC&quot;
+    });
+</code></pre>
+<p>If you use <code>.orderBy</code> more than once you'll override all previous <code>ORDER BY</code> expressions.</p>
+<h2 id="adding-distinct-on-expression-postgres-only">Adding <code>DISTINCT ON</code> expression (Postgres only)</h2>
+<p>When using both distinct-on with an order-by expression, the distinct-on expression must match the leftmost order-by.
+The distinct-on expressions are interpreted using the same rules as order-by. Please note that, using distinct-on without an order-by expression means that the first row of each set is unpredictable.</p>
+<p>Adding a <code>DISTINCT ON</code> expression is easy as:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .distinctOn([&quot;user.id&quot;])
+    .orderBy(&quot;user.id&quot;)
+</code></pre>
+<p>Which will produce:</p>
+<pre><code class="language-sql">SELECT DISTINCT ON (user.id) ... FROM users user ORDER BY user.id
+</code></pre>
+<h2 id="adding-group-by-expression">Adding <code>GROUP BY</code> expression</h2>
+<p>Adding a <code>GROUP BY</code> expression is easy as:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .groupBy(&quot;user.id&quot;)
+</code></pre>
+<p>Which will produce the following SQL query:</p>
+<pre><code class="language-sql">SELECT ... FROM users user GROUP BY user.id
+</code></pre>
+<p>To add more group-by criteria use <code>addGroupBy</code>:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .groupBy(&quot;user.name&quot;)
+    .addGroupBy(&quot;user.id&quot;);
+</code></pre>
+<p>If you use <code>.groupBy</code> more than once you'll override all previous <code>GROUP BY</code> expressions.</p>
+<h2 id="adding-limit-expression">Adding <code>LIMIT</code> expression</h2>
+<p>Adding a <code>LIMIT</code> expression is easy as:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .limit(10)
+</code></pre>
+<p>Which will produce the following SQL query:</p>
+<pre><code class="language-sql">SELECT ... FROM users user LIMIT 10
+</code></pre>
+<p>The resulting SQL query depends on the type of database (SQL, mySQL, Postgres, etc).
+Note: LIMIT may not work as you may expect if you are using complex queries with joins or subqueries.
+If you are using pagination, it's recommended to use <code>take</code> instead.</p>
+<h2 id="adding-offset-expression">Adding <code>OFFSET</code> expression</h2>
+<p>Adding an SQL <code>OFFSET</code> expression is easy as:</p>
+<pre><code class="language-typescript">createQueryBuilder(&quot;user&quot;)
+    .offset(10)
+</code></pre>
+<p>Which will produce the following SQL query:</p>
+<pre><code class="language-sql">SELECT ... FROM users user OFFSET 10
+</code></pre>
+<p>The resulting SQL query depends on the type of database (SQL, mySQL, Postgres, etc).
+Note: OFFSET may not work as you may expect if you are using complex queries with joins or subqueries.
+If you are using pagination, it's recommended to use <code>skip</code> instead.</p>
+<h2 id="joining-relations">Joining relations</h2>
+<p>Let's say you have the following entities:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from &quot;typeorm&quot;;
+import {Photo} from &quot;./Photo&quot;;
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @OneToMany(type =&gt; Photo, photo =&gt; photo.user)
+    photos: Photo[];
+}
+</code></pre>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from &quot;typeorm&quot;;
+import {User} from &quot;./User&quot;;
+
+@Entity()
+export class Photo {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    url: string;
+
+    @ManyToOne(type =&gt; User, user =&gt; user.photos)
+    user: User;
+}
+</code></pre>
+<p>Now let's say you want to load user "Timber" with all of his photos:</p>
+<pre><code class="language-typescript">const user = await createQueryBuilder(&quot;user&quot;)
+    .leftJoinAndSelect(&quot;user.photos&quot;, &quot;photo&quot;)
+    .where(&quot;user.name = :name&quot;, { name: &quot;Timber&quot; })
+    .getOne();
+</code></pre>
+<p>You'll get the following result:</p>
+<pre><code class="language-typescript">{
+    id: 1,
+    name: &quot;Timber&quot;,
+    photos: [{
+        id: 1,
+        url: &quot;me-with-chakram.jpg&quot;
+    }, {
+        id: 2,
+        url: &quot;me-with-trees.jpg&quot;
+    }]
+}
+</code></pre>
+<p>As you can see <code>leftJoinAndSelect</code> automatically loaded all of Timber's photos.
+The first argument is the relation you want to load and the second argument is an alias you assign to this relation's table.
+You can use this alias anywhere in query builder.
+For example, let's take all Timber's photos which aren't removed.</p>
+<pre><code class="language-typescript">const user = await createQueryBuilder(&quot;user&quot;)
+    .leftJoinAndSelect(&quot;user.photos&quot;, &quot;photo&quot;)
+    .where(&quot;user.name = :name&quot;, { name: &quot;Timber&quot; })
+    .andWhere(&quot;photo.isRemoved = :isRemoved&quot;, { isRemoved: false })
+    .getOne();
+</code></pre>
+<p>This will generate following sql query:</p>
+<pre><code class="language-sql">SELECT user.*, photo.* FROM users user
+    LEFT JOIN photos photo ON photo.user = user.id
+    WHERE user.name = 'Timber' AND photo.isRemoved = FALSE
+</code></pre>
+<p>You can also add conditions to the join expression instead of using "where":</p>
+<pre><code class="language-typescript">const user = await createQueryBuilder(&quot;user&quot;)
+    .leftJoinAndSelect(&quot;user.photos&quot;, &quot;photo&quot;, &quot;photo.isRemoved = :isRemoved&quot;, { isRemoved: false })
+    .where(&quot;user.name = :name&quot;, { name: &quot;Timber&quot; })
+    .getOne();
+</code></pre>
+<p>This will generate the following sql query:</p>
+<pre><code class="language-sql">SELECT user.*, photo.* FROM users user
+    LEFT JOIN photos photo ON photo.user = user.id AND photo.isRemoved = FALSE
+    WHERE user.name = 'Timber'
+</code></pre>
+<h2 id="inner-and-left-joins">Inner and left joins</h2>
+<p>If you want to use <code>INNER JOIN</code> instead of <code>LEFT JOIN</code> just use <code>innerJoinAndSelect</code> instead:</p>
+<pre><code class="language-typescript">const user = await createQueryBuilder(&quot;user&quot;)
+    .innerJoinAndSelect(&quot;user.photos&quot;, &quot;photo&quot;, &quot;photo.isRemoved = :isRemoved&quot;, { isRemoved: false })
+    .where(&quot;user.name = :name&quot;, { name: &quot;Timber&quot; })
+    .getOne();
+</code></pre>
+<p>This will generate:</p>
+<pre><code class="language-sql">SELECT user.*, photo.* FROM users user
+    INNER JOIN photos photo ON photo.user = user.id AND photo.isRemoved = FALSE
+    WHERE user.name = 'Timber'
+</code></pre>
+<p>The difference between <code>LEFT JOIN</code> and <code>INNER JOIN</code> is that <code>INNER JOIN</code> won't return a user if it does not have any photos.
+<code>LEFT JOIN</code> will return you the user even if it doesn't have photos.
+To learn more about different join types, refer to the <a href="https://msdn.microsoft.com/en-us/library/zt8wzxy4.aspx">SQL documentation</a>.</p>
+<h2 id="join-without-selection">Join without selection</h2>
+<p>You can join data without its selection.
+To do that, use <code>leftJoin</code> or <code>innerJoin</code>:</p>
+<pre><code class="language-typescript">const user = await createQueryBuilder(&quot;user&quot;)
+    .innerJoin(&quot;user.photos&quot;, &quot;photo&quot;)
+    .where(&quot;user.name = :name&quot;, { name: &quot;Timber&quot; })
+    .getOne();
+</code></pre>
+<p>This will generate:</p>
+<pre><code class="language-sql">SELECT user.* FROM users user
+    INNER JOIN photos photo ON photo.user = user.id
+    WHERE user.name = 'Timber'
+</code></pre>
+<p>This will select Timber if he has photos, but won't return his photos.</p>
+<h2 id="joining-any-entity-or-table">Joining any entity or table</h2>
+<p>You can join not only relations, but also other unrelated entities or tables.
+Examples:</p>
+<pre><code class="language-typescript">const user = await createQueryBuilder(&quot;user&quot;)
+    .leftJoinAndSelect(Photo, &quot;photo&quot;, &quot;photo.userId = user.id&quot;)
+    .getMany();
+</code></pre>
+<pre><code class="language-typescript">const user = await createQueryBuilder(&quot;user&quot;)
+    .leftJoinAndSelect(&quot;photos&quot;, &quot;photo&quot;, &quot;photo.userId = user.id&quot;)
+    .getMany();
+</code></pre>
+<h2 id="joining-and-mapping-functionality">Joining and mapping functionality</h2>
+<p>Add <code>profilePhoto</code> to <code>User</code> entity and you can map any data into that property using <code>QueryBuilder</code>:</p>
+<pre><code class="language-typescript">export class User {
+    /// ...
+    profilePhoto: Photo;
+
+}
+</code></pre>
+<pre><code class="language-typescript">const user = await createQueryBuilder(&quot;user&quot;)
+    .leftJoinAndMapOne(&quot;user.profilePhoto&quot;, &quot;user.photos&quot;, &quot;photo&quot;, &quot;photo.isForProfile = TRUE&quot;)
+    .where(&quot;user.name = :name&quot;, { name: &quot;Timber&quot; })
+    .getOne();
+</code></pre>
+<p>This will load Timber's profile photo and set it to <code>user.profilePhoto</code>.
+If you want to load and map a single entity use <code>leftJoinAndMapOne</code>.
+If you want to load and map multiple entities use <code>leftJoinAndMapMany</code>.</p>
+<h2 id="getting-the-generated-query">Getting the generated query</h2>
+<p>Sometimes you may want to get the SQL query generated by <code>QueryBuilder</code>.
+To do so, use <code>getSql</code>:</p>
+<pre><code class="language-typescript">const sql = createQueryBuilder(&quot;user&quot;)
+    .where(&quot;user.firstName = :firstName&quot;, { firstName: &quot;Timber&quot; })
+    .orWhere(&quot;user.lastName = :lastName&quot;, { lastName: &quot;Saw&quot; })
+    .getSql();
+</code></pre>
+<p>For debugging purposes you can use <code>printSql</code>:</p>
+<pre><code class="language-typescript">const users = await createQueryBuilder(&quot;user&quot;)
+    .where(&quot;user.firstName = :firstName&quot;, { firstName: &quot;Timber&quot; })
+    .orWhere(&quot;user.lastName = :lastName&quot;, { lastName: &quot;Saw&quot; })
+    .printSql()
+    .getMany();
+</code></pre>
+<p>This query will return users and print the used sql statement to the console.</p>
+<h2 id="getting-raw-results">Getting raw results</h2>
+<p>There are two types of results you can get using select query builder: <strong>entities</strong> and <strong>raw results</strong>.
+Most of the time, you need to select real entities from your database, for example, users.
+For this purpose, you use <code>getOne</code> and <code>getMany</code>.
+However, sometimes you need to select specific data, like the <em>sum of all user photos</em>.
+Such data is not a entity, it's called raw data.
+To get raw data, you use <code>getRawOne</code> and <code>getRawMany</code>.
+Examples:</p>
+<pre><code class="language-typescript">const { sum } = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .select(&quot;SUM(user.photosCount)&quot;, &quot;sum&quot;)
+    .where(&quot;user.id = :id&quot;, { id: 1 })
+    .getRawOne();
+</code></pre>
+<pre><code class="language-typescript">const photosSums = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .select(&quot;user.id&quot;)
+    .addSelect(&quot;SUM(user.photosCount)&quot;, &quot;sum&quot;)
+    .groupBy(&quot;user.id&quot;)
+    .getRawMany();
+
+// result will be like this: [{ id: 1, sum: 25 }, { id: 2, sum: 13 }, ...]
+</code></pre>
+<h2 id="streaming-result-data">Streaming result data</h2>
+<p>You can use <code>stream</code> which returns you a stream.
+Streaming returns you raw data and you must handle entity transformation manually:</p>
+<pre><code class="language-typescript">const stream = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .where(&quot;user.id = :id&quot;, { id: 1 })
+    .stream();
+</code></pre>
+<h2 id="using-pagination">Using pagination</h2>
+<p>Most of the time when you develop an application, you need pagination functionality.
+This is used if you have pagination, page slider, or infinite scroll components in your application.</p>
+<pre><code class="language-typescript">const users = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .leftJoinAndSelect(&quot;user.photos&quot;, &quot;photo&quot;)
+    .take(10)
+    .getMany();
+</code></pre>
+<p>This will give you the first 10 users with their photos.</p>
+<pre><code class="language-typescript">const users = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .leftJoinAndSelect(&quot;user.photos&quot;, &quot;photo&quot;)
+    .skip(10)
+    .getMany();
+</code></pre>
+<p>This will give you all except the first 10 users with their photos.
+You can combine those methods:</p>
+<pre><code class="language-typescript">const users = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .leftJoinAndSelect(&quot;user.photos&quot;, &quot;photo&quot;)
+    .skip(5)
+    .take(10)
+    .getMany();
+</code></pre>
+<p>This will skip the first 5 users and take 10 users after them.</p>
+<p><code>take</code> and <code>skip</code> may look like we are using <code>limit</code> and <code>offset</code>, but they aren't.
+<code>limit</code> and <code>offset</code> may not work as you expect once you have more complicated queries with joins or subqueries.
+Using <code>take</code> and <code>skip</code> will prevent those issues.</p>
+<h2 id="set-locking">Set locking</h2>
+<p>QueryBuilder supports both optimistic and pessimistic locking.
+To use pessimistic read locking use the following method:</p>
+<pre><code class="language-typescript">const users = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .setLock(&quot;pessimistic_read&quot;)
+    .getMany();
+</code></pre>
+<p>To use pessimistic write locking use the following method:</p>
+<pre><code class="language-typescript">const users = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .setLock(&quot;pessimistic_write&quot;)
+    .getMany();
+</code></pre>
+<p>To use dirty read locking use the following method:</p>
+<pre><code class="language-typescript">const users = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .setLock(&quot;dirty_read&quot;)
+    .getMany();
+</code></pre>
+<p>To use optimistic locking use the following method:</p>
+<pre><code class="language-typescript">const users = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .setLock(&quot;optimistic&quot;, existUser.version)
+    .getMany();
+</code></pre>
+<p>Optimistic locking works in conjunction with both <code>@Version</code> and <code>@UpdatedDate</code> decorators.</p>
+<h2 id="max-execution-time">Max execution time</h2>
+<p>We can drop slow query to avoid crashing the server. Only MySQL driver is supported at the moment:</p>
+<pre><code class="language-typescript">const users = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .maxExecutionTime(1000) // milliseconds.
+    .getMany();
+</code></pre>
+<h2 id="partial-selection">Partial selection</h2>
+<p>If you want to select only some entity properties, you can use the following syntax:</p>
+<pre><code class="language-typescript">const users = await getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .select([
+        &quot;user.id&quot;,
+        &quot;user.name&quot;
+    ])
+    .getMany();
+</code></pre>
+<p>This will only select the <code>id</code> and <code>name</code> of <code>User</code>.</p>
+<h2 id="using-subqueries">Using subqueries</h2>
+<p>You can easily create subqueries. Subqueries are supported in <code>FROM</code>, <code>WHERE</code> and <code>JOIN</code> expressions.
+Example:</p>
+<pre><code class="language-typescript">const qb = await getRepository(Post).createQueryBuilder(&quot;post&quot;);
+const posts = qb
+    .where(&quot;post.title IN &quot; + qb.subQuery().select(&quot;user.name&quot;).from(User, &quot;user&quot;).where(&quot;user.registered = :registered&quot;).getQuery())
+    .setParameter(&quot;registered&quot;, true)
+    .getMany();
+</code></pre>
+<p>A more elegant way to do the same:</p>
+<pre><code class="language-typescript">const posts = await connection.getRepository(Post)
+    .createQueryBuilder(&quot;post&quot;)
+    .where(qb =&gt; {
+        const subQuery = qb.subQuery()
+            .select(&quot;user.name&quot;)
+            .from(User, &quot;user&quot;)
+            .where(&quot;user.registered = :registered&quot;)
+            .getQuery();
+        return &quot;post.title IN &quot; + subQuery;
+    })
+    .setParameter(&quot;registered&quot;, true)
+    .getMany();
+</code></pre>
+<p>Alternatively, you can create a separate query builder and use its generated SQL:</p>
+<pre><code class="language-typescript">const userQb = await connection.getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .select(&quot;user.name&quot;)
+    .where(&quot;user.registered = :registered&quot;, { registered: true });
+
+const posts = await connection.getRepository(Post)
+    .createQueryBuilder(&quot;post&quot;)
+    .where(&quot;post.title IN (&quot; + userQb.getQuery() + &quot;)&quot;)
+    .setParameters(userQb.getParameters())
+    .getMany();
+</code></pre>
+<p>You can create subqueries in <code>FROM</code> like this:</p>
+<pre><code class="language-typescript">const userQb = await connection.getRepository(User)
+    .createQueryBuilder(&quot;user&quot;)
+    .select(&quot;user.name&quot;, &quot;name&quot;)
+    .where(&quot;user.registered = :registered&quot;, { registered: true });
+
+const posts = await connection
+    .createQueryBuilder()
+    .select(&quot;user.name&quot;, &quot;name&quot;)
+    .from(&quot;(&quot; + userQb.getQuery() + &quot;)&quot;, &quot;user&quot;)
+    .setParameters(userQb.getParameters())
+    .getRawMany();
+</code></pre>
+<p>or using more a elegant syntax:</p>
+<pre><code class="language-typescript">const posts = await connection
+    .createQueryBuilder()
+    .select(&quot;user.name&quot;, &quot;name&quot;)
+    .from(subQuery =&gt; {
+        return subQuery
+            .select(&quot;user.name&quot;, &quot;name&quot;)
+            .from(User, &quot;user&quot;)
+            .where(&quot;user.registered = :registered&quot;, { registered: true });
+    }, &quot;user&quot;)
+    .getRawMany();
+</code></pre>
+<p>If you want to add a subselect as a "second from" use <code>addFrom</code>.</p>
+<p>You can use subselects in <code>SELECT</code> statements as well:</p>
+<pre><code class="language-typescript">const posts = await connection
+    .createQueryBuilder()
+    .select(&quot;post.id&quot;, &quot;id&quot;)
+    .addSelect(subQuery =&gt; {
+        return subQuery
+            .select(&quot;user.name&quot;, &quot;name&quot;)
+            .from(User, &quot;user&quot;)
+            .limit(1);
+    }, &quot;name&quot;)
+    .from(Post, &quot;post&quot;)
+    .getRawMany();
+</code></pre>
+<h2 id="hidden-columns">Hidden Columns</h2>
+<p>If the model you are querying has a column with a <code>select: false</code> column, you must use the <code>addSelect</code> function in order to retrieve the information from the column.</p>
+<p>Let's say you have the following entity:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column} from &quot;typeorm&quot;;
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @Column({select: false})
+    password: string;
+}
+</code></pre>
+<p>Using a standard <code>find</code> or query, you will not receive the <code>password</code> property for the model. However, if you do the following:</p>
+<pre><code class="language-typescript">const users = await connection.getRepository(User)
+    .createQueryBuilder()
+    .select(&quot;user.id&quot;, &quot;id&quot;)
+    .addSelect(&quot;user.password&quot;)
+    .getMany();
+</code></pre>
+<p>You will get the property <code>password</code> in your query.</p>
+<h2 id="querying-deleted-rows">Querying Deleted rows</h2>
+<p>If the model you are querying has a column with the attribute <code>@DeleteDateColumn</code> set, the query builder will automatically query rows which are 'soft deleted'.</p>
+<p>Let's say you have the following entity:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column} from &quot;typeorm&quot;;
+
+@Entity()
+export class User {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @DeleteDateColumn()
+    deletedAt?: Date;
+}
+</code></pre>
+<p>Using a standard <code>find</code> or query, you will not receive the rows which have a value in that row. However, if you do the following:</p>
+<pre><code class="language-typescript">const users = await connection.getRepository(User)
+    .createQueryBuilder()
+    .select(&quot;user.id&quot;, &quot;id&quot;)
+    .withDeleted()
+    .getMany();
+</code></pre>
+<p>You will get all the rows, including the ones which are deleted.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../roadmap/" class="btn btn-neutral float-left" title="Roadmap"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../separating-entity-definition/" class="btn btn-neutral float-right" title="Separating Entity Definition">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../roadmap/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../separating-entity-definition/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/many-to-many-relations/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Many-to-many relations - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Many-to-many relations";
+        var mkdocs_page_input_path = "many-to-many-relations.md";
+        var mkdocs_page_url = "/many-to-many-relations/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-api/">Connection APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Many-to-many relations</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-are-many-to-many-relations">What are many-to-many relations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#saving-many-to-many-relations">Saving many-to-many relations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deleting-many-to-many-relations">Deleting many-to-many relations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#soft-deleting-a-relationship-with-cascade">Soft Deleting a relationship with cascade</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#loading-many-to-many-relations">Loading many-to-many relations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bi-directional-relations">bi-directional relations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#many-to-many-relations-with-custom-properties">many-to-many relations with custom properties</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Many-to-many relations</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="many-to-many-relations">Many-to-many relations</h1>
+<ul>
+<li><a href="#what-are-many-to-many-relations">What are many-to-many relations</a></li>
+<li><a href="#saving-many-to-many-relations">Saving many-to-many relations</a></li>
+<li><a href="#deleting-many-to-many-relations">Deleting many-to-many relations</a></li>
+<li><a href="#loading-many-to-many-relations">Loading many-to-many relations</a></li>
+<li><a href="#bi-directional-relations">bi-directional relations</a></li>
+<li><a href="#many-to-many-relations-with-custom-properties">many-to-many relations with custom properties</a></li>
+</ul>
+<h2 id="what-are-many-to-many-relations">What are many-to-many relations</h2>
+<p>Many-to-many is a relation where A contains multiple instances of B, and B contain multiple instances of A.
+Let's take for example <code>Question</code> and <code>Category</code> entities.
+A question can have multiple categories, and each category can have multiple questions.</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column} from &quot;typeorm&quot;;
+
+@Entity()
+export class Category {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+}
+</code></pre>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from &quot;typeorm&quot;;
+import {Category} from &quot;./Category&quot;;
+
+@Entity()
+export class Question {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    text: string;
+
+    @ManyToMany(() =&gt; Category)
+    @JoinTable()
+    categories: Category[];
+
+}
+</code></pre>
+<p><code>@JoinTable()</code> is required for <code>@ManyToMany</code> relations.
+You must put <code>@JoinTable</code> on one (owning) side of relation.</p>
+<p>This example will produce following tables:</p>
+<pre><code class="language-shell">+-------------+--------------+----------------------------+
+|                        category                         |
++-------------+--------------+----------------------------+
+| id          | int(11)      | PRIMARY KEY AUTO_INCREMENT |
+| name        | varchar(255) |                            |
++-------------+--------------+----------------------------+
+
++-------------+--------------+----------------------------+
+|                        question                         |
++-------------+--------------+----------------------------+
+| id          | int(11)      | PRIMARY KEY AUTO_INCREMENT |
+| title       | varchar(255) |                            |
+| text        | varchar(255) |                            |
++-------------+--------------+----------------------------+
+
++-------------+--------------+----------------------------+
+|              question_categories_category               |
++-------------+--------------+----------------------------+
+| questionId  | int(11)      | PRIMARY KEY FOREIGN KEY    |
+| categoryId  | int(11)      | PRIMARY KEY FOREIGN KEY    |
++-------------+--------------+----------------------------+
+</code></pre>
+<h2 id="saving-many-to-many-relations">Saving many-to-many relations</h2>
+<p>With <a href="../relations/#cascades">cascades</a> enabled, you can save this relation with only one <code>save</code> call.</p>
+<pre><code class="language-typescript">const category1 = new Category();
+category1.name = &quot;animals&quot;;
+await connection.manager.save(category1);
+
+const category2 = new Category();
+category2.name = &quot;zoo&quot;;
+await connection.manager.save(category2);
+
+const question = new Question();
+question.title = &quot;dogs&quot;;
+question.text = &quot;who let the dogs out?&quot;;
+question.categories = [category1, category2];
+await connection.manager.save(question);
+</code></pre>
+<h2 id="deleting-many-to-many-relations">Deleting many-to-many relations</h2>
+<p>With <a href="../relations/#cascades">cascades</a> enabled, you can delete this relation with only one <code>save</code> call.</p>
+<p>To delete a many-to-many relationship between two records, remove it from the corresponding field and save the record.</p>
+<pre><code class="language-typescript">const question = getRepository(Question);
+question.categories = question.categories.filter(category =&gt; {
+    return category.id !== categoryToRemove.id
+})
+await connection.manager.save(question)
+</code></pre>
+<p>This will only remove the record in the join table. The <code>question</code> and <code>categoryToRemove</code> records will still exist.</p>
+<h2 id="soft-deleting-a-relationship-with-cascade">Soft Deleting a relationship with cascade</h2>
+<p>This example shows how the cascading soft delete behaves:</p>
+<pre><code class="language-typescript">const category1 = new Category();
+category1.name = &quot;animals&quot;;
+
+const category2 = new Category();
+category2.name = &quot;zoo&quot;;
+
+const question = new Question();
+question.categories = [category1, category2];
+const newQuestion =  await connection.manager.save(question);
+
+await connection.manager.softRemove(newQuestion);
+</code></pre>
+<p>In this example we did not call save or softRemove for category1 and category2, but they will be automatically saved and soft-deleted when the cascade of relation options is set to true like this:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from &quot;typeorm&quot;;
+import {Category} from &quot;./Category&quot;;
+
+@Entity()
+export class Question {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @ManyToMany(() =&gt; Category, category =&gt; category.questions, {
+        cascade: true
+    })
+    @JoinTable()
+    categories: Category[];
+
+}
+</code></pre>
+<h2 id="loading-many-to-many-relations">Loading many-to-many relations</h2>
+<p>To load questions with categories inside you must specify the relation in <code>FindOptions</code>:</p>
+<pre><code class="language-typescript">const questionRepository = connection.getRepository(Question);
+const questions = await questionRepository.find({ relations: [&quot;categories&quot;] });
+</code></pre>
+<p>Or using <code>QueryBuilder</code> you can join them:</p>
+<pre><code class="language-typescript">const questions = await connection
+    .getRepository(Question)
+    .createQueryBuilder(&quot;question&quot;)
+    .leftJoinAndSelect(&quot;question.categories&quot;, &quot;category&quot;)
+    .getMany();
+</code></pre>
+<p>When using <code>FindOptions</code> you don't need to specify eager relations - they are always automatically loaded.</p>
+<h2 id="bi-directional-relations">bi-directional relations</h2>
+<p>Relations can be uni-directional and bi-directional.
+Uni-directional relations are relations with a relation decorator only on one side.
+Bi-directional relations are relations with decorators on both sides of a relation.</p>
+<p>We just created a uni-directional relation. Let's make it bi-directional:</p>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, ManyToMany} from &quot;typeorm&quot;;
+import {Question} from &quot;./Question&quot;;
+
+@Entity()
+export class Category {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @ManyToMany(() =&gt; Question, question =&gt; question.categories)
+    questions: Question[];
+
+}
+</code></pre>
+<pre><code class="language-typescript">import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from &quot;typeorm&quot;;
+import {Category} from &quot;./Category&quot;;
+
+@Entity()
+export class Question {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    text: string;
+
+    @ManyToMany(() =&gt; Category, category =&gt; category.questions)
+    @JoinTable()
+    categories: Category[];
+
+}
+</code></pre>
+<p>We just made our relation bi-directional. Note that the inverse relation does not have a <code>@JoinTable</code>.
+<code>@JoinTable</code> must be only on one side of the relation.</p>
+<p>Bi-directional relations allow you to join relations from both sides using <code>QueryBuilder</code>:</p>
+<pre><code class="language-typescript">const categoriesWithQuestions = await connection
+    .getRepository(Category)
+    .createQueryBuilder(&quot;category&quot;)
+    .leftJoinAndSelect(&quot;category.questions&quot;, &quot;question&quot;)
+    .getMany();
+</code></pre>
+<h2 id="many-to-many-relations-with-custom-properties">many-to-many relations with custom properties</h2>
+<p>In case you need to have additional properties in your many-to-many relationship, you have to create a new entity yourself.
+For example, if you would like entities <code>Post</code> and <code>Category</code> to have a many-to-many relationship with an additional <code>order</code> column, then you need to create an entity <code>PostToCategory</code> with two <code>ManyToOne</code> relations pointing in both directions and with custom columns in it:</p>
+<pre><code class="language-typescript">import { Entity, Column, ManyToOne, PrimaryGeneratedColumn } from &quot;typeorm&quot;;
+import { Post } from &quot;./post&quot;;
+import { Category } from &quot;./category&quot;;
+
+@Entity()
+export class PostToCategory {
+    @PrimaryGeneratedColumn()
+    public postToCategoryId!: number;
+
+    @Column()
+    public postId!: number;
+
+    @Column()
+    public categoryId!: number;
+
+    @Column()
+    public order!: number;
+
+    @ManyToOne(() =&gt; Post, post =&gt; post.postToCategories)
+    public post!: Post;
+
+    @ManyToOne(() =&gt; Category, category =&gt; category.postToCategories)
+    public category!: Category;
+}
+</code></pre>
+<p>Additionally you will have to add a relationship like the following to <code>Post</code> and <code>Category</code>:</p>
+<pre><code class="language-typescript">// category.ts
+...
+@OneToMany(() =&gt; PostToCategory, postToCategory =&gt; postToCategory.category)
+public postToCategories!: PostToCategory[];
+
+// post.ts
+...
+@OneToMany(() =&gt; PostToCategory, postToCategory =&gt; postToCategory.post)
+public postToCategories!: PostToCategory[];
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../logging/" class="btn btn-neutral float-left" title="Logging"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../many-to-one-one-to-many-relations/" class="btn btn-neutral float-right" title="Many-to-one / one-to-many relations">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../logging/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../many-to-one-one-to-many-relations/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

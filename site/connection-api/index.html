@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://typeorm-legacy.productsway.com/connection-api/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Connection APIs - TypeORM 0.2.38</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Connection APIs";
+        var mkdocs_page_input_path = "connection-api.md";
+        var mkdocs_page_url = "/connection-api/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TypeORM 0.2.38
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../active-record-data-mapper/">Active Record vs Data Mapper</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching queries</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Connection APIs</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#main-api">Main API</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#connection-api">Connection API</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#connectionmanager-api">ConnectionManager API</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection-options/">Connection Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../connection/">Working with Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../custom-repository/">Custom repositories</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorator-reference/">Decorators reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../delete-query-builder/">Delete using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../eager-and-lazy-relations/">Eager and Lazy Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../embedded-entities/">Embedded Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entities/">Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-inheritance/">Entity Inheritance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-manager-api/">`EntityManager` API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../entity-metadata/">Entity Metadata</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../example-with-express/">Example using TypeORM with Express</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../find-options/">Find Options</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../indices/">Indices</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../insert-query-builder/">Insert using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../internals/">Internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../listeners-and-subscribers/">Entity Listeners and Subscribers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging/">Logging</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-many-relations/">Many-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../many-to-one-one-to-many-relations/">Many-to-one / one-to-many relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../migrations/">Migrations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mongodb/">MongoDB</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../multiple-connections/">Multiple connections, databases, schemas and replication setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../naming-strategy/">Naming strategy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../one-to-one-relations/">One-to-one relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../query-runner/">Working with Query Runner</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relational-query-builder/">Working with Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations-faq/">Relations FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../repository-api/">Repository APIs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../select-query-builder/">Select using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../separating-entity-definition/">Separating Entity Definition</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sequelize-migration/">Migration from Sequelize to TypeORM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../supported-platforms/">Supported platforms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tree-entities/">Tree Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../update-query-builder/">Update using Query Builder</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage-with-javascript/">Using with JavaScript</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-cli/">Using CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../using-ormconfig/">Using Configuration Sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Using Validation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../view-entities/">View Entities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-entity-manager/">What is EntityManager</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../working-with-repository/">What is Repository</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TypeORM 0.2.38</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Connection APIs</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="connection-apis">Connection APIs</h1>
+<ul>
+<li><a href="#main-api">Main API</a></li>
+<li><a href="#connection-api"><code>Connection</code> API</a></li>
+<li><a href="#connectionmanager-api"><code>ConnectionManager</code> API</a></li>
+</ul>
+<h2 id="main-api">Main API</h2>
+<ul>
+<li><code>createConnection()</code> - Creates a new connection and registers it in global connection manager.
+If connection options parameter is omitted then connection options are read from <code>ormconfig</code> file or environment variables.</li>
+</ul>
+<pre><code class="language-typescript">import {createConnection} from &quot;typeorm&quot;;
+
+const connection = await createConnection({
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    port: 3306,
+    username: &quot;test&quot;,
+    password: &quot;test&quot;,
+    database: &quot;test&quot;
+});
+</code></pre>
+<ul>
+<li><code>createConnections()</code> - Creates multiple connections and registers them in global connection manager.
+If connection options parameter is omitted then connection options are read from <code>ormconfig</code> file or environment variables.</li>
+</ul>
+<pre><code class="language-typescript">import {createConnections} from &quot;typeorm&quot;;
+
+const connection = await createConnections([{
+    name: &quot;connection1&quot;,
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    port: 3306,
+    username: &quot;test&quot;,
+    password: &quot;test&quot;,
+    database: &quot;test&quot;
+}, {
+    name: &quot;connection2&quot;,
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    port: 3306,
+    username: &quot;test&quot;,
+    password: &quot;test&quot;,
+    database: &quot;test&quot;
+}]);
+</code></pre>
+<ul>
+<li><code>getConnectionManager()</code> - Gets connection manager which stores all created (using <code>createConnection()</code> or <code>createConnections()</code>) connections.</li>
+</ul>
+<pre><code class="language-typescript">import {getConnectionManager} from &quot;typeorm&quot;;
+
+const defaultConnection = getConnectionManager().get(&quot;default&quot;);
+const secondaryConnection = getConnectionManager().get(&quot;secondary&quot;);
+</code></pre>
+<ul>
+<li><code>getConnection()</code> - Gets connection which was created by using <code>createConnection</code> method.</li>
+</ul>
+<pre><code class="language-typescript">import {getConnection} from &quot;typeorm&quot;;
+
+const connection = getConnection();
+// if you have named connection you can specify its name:
+const secondaryConnection = getConnection(&quot;secondary-connection&quot;);
+</code></pre>
+<ul>
+<li><code>getEntityManager()</code> - Gets <code>EntityManager</code> from connection. 
+Connection name can be specified to indicate what connection's entity manager should be taken.</li>
+</ul>
+<pre><code class="language-typescript">import {getEntityManager} from &quot;typeorm&quot;;
+
+const manager = getEntityManager();
+// you can use manager methods now
+
+const secondaryManager = getEntityManager(&quot;secondary-connection&quot;);
+// you can use secondary connection manager methods
+</code></pre>
+<ul>
+<li><code>getRepository()</code> - Gets <code>Repository</code> for given entity from connection. 
+Connection name can be specified to indicate what connection's entity manager should be taken.</li>
+</ul>
+<pre><code class="language-typescript">import {getRepository} from &quot;typeorm&quot;;
+
+const userRepository = getRepository(User);
+// you can use repository methods now
+
+const blogRepository = getRepository(Blog, &quot;secondary-connection&quot;);
+// you can use secondary connection repository methods
+</code></pre>
+<ul>
+<li><code>getTreeRepository()</code> - Gets <code>TreeRepository</code> for given entity from connection. 
+Connection name can be specified to indicate what connection's entity manager should be taken.</li>
+</ul>
+<pre><code class="language-typescript">import {getTreeRepository} from &quot;typeorm&quot;;
+
+const userRepository = getTreeRepository(User);
+// you can use repository methods now
+
+const blogRepository = getTreeRepository(Blog, &quot;secondary-connection&quot;);
+// you can use secondary connection repository methods
+</code></pre>
+<ul>
+<li><code>getMongoRepository()</code> - Gets <code>MongoRepository</code> for given entity from connection. 
+Connection name can be specified to indicate what connection's entity manager should be taken.</li>
+</ul>
+<pre><code class="language-typescript">import {getMongoRepository} from &quot;typeorm&quot;;
+
+const userRepository = getMongoRepository(User);
+// you can use repository methods now
+
+const blogRepository = getMongoRepository(Blog, &quot;secondary-connection&quot;);
+// you can use secondary connection repository methods
+</code></pre>
+<h2 id="connection-api"><code>Connection</code> API</h2>
+<ul>
+<li><code>name</code> - Connection name. If you created nameless connection then it's equal to "default".
+You use this name when you work with multiple connections and call <code>getConnection(connectionName: string)</code></li>
+</ul>
+<pre><code class="language-typescript">const connectionName: string = connection.name;
+</code></pre>
+<ul>
+<li><code>options</code> - Connection options used to create this connection.
+Learn more about <a href="../connection-options/">Connection Options</a>.</li>
+</ul>
+<pre><code class="language-typescript">const connectionOptions: ConnectionOptions = connection.options;
+// you can cast connectionOptions to MysqlConnectionOptions
+// or any other xxxConnectionOptions depending on the database driver you use
+</code></pre>
+<ul>
+<li><code>isConnected</code> - Indicates if a real connection to the database is established.</li>
+</ul>
+<pre><code class="language-typescript">const isConnected: boolean = connection.isConnected;
+</code></pre>
+<ul>
+<li><code>driver</code> - Underlying database driver used in this connection.</li>
+</ul>
+<pre><code class="language-typescript">const driver: Driver = connection.driver;
+// you can cast connectionOptions to MysqlDriver
+// or any other xxxDriver depending on the database driver you use
+</code></pre>
+<ul>
+<li><code>manager</code> - <code>EntityManager</code> used to work with connection entities.
+Learn more about <a href="../working-with-entity-manager/">Entity Manager and Repository</a>.</li>
+</ul>
+<pre><code class="language-typescript">const manager: EntityManager = connection.manager;
+// you can call manager methods, for example find:
+const user = await manager.findOne(1);
+</code></pre>
+<ul>
+<li><code>mongoManager</code> - <code>MongoEntityManager</code> used to work with connection entities in mongodb connections.
+For more information about MongoEntityManager see <a href="../mongodb/">MongoDB</a> documentation.</li>
+</ul>
+<pre><code class="language-typescript">const manager: MongoEntityManager = connection.mongoManager;
+// you can call manager or mongodb-manager specific methods, for example find:
+const user = await manager.findOne(1);
+</code></pre>
+<ul>
+<li><code>connect</code> - Performs connection to the database. 
+When you use <code>createConnection</code> it automatically calls <code>connect</code> and you don't need to call it yourself.</li>
+</ul>
+<pre><code class="language-typescript">await connection.connect();
+</code></pre>
+<ul>
+<li><code>close</code> - Closes connection with the database. 
+Usually, you call this method when your application is shutting down.</li>
+</ul>
+<pre><code class="language-typescript">await connection.close();
+</code></pre>
+<ul>
+<li><code>synchronize</code> - Synchronizes database schema. When <code>synchronize: true</code> is set in connection options it calls this method. 
+Usually, you call this method when your application is starting.</li>
+</ul>
+<pre><code class="language-typescript">await connection.synchronize();
+</code></pre>
+<ul>
+<li><code>dropDatabase</code> - Drops the database and all its data.
+Be careful with this method on production since this method will erase all your database tables and their data.
+Can be used only after connection to the database is established.</li>
+</ul>
+<pre><code class="language-typescript">await connection.dropDatabase();
+</code></pre>
+<ul>
+<li><code>runMigrations</code> - Runs all pending migrations.</li>
+</ul>
+<pre><code class="language-typescript">await connection.runMigrations();
+</code></pre>
+<ul>
+<li><code>undoLastMigration</code> - Reverts last executed migration.</li>
+</ul>
+<pre><code class="language-typescript">await connection.undoLastMigration();
+</code></pre>
+<ul>
+<li><code>hasMetadata</code> - Checks if metadata for a given entity is registered.
+Learn more about <a href="../entity-metadata/">Entity Metadata</a>.</li>
+</ul>
+<pre><code class="language-typescript">if (connection.hasMetadata(User))
+    const userMetadata = connection.getMetadata(User);
+</code></pre>
+<ul>
+<li><code>getMetadata</code> - Gets <code>EntityMetadata</code> of the given entity.
+You can also specify a table name and if entity metadata with such table name is found it will be returned.
+Learn more about <a href="../entity-metadata/">Entity Metadata</a>.</li>
+</ul>
+<pre><code class="language-typescript">const userMetadata = connection.getMetadata(User);
+// now you can get any information about User entity
+</code></pre>
+<ul>
+<li><code>getRepository</code> - Gets <code>Repository</code> of the given entity.
+You can also specify a table name and if repository for given table is found it will be returned.
+Learn more about <a href="../working-with-repository/">Repositories</a>.</li>
+</ul>
+<pre><code class="language-typescript">const repository = connection.getRepository(User);
+// now you can call repository methods, for example find:
+const users = await repository.findOne(1);
+</code></pre>
+<ul>
+<li><code>getTreeRepository</code> - Gets <code>TreeRepository</code> of the given entity.
+You can also specify a table name and if repository for given table is found it will be returned.
+Learn more about <a href="../working-with-repository/">Repositories</a>.</li>
+</ul>
+<pre><code class="language-typescript">const repository = connection.getTreeRepository(Category);
+// now you can call tree repository methods, for example findTrees:
+const categories = await repository.findTrees();
+</code></pre>
+<ul>
+<li><code>getMongoRepository</code> - Gets <code>MongoRepository</code> of the given entity.
+This repository is used for entities in MongoDB connection.
+Learn more about <a href="../mongodb/">MongoDB support</a>.</li>
+</ul>
+<pre><code class="language-typescript">const repository = connection.getMongoRepository(User);
+// now you can call mongodb-specific repository methods, for example createEntityCursor:
+const categoryCursor = repository.createEntityCursor();
+const category1 = await categoryCursor.next();
+const category2 = await categoryCursor.next();
+</code></pre>
+<ul>
+<li><code>getCustomRepository</code> - Gets custom defined repository.
+Learn more about <a href="../custom-repository/">custom repositories</a>.</li>
+</ul>
+<pre><code class="language-typescript">const userRepository = connection.getCustomRepository(UserRepository);
+// now you can call methods inside your custom repository - UserRepository class
+const crazyUsers = await userRepository.findCrazyUsers();
+</code></pre>
+<ul>
+<li><code>transaction</code> - Provides a single transaction where multiple database requests will be executed in a single database transaction.
+Learn more about <a href="../transactions/">Transactions</a>.</li>
+</ul>
+<pre><code class="language-typescript">await connection.transaction(async manager =&gt; {
+    // NOTE: you must perform all database operations using given manager instance
+    // its a special instance of EntityManager working with this transaction
+    // and don't forget to await things here
+});
+</code></pre>
+<ul>
+<li><code>query</code> - Executes a raw SQL query.</li>
+</ul>
+<pre><code class="language-typescript">const rawData = await connection.query(`SELECT * FROM USERS`);
+</code></pre>
+<ul>
+<li><code>createQueryBuilder</code> - Creates a query builder, which can be used to build queries.
+Learn more about <a href="../select-query-builder/">QueryBuilder</a>.</li>
+</ul>
+<pre><code class="language-typescript">const users = await connection.createQueryBuilder()
+    .select()
+    .from(User, &quot;user&quot;)
+    .where(&quot;user.name = :name&quot;, { name: &quot;John&quot; })
+    .getMany();
+</code></pre>
+<ul>
+<li><code>createQueryRunner</code> - Creates a query runner used to manage and work with a single real database connection.
+Learn more about <a href="../query-runner/">QueryRunner</a>. </li>
+</ul>
+<pre><code class="language-typescript">const queryRunner = connection.createQueryRunner();
+
+// you can use its methods only after you call connect
+// which performs real database connection
+await queryRunner.connect();
+
+// .. now you can work with query runner and call its methods
+
+// very important - don't forget to release query runner once you finished working with it
+await queryRunner.release();
+</code></pre>
+<h2 id="connectionmanager-api"><code>ConnectionManager</code> API</h2>
+<ul>
+<li><code>create</code> - Creates a new connection and register it in the manager.</li>
+</ul>
+<pre><code class="language-typescript">const connection = connectionManager.create({
+    type: &quot;mysql&quot;,
+    host: &quot;localhost&quot;,
+    port: 3306,
+    username: &quot;test&quot;,
+    password: &quot;test&quot;,
+    database: &quot;test&quot;
+});
+</code></pre>
+<ul>
+<li><code>get</code> - Gets already created connection stored in the manager by its name.</li>
+</ul>
+<pre><code class="language-typescript">const defaultConnection = connectionManager.get(&quot;default&quot;);
+const secondaryConnection = connectionManager.get(&quot;secondary&quot;);
+</code></pre>
+<ul>
+<li><code>has</code> - Checks if a connection is registered in the given connection manager.</li>
+</ul>
+<pre><code class="language-typescript">if (connectionManager.has(&quot;default&quot;)) {
+    // ...
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../caching/" class="btn btn-neutral float-left" title="Caching queries"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../connection-options/" class="btn btn-neutral float-right" title="Connection Options">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../caching/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../connection-options/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
