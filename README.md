@@ -7,7 +7,7 @@ As the homepage has changed and only the latest version (e.g. TypeORM v0.3) is a
 
 ## Usage
 
-### ✨ [Demo](https://typeorm-02-38.onrender.com/)
+### ✨ [Demo](https://typeorm-0238.vercel.app/)
 
 To deploy the markdown docs from the typeorm/typeorm repository on GitHub to Vercel, follow these steps:
 
