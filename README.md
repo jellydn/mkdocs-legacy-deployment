@@ -29,7 +29,7 @@ pip install mkdocs
 
 3. Setup theme for document page
 
-Create a `mkdocs.yml`` with below configuration
+Create a `mkdocs.yml` with below configuration
 
 ```yml
 site_name: TypeORM v0.2.38
@@ -40,7 +40,7 @@ theme: readthedocs
 Then run
 
 ```sh
-mkdoc build
+mkdocs build
 npx vercel site
 ```
 
